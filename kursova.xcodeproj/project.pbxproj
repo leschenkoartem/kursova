@@ -8,17 +8,51 @@
 
 /* Begin PBXBuildFile section */
 		E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055029AB76A500426066 /* kursovaApp.swift */; };
-		E3E3055329AB76A500426066 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055229AB76A500426066 /* ContentView.swift */; };
 		E3E3055529AB76A600426066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055429AB76A600426066 /* Assets.xcassets */; };
 		E3E3055829AB76A600426066 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055729AB76A600426066 /* Preview Assets.xcassets */; };
+		E3E3055F29AB780500426066 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055E29AB780500426066 /* HomeView.swift */; };
+		E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056029AB782B00426066 /* CustomTabBar.swift */; };
+		E3E3056329AB783C00426066 /* SmallLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056229AB783C00426066 /* SmallLot.swift */; };
+		E3E3056529AB788A00426066 /* accountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056429AB788A00426066 /* accountModel.swift */; };
+		E3E3056729AB789C00426066 /* LotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056629AB789C00426066 /* LotModel.swift */; };
+		E3E3056929AB78B600426066 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056829AB78B600426066 /* AuthService.swift */; };
+		E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056A29AB78CF00426066 /* DatbaseService.swift */; };
+		E3E3056D29AB78EC00426066 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056C29AB78EC00426066 /* AccountViewModel.swift */; };
+		E3E3056F29AB78FF00426066 /* LotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056E29AB78FF00426066 /* LotViewModel.swift */; };
+		E3E3057129AB791400426066 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057029AB791400426066 /* AddingNewLotView.swift */; };
+		E3E3057329AB792800426066 /* AuctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057229AB792800426066 /* AuctionView.swift */; };
+		E3E3057529AB793E00426066 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057429AB793E00426066 /* ContentView.swift */; };
+		E3E3057929AB79BA00426066 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057829AB79BA00426066 /* SignInView.swift */; };
+		E3E3057B29AB79D400426066 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057A29AB79D400426066 /* SignUpView.swift */; };
+		E3E3057D29AB7A0E00426066 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057C29AB7A0E00426066 /* ImagePicker.swift */; };
+		E3E3057F29AB7A9A00426066 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */; };
+		E3E3058229AB7B1800426066 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058129AB7B1800426066 /* FirebaseAuth */; };
+		E3E3058429AB7B1800426066 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058329AB7B1800426066 /* FirebaseFirestore */; };
+		E3E3058629AB7B1800426066 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */; };
+		E3E3058829AB7B1800426066 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058729AB7B1800426066 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E3E3054D29AB76A500426066 /* kursova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kursova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E3055029AB76A500426066 /* kursovaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kursovaApp.swift; sourceTree = "<group>"; };
-		E3E3055229AB76A500426066 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E3E3055429AB76A600426066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3E3055729AB76A600426066 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E3E3055E29AB780500426066 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E3E3056029AB782B00426066 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		E3E3056229AB783C00426066 /* SmallLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLot.swift; sourceTree = "<group>"; };
+		E3E3056429AB788A00426066 /* accountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountModel.swift; sourceTree = "<group>"; };
+		E3E3056629AB789C00426066 /* LotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotModel.swift; sourceTree = "<group>"; };
+		E3E3056829AB78B600426066 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		E3E3056A29AB78CF00426066 /* DatbaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatbaseService.swift; sourceTree = "<group>"; };
+		E3E3056C29AB78EC00426066 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		E3E3056E29AB78FF00426066 /* LotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewModel.swift; sourceTree = "<group>"; };
+		E3E3057029AB791400426066 /* AddingNewLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewLotView.swift; sourceTree = "<group>"; };
+		E3E3057229AB792800426066 /* AuctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionView.swift; sourceTree = "<group>"; };
+		E3E3057429AB793E00426066 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E3E3057829AB79BA00426066 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		E3E3057A29AB79D400426066 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		E3E3057C29AB7A0E00426066 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +60,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3E3058229AB7B1800426066 /* FirebaseAuth in Frameworks */,
+				E3E3058829AB7B1800426066 /* FirebaseStorage in Frameworks */,
+				E3E3058429AB7B1800426066 /* FirebaseFirestore in Frameworks */,
+				E3E3058629AB7B1800426066 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +90,12 @@
 			isa = PBXGroup;
 			children = (
 				E3E3055029AB76A500426066 /* kursovaApp.swift */,
-				E3E3055229AB76A500426066 /* ContentView.swift */,
+				E3E3058D29AB7BC800426066 /* Services */,
+				E3E3058C29AB7BAB00426066 /* Models */,
+				E3E3058A29AB7B6A00426066 /* ViewModel */,
+				E3E3058929AB7B2700426066 /* Views */,
+				E3E3058B29AB7B8E00426066 /* Components */,
+				E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */,
 				E3E3055429AB76A600426066 /* Assets.xcassets */,
 				E3E3055629AB76A600426066 /* Preview Content */,
 			);
@@ -65,6 +108,56 @@
 				E3E3055729AB76A600426066 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E3E3058929AB7B2700426066 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E3E3057029AB791400426066 /* AddingNewLotView.swift */,
+				E3E3057429AB793E00426066 /* ContentView.swift */,
+				E3E3057229AB792800426066 /* AuctionView.swift */,
+				E3E3057829AB79BA00426066 /* SignInView.swift */,
+				E3E3057A29AB79D400426066 /* SignUpView.swift */,
+				E3E3055E29AB780500426066 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E3E3058A29AB7B6A00426066 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3E3056E29AB78FF00426066 /* LotViewModel.swift */,
+				E3E3056C29AB78EC00426066 /* AccountViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E3E3058B29AB7B8E00426066 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E3E3056229AB783C00426066 /* SmallLot.swift */,
+				E3E3057C29AB7A0E00426066 /* ImagePicker.swift */,
+				E3E3056029AB782B00426066 /* CustomTabBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E3E3058C29AB7BAB00426066 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3E3056429AB788A00426066 /* accountModel.swift */,
+				E3E3056629AB789C00426066 /* LotModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E3E3058D29AB7BC800426066 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E3E3056A29AB78CF00426066 /* DatbaseService.swift */,
+				E3E3056829AB78B600426066 /* AuthService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +176,12 @@
 			dependencies = (
 			);
 			name = kursova;
+			packageProductDependencies = (
+				E3E3058129AB7B1800426066 /* FirebaseAuth */,
+				E3E3058329AB7B1800426066 /* FirebaseFirestore */,
+				E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */,
+				E3E3058729AB7B1800426066 /* FirebaseStorage */,
+			);
 			productName = kursova;
 			productReference = E3E3054D29AB76A500426066 /* kursova.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +210,9 @@
 				Base,
 			);
 			mainGroup = E3E3054429AB76A500426066;
+			packageReferences = (
+				E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = E3E3054E29AB76A500426066 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +229,7 @@
 			files = (
 				E3E3055829AB76A600426066 /* Preview Assets.xcassets in Resources */,
 				E3E3055529AB76A600426066 /* Assets.xcassets in Resources */,
+				E3E3057F29AB7A9A00426066 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +240,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3E3055329AB76A500426066 /* ContentView.swift in Sources */,
+				E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */,
+				E3E3056529AB788A00426066 /* accountModel.swift in Sources */,
+				E3E3057D29AB7A0E00426066 /* ImagePicker.swift in Sources */,
+				E3E3057529AB793E00426066 /* ContentView.swift in Sources */,
+				E3E3056729AB789C00426066 /* LotModel.swift in Sources */,
+				E3E3055F29AB780500426066 /* HomeView.swift in Sources */,
+				E3E3057129AB791400426066 /* AddingNewLotView.swift in Sources */,
 				E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */,
+				E3E3056D29AB78EC00426066 /* AccountViewModel.swift in Sources */,
+				E3E3057929AB79BA00426066 /* SignInView.swift in Sources */,
+				E3E3056329AB783C00426066 /* SmallLot.swift in Sources */,
+				E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */,
+				E3E3057B29AB79D400426066 /* SignUpView.swift in Sources */,
+				E3E3056929AB78B600426066 /* AuthService.swift in Sources */,
+				E3E3057329AB792800426066 /* AuctionView.swift in Sources */,
+				E3E3056F29AB78FF00426066 /* LotViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +454,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 9.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E3E3058129AB7B1800426066 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E3E3058329AB7B1800426066 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		E3E3058729AB7B1800426066 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E3E3054529AB76A500426066 /* Project object */;
 }
