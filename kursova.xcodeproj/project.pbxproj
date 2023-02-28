@@ -33,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3E3054D29AB76A500426066 /* kursova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kursova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E3055029AB76A500426066 /* kursovaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kursovaApp.swift; sourceTree = "<group>"; };
 		E3E3055429AB76A600426066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		E3E3054F29AB76A500426066 /* kursova */ = {
 			isa = PBXGroup;
 			children = (
+				E3ABB4E829AE8E8D0035DDFB /* Info.plist */,
 				E3E3055029AB76A500426066 /* kursovaApp.swift */,
 				E3E3058D29AB7BC800426066 /* Services */,
 				E3E3058C29AB7BAB00426066 /* Models */,
@@ -113,8 +115,8 @@
 		E3E3058929AB7B2700426066 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E3E3057029AB791400426066 /* AddingNewLotView.swift */,
 				E3E3057429AB793E00426066 /* ContentView.swift */,
+				E3E3057029AB791400426066 /* AddingNewLotView.swift */,
 				E3E3057229AB792800426066 /* AuctionView.swift */,
 				E3E3057829AB79BA00426066 /* SignInView.swift */,
 				E3E3057A29AB79D400426066 /* SignUpView.swift */,
@@ -154,8 +156,8 @@
 		E3E3058D29AB7BC800426066 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E3E3056A29AB78CF00426066 /* DatbaseService.swift */,
 				E3E3056829AB78B600426066 /* AuthService.swift */,
+				E3E3056A29AB78CF00426066 /* DatbaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -386,11 +388,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"kursova/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = kursova/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Auctions;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -412,13 +414,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kursova/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = kursova/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Auctions;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

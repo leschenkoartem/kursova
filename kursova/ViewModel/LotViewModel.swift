@@ -26,7 +26,9 @@ class LotViewModel: ObservableObject{
         DatabaseService.shared.getLots { result in
             switch result{
             case .success(let lots):
-                print("okay")
+                self.lots_info = lots
+                print("fkay")
+                print(lots.count)
             case .failure(let error):
                 print(error.localizedDescription)
             }

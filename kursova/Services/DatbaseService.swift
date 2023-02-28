@@ -5,6 +5,7 @@
 //  Created by Artem Leschenko on 21.02.2023.
 //
 
+
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
@@ -106,7 +107,7 @@ class DatabaseService{
     //Получение лота
     func getLots(completion: @escaping(Result<[Lot_str], Error>)->()){
         print("ookay")
-        self.lotRef.getDocuments{ qSnap, error in
+        lotRef.getDocuments{ qSnap, error in
             if let qSnap = qSnap{
                 var lots = [Lot_str]()
                 for doc in qSnap.documents{
@@ -118,11 +119,11 @@ class DatabaseService{
                     guard let currentPerson = doc["currentPerson"] as? String else {return}
                     guard let currentEmail = doc["currentEmail"] as? String else {return}
                     guard let informationText = doc["informationText"] as? String else {return}
-                    
+                    print(informationText)
                     let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText)
                     lots.append(lot)
                 }
-                print("ookay")
+                
                 completion(.success(lots))
             }else if let error = error{
                 completion(.failure(error))

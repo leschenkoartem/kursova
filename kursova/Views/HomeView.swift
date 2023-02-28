@@ -77,7 +77,7 @@ struct HomeView: View {
                     Text("Add new lot +").foregroundColor(Color(.systemGray).opacity(0.75)).fontWeight(.bold)
                 }
                 ScrollView{
-                    ForEach(0..<lotView.lots_info.count){item in
+                    ForEach(0..<lotView.lots_info.count, id: \.self){item in
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lots_info[item]
                             if lot.idCreator == user{
@@ -96,7 +96,7 @@ struct HomeView: View {
                 
                 
                 ScrollView{
-                    ForEach(0..<lotView.lots_info.count){item in
+                    ForEach(0..<lotView.lots_info.count, id: \.self) {item in
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lots_info[item]
                             if lot.idCurrentPerson == user{

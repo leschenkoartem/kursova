@@ -48,8 +48,10 @@ struct AuctionsView: View {
                 .padding(.top, 10)
             
             ScrollView{
-                List(LotViewModel().lots_info){item in
-                    Text(item.informationText)
+                ForEach(0..<lotView.lots_info.count, id: \.self){item in
+                    
+                    SmallLot(lot: lotView.lots_info[item], idUser:  AuthService.shared.currentUser!.uid)
+                                            
                 }
                 Spacer().frame(height: 130)
             }
