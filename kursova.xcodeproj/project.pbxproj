@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
+		E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */; };
+		E3D764C529AFB96B0070DDC9 /* CustomTextFild.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */; };
 		E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055029AB76A500426066 /* kursovaApp.swift */; };
 		E3E3055529AB76A600426066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055429AB76A600426066 /* Assets.xcassets */; };
 		E3E3055829AB76A600426066 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055729AB76A600426066 /* Preview Assets.xcassets */; };
@@ -19,12 +22,10 @@
 		E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056A29AB78CF00426066 /* DatbaseService.swift */; };
 		E3E3056D29AB78EC00426066 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056C29AB78EC00426066 /* AccountViewModel.swift */; };
 		E3E3056F29AB78FF00426066 /* LotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056E29AB78FF00426066 /* LotViewModel.swift */; };
-		E3E3057129AB791400426066 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057029AB791400426066 /* AddingNewLotView.swift */; };
 		E3E3057329AB792800426066 /* AuctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057229AB792800426066 /* AuctionView.swift */; };
 		E3E3057529AB793E00426066 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057429AB793E00426066 /* ContentView.swift */; };
 		E3E3057929AB79BA00426066 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057829AB79BA00426066 /* SignInView.swift */; };
 		E3E3057B29AB79D400426066 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057A29AB79D400426066 /* SignUpView.swift */; };
-		E3E3057D29AB7A0E00426066 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057C29AB7A0E00426066 /* ImagePicker.swift */; };
 		E3E3057F29AB7A9A00426066 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */; };
 		E3E3058229AB7B1800426066 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058129AB7B1800426066 /* FirebaseAuth */; };
 		E3E3058429AB7B1800426066 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058329AB7B1800426066 /* FirebaseFirestore */; };
@@ -34,6 +35,9 @@
 
 /* Begin PBXFileReference section */
 		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = kursova/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
+		E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewLotView.swift; sourceTree = "<group>"; };
+		E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFild.swift; sourceTree = "<group>"; };
 		E3E3054D29AB76A500426066 /* kursova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kursova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E3055029AB76A500426066 /* kursovaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kursovaApp.swift; sourceTree = "<group>"; };
 		E3E3055429AB76A600426066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,12 +51,10 @@
 		E3E3056A29AB78CF00426066 /* DatbaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatbaseService.swift; sourceTree = "<group>"; };
 		E3E3056C29AB78EC00426066 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		E3E3056E29AB78FF00426066 /* LotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewModel.swift; sourceTree = "<group>"; };
-		E3E3057029AB791400426066 /* AddingNewLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewLotView.swift; sourceTree = "<group>"; };
 		E3E3057229AB792800426066 /* AuctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionView.swift; sourceTree = "<group>"; };
 		E3E3057429AB793E00426066 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E3E3057829AB79BA00426066 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		E3E3057A29AB79D400426066 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		E3E3057C29AB7A0E00426066 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,7 +99,6 @@
 				E3E3058A29AB7B6A00426066 /* ViewModel */,
 				E3E3058929AB7B2700426066 /* Views */,
 				E3E3058B29AB7B8E00426066 /* Components */,
-				E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */,
 				E3E3055429AB76A600426066 /* Assets.xcassets */,
 				E3E3055629AB76A600426066 /* Preview Content */,
 			);
@@ -116,11 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				E3E3057429AB793E00426066 /* ContentView.swift */,
-				E3E3057029AB791400426066 /* AddingNewLotView.swift */,
 				E3E3057229AB792800426066 /* AuctionView.swift */,
 				E3E3057829AB79BA00426066 /* SignInView.swift */,
 				E3E3057A29AB79D400426066 /* SignUpView.swift */,
 				E3E3055E29AB780500426066 /* HomeView.swift */,
+				E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,9 +138,10 @@
 		E3E3058B29AB7B8E00426066 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */,
 				E3E3056229AB783C00426066 /* SmallLot.swift */,
-				E3E3057C29AB7A0E00426066 /* ImagePicker.swift */,
 				E3E3056029AB782B00426066 /* CustomTabBar.swift */,
+				E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -156,6 +158,7 @@
 		E3E3058D29AB7BC800426066 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */,
 				E3E3056829AB78B600426066 /* AuthService.swift */,
 				E3E3056A29AB78CF00426066 /* DatbaseService.swift */,
 			);
@@ -242,20 +245,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */,
 				E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */,
 				E3E3056529AB788A00426066 /* accountModel.swift in Sources */,
-				E3E3057D29AB7A0E00426066 /* ImagePicker.swift in Sources */,
 				E3E3057529AB793E00426066 /* ContentView.swift in Sources */,
 				E3E3056729AB789C00426066 /* LotModel.swift in Sources */,
 				E3E3055F29AB780500426066 /* HomeView.swift in Sources */,
-				E3E3057129AB791400426066 /* AddingNewLotView.swift in Sources */,
 				E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */,
 				E3E3056D29AB78EC00426066 /* AccountViewModel.swift in Sources */,
 				E3E3057929AB79BA00426066 /* SignInView.swift in Sources */,
 				E3E3056329AB783C00426066 /* SmallLot.swift in Sources */,
 				E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */,
+				E3D764C529AFB96B0070DDC9 /* CustomTextFild.swift in Sources */,
 				E3E3057B29AB79D400426066 /* SignUpView.swift in Sources */,
 				E3E3056929AB78B600426066 /* AuthService.swift in Sources */,
+				E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */,
 				E3E3057329AB792800426066 /* AuctionView.swift in Sources */,
 				E3E3056F29AB78FF00426066 /* LotViewModel.swift in Sources */,
 			);
@@ -390,7 +394,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = kursova/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Auctions;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -419,7 +422,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = kursova/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Auctions;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (

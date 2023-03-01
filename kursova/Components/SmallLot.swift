@@ -236,10 +236,6 @@ struct SmallLot: View {
                     .alert(textAlert, isPresented: $showAletr){
                         Text("OK")
                     }
-        
-        
-        
-                    //Диалог подтверждения выбора
                     .confirmationDialog(textDialog, isPresented: $showDialog, titleVisibility: .visible) {
                         //Кнопка нет
                         Button(role: .cancel) {
