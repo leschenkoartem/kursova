@@ -106,7 +106,6 @@ class DatabaseService{
     
     //Получение лота
     func getLots(completion: @escaping(Result<[Lot_str], Error>)->()){
-        print("ookay")
         lotRef.getDocuments{ qSnap, error in
             if let qSnap = qSnap{
                 var lots = [Lot_str]()
@@ -119,7 +118,7 @@ class DatabaseService{
                     guard let currentPerson = doc["currentPerson"] as? String else {return}
                     guard let currentEmail = doc["currentEmail"] as? String else {return}
                     guard let informationText = doc["informationText"] as? String else {return}
-                    print(informationText)
+                    print(mainText)
                     let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText)
                     lots.append(lot)
                 }
@@ -146,12 +145,12 @@ class DatabaseService{
     }
     
     //Обновление лота после ставки
-    func changeCurentDataLot(LotId: String, currentPricee:Int, currentPerson:String,idCurrentPerson:String, currentEmail:String){
+    func changeCurentDataLot(LotId: String, currentPrice:Int, currentPerson:String,idCurrentPerson:String, currentEmail:String){
         let lotRef = dB.collection("lots").document(LotId)
-        lotRef.updateData(["currentPricee": currentPricee])
-        lotRef.updateData(["currentPerson": currentPricee])
-        lotRef.updateData(["idCurrentPerson": currentPricee])
-        lotRef.updateData(["currentEmail": currentPricee])
+        lotRef.updateData(["currentPrice": currentPrice])
+        lotRef.updateData(["currentPerson": currentPerson])
+        lotRef.updateData(["idCurrentPerson": idCurrentPerson])
+        lotRef.updateData(["currentEmail": currentEmail])
         
     }
     

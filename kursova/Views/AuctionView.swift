@@ -46,22 +46,28 @@ struct AuctionsView: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(12)
                 .padding(.top, 10)
+                .padding(.horizontal, 10)
             
             ScrollView{
                 ForEach(0..<lotView.lots_info.count, id: \.self){item in
-                    
-                    SmallLot(lot: lotView.lots_info[item], idUser:  AuthService.shared.currentUser!.uid)
-                                            
+                    if lotView.lots_info[item].mainText.uppercased().contains(searchStringWord.uppercased()){
+                        SmallLot(lot: lotView.lots_info[item], idUser:  AuthService.shared.currentUser!.uid)
+                    }
                 }
                 Spacer().frame(height: 130)
+                
             }
             
             Spacer()
         }.edgesIgnoringSafeArea(.bottom)
-            .onAppear{
+        .onAppear{
                 lotView.getLots()
+                
                 print(lotView.lots_info.count)
             }
+        .onTapGesture {
+                    UIApplication.shared.endEditing()
+                }
     }
 }
 

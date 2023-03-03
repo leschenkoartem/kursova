@@ -25,7 +25,7 @@ struct AddingNewLotView: View {
     //Для диалога
     @State var showDialog = false
     @Environment(\.dismiss) var dismiss
-    
+    @EnvironmentObject var lotView:LotViewModel
     var body: some View {
         VStack {
             
@@ -112,8 +112,8 @@ struct AddingNewLotView: View {
                             .frame(maxHeight: 100)
                             .cornerRadius(8)
                             .onChange(of: informationText) { newText in
-                            if newText.count > 140 { // Limit input to 140 characters
-                                informationText = String(newText.prefix(140))
+                            if newText.count > 180 { // Limit input to 180 characters
+                                informationText = String(newText.prefix(180))
                             }
                         }
                         
@@ -169,7 +169,9 @@ struct AddingNewLotView: View {
             //Кнопка да
             Button(role: .destructive) {
                 print("Okay")
-//                    DatabaseService.shared.addLotToFirestore(lot: Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText, currentPrice: Int(currentPrice)!, informationText: informationText))
+                    DatabaseService.shared.addLotToFirestore(lot: Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText))
+                        lotView.getLots()
+                        dismiss()
             }label: {
                 Text("Yes")
             }

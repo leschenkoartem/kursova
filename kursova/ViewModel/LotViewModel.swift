@@ -27,8 +27,7 @@ class LotViewModel: ObservableObject{
             switch result{
             case .success(let lots):
                 self.lots_info = lots
-                print("fkay")
-                print(lots.count)
+               
             case .failure(let error):
                 print(error.localizedDescription)
             }

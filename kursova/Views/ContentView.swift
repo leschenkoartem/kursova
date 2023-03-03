@@ -27,7 +27,7 @@ struct ContentView: View {
                             AuctionsView().toolbar(.hidden, for: .tabBar).environmentObject(AccountViewModel()).environmentObject(LotViewModel())
                         case .house:
                             if AuthService.shared.currentUser != nil{
-                                HomeView(isUserLogin: $isUsserLogin).environmentObject(AccountViewModel()).environmentObject(LotViewModel())
+                                HomeView(isUserLogin: $isUsserLogin).toolbar(.hidden, for: .tabBar).environmentObject(AccountViewModel()).environmentObject(LotViewModel())
                             }
                         }
                     }

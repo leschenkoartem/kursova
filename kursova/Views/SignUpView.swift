@@ -29,29 +29,11 @@ struct SignUpView : View {
                 
                 VStack(alignment: .leading){
                     //Поле Имя/Фамилия
-                    VStack(alignment: .leading){
-                        
-                        Text("Name / Surname").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
-                        
-                        TextField("Enter Your Name and Surname", text: $name).autocorrectionDisabled(true)
-                            .textInputAutocapitalization(.words)
-                        
-                        Divider()
-                    }.padding(.bottom, 15)
+                    CustomTextFild(text: $name, titlet: "Name / Surname", texft: "Enter Your Name And Surname").padding(.bottom, 15)
+                    
                     //Поле емайл
-                    VStack(alignment: .leading){
-                        
-                        Text("Email").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
-                        
-                        HStack{
-                            
-                            TextField("Enter Your Email", text: $email).autocorrectionDisabled(true).textInputAutocapitalization(.never)
-                            
-                        }
-                        
-                        Divider()
-                        
-                    }.padding(.bottom, 15)
+                    CustomTextFild(text: $email, titlet: "Email", texft: "Enter Your Email").padding(.bottom, 15)
+                    
                     //Поле пароль
                     VStack(alignment: .leading){
                         
@@ -135,8 +117,11 @@ struct SignUpView : View {
             .alert(textAlert, isPresented: $isAlert) {
                 Text("OK")
             }
-            
+            .onTapGesture {
+                        UIApplication.shared.endEditing()
+                    }
     }
+    
 }
 
 

@@ -28,17 +28,7 @@ struct SignInView : View {
                     
                     VStack(alignment: .leading){
                         
-                        VStack(alignment: .leading){
-                            
-                            Text("Email").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
-                            
-                            HStack{
-                                TextField("Enter Your Email", text: $email).autocorrectionDisabled(true).textInputAutocapitalization(.never)
-                            }
-                            
-                            Divider()
-                            
-                        }.padding(.bottom, 15)
+                        CustomTextFild(text: $email, titlet: "Email", texft: "Enter Your Email").padding(.bottom, 15)
                         
                         
                         //Поле с паролем
@@ -99,6 +89,9 @@ struct SignInView : View {
         }.alert(textAlert, isPresented: $isAlert) {
             Text("OK")
         }//Ошибка
+        .onTapGesture {
+                    UIApplication.shared.endEditing()
+                }
     
     }
 }

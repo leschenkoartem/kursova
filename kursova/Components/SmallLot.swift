@@ -24,6 +24,8 @@ struct SmallLot: View {
     
     //Для конекта с текущим юзером
     @EnvironmentObject var profilView:AccountViewModel
+    @EnvironmentObject var lotView:LotViewModel
+    @Environment(\.dismiss) var dismiss
     
     //для конекта с списком лотов
     @State var lot:Lot_str
@@ -130,8 +132,8 @@ struct SmallLot: View {
 
                             //Основная кнопка, которая вызывает Диалог с подтверждение сделки
                             Button {
-                                if profilView.profile.balance >= plusPrice{
-                                    textDialog = "\(self.plusPrice)$ will be deducted from your balance. Make an offer?"
+                                if profilView.profile.balance >= lot.currentPrice + plusPrice{
+                                    textDialog = "\(self.plusPrice + lot.currentPrice)$ will be deducted from your balance. Make an offer?"
                                     variationdialog = 1
                                     showDialog.toggle()
                                 }else{
@@ -151,7 +153,6 @@ struct SmallLot: View {
                             }
                             
                             Button {
-                                DatabaseService.shared.addLotToFirestore(lot: lot)
                                 plusPrice+=500
                             } label: {
                                 Image(systemName: "plus")
@@ -177,13 +178,15 @@ struct SmallLot: View {
                         HStack{
                             //Основная кнопка, которая вызывает Диалог с подтверждением завершения аукциона
                             Button {
-                                textDialog = "Do you want to end the auction? Your balance will be replenished by \(lot.currentPrice)$"
+                                if lot.idCurrentPerson != ""{
+                                    textDialog = "Do you want to end the auction? Your balance will be replenished by \(lot.currentPrice)$"
+                                }else{
+                                    textDialog = "Do you want to end the auction? Your Balance does Not Change."
+                                }
+                                
+                                
                                 variationdialog = 2
                                 showDialog.toggle()
-                                
-                                
-                                
-                                
                             } label: {
                                 
                                 Text("Finish").padding(8)
@@ -249,16 +252,9 @@ struct SmallLot: View {
                             switch variationdialog{
                                 //Смена цены и пользователя
                             case 1:
-                                
-                                
-                                
-                                
-                                    lot.idCurrentPerson = idUser
-                                    lot.currentPrice += plusPrice
-                                    lot.currentPerson = profilView.profile.name
-                                    lot.currentEmail = profilView.profile.email
-                                    
-                                DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: -Double(lot.currentEmail == "..." ?  lot.currentPrice + plusPrice: plusPrice)) { error in
+                                //Dозвращаем деньги прошлому ставщику
+                                if lot.idCurrentPerson != ""{
+                                    DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: +Double(lot.currentPrice)) { error in
                                         if let error = error {
                                             print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
                                             
@@ -266,49 +262,80 @@ struct SmallLot: View {
                                             print("Баланс пользователя успешно обновлен")
                                             
                                         }
-                                    
-                                    textAlert = "Successful deal. \(plusPrice)$ deducted from your balance"
-                                    plusPrice = 500
-                                    showAletr.toggle()
-                                    profilView.getProfile()
+                                    }
                                 }
                                 
+                                    lot.idCurrentPerson = idUser
+                                    lot.currentPrice += plusPrice
+                                    lot.currentPerson = profilView.profile.name
+                                    lot.currentEmail = profilView.profile.email
+                                    
+                                DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: -Double(lot.currentPrice)) { error in
+                                        if let error = error {
+                                            print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
+                                            
+                                        } else {
+                                            print("Баланс пользователя успешно обновлен")
+                                            
+                                        }
+                                }
+                                
+                                textAlert = "Successful deal. \(lot.currentPrice)$ deducted from your balance"
+                                plusPrice = 500
+                                showAletr.toggle()
+                                profilView.getProfile()
+                                
                                 //обновляет данные лота
-                                DatabaseService.shared.changeCurentDataLot(LotId: lot.id, currentPricee: lot.currentPrice, currentPerson: lot.currentPerson, idCurrentPerson: lot.idCurrentPerson, currentEmail: lot.currentEmail)
+                                DatabaseService.shared.changeCurentDataLot(LotId: lot.id, currentPrice: lot.currentPrice, currentPerson: lot.currentPerson, idCurrentPerson: idUser, currentEmail: lot.currentEmail)
                                 
                                 
                                 //Финиш лота
                             case 2:
                                 
-                                DatabaseService.shared.updateBalance(for: lot.idCreator, amountToAdd: Double(lot.currentPrice)) { error in
-                                    if let error = error {
-                                        print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
-                                        
-                                    } else {
-                                        print("Баланс пользователя успешно обновлен")
-                                        
+                                if lot.idCurrentPerson != ""{
+                                    DatabaseService.shared.updateBalance(for: lot.idCreator, amountToAdd: Double(lot.currentPrice)) { error in
+                                        if let error = error {
+                                            print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
+                                            
+                                        } else {
+                                            print("Баланс пользователя успешно обновлен")
+                                            
+                                        }
                                     }
+                                    profilView.getProfile()
+                                    textAlert = "Successfully closed the lot. Your balance is replenished by \(lot.currentPrice)$"
+                                    showAletr.toggle()
+                                }else{
+                                    textAlert = "Successfully closed the lot. Your balance is replenished by 0$"
+                                    showAletr.toggle()
                                 }
-                                profilView.getProfile()
-                                textAlert = "Successfully closed the lot. Your balance is replenished by \(lot.currentPrice)$"
-                                showAletr.toggle()
                                 DatabaseService.shared.deleteLotData(LotId: lot.id)
+                                lotView.getLots()
                                 
                                 //Удаление лота
                             case 3:
                                 
-                                DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: Double(lot.currentPrice)) { error in
-                                    if let error = error {
-                                        print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
-                                        
-                                    } else {
-                                        print("Баланс пользователя успешно обновлен")
-                                        
+                                if lot.idCurrentPerson != ""{
+                                    DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: Double(lot.currentPrice)) { error in
+                                        if let error = error {
+                                            print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
+                                            
+                                        } else {
+                                            print("Баланс пользователя успешно обновлен")
+                                            
+                                        }
                                     }
+                                    
+                                    textAlert = "Lot removed. Money returned to:\n \(lot.currentPerson)\n\(lot.currentEmail)"
+                                    
+                                }else{
+                                    textAlert = "Lot removed."
+                                    
                                 }
-                                textAlert = "Lot removed. Money returned to:\n \(lot.currentPerson)\n\(lot.currentEmail)"
+
                                 showAletr.toggle()
                                 DatabaseService.shared.deleteLotData(LotId: lot.id)
+                                lotView.getLots()
                                 
                                 
                             default:
@@ -325,6 +352,6 @@ struct SmallLot: View {
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
         SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "In addition to the uses shown below, about is used after some verbs, nouns, and adjectives to introduce extra information. About is also often used after verbs of movement."),
-                 idUser: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1").environmentObject(AccountViewModel())
+                 idUser: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }

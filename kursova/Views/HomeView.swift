@@ -100,6 +100,7 @@ struct HomeView: View {
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lots_info[item]
                             if lot.idCurrentPerson == user{
+                                
                                 SmallLot(lot: lot, idUser:  AuthService.shared.currentUser!.uid)
                             }
                         }
