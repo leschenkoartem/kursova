@@ -120,8 +120,9 @@ class DatabaseService{
                     guard let currentPerson = doc["currentPerson"] as? String else {return}
                     guard let currentEmail = doc["currentEmail"] as? String else {return}
                     guard let informationText = doc["informationText"] as? String else {return}
+                    guard let seePeopleId = doc["seePeopleId"] as? [String] else {return}
                     guard let date = doc["date"] as? Timestamp else {return}
-                    let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText, date: date.dateValue())
+                    let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText, date: date.dateValue(), seePeopleId: seePeopleId)
                     lots.append(lot)
                 }
                 
@@ -156,4 +157,21 @@ class DatabaseService{
         
     }
     
+    
+    func addPeoplSee(LotId:String, idCurrentPerson:String){
+        let lotRef = dB.collection("lots").document(LotId)
+        lotRef.updateData([    "seePeopleId": FieldValue.arrayUnion([idCurrentPerson])
+        ])
+    }
+    
+    func delPeoplSee(LotId:String, arrayID:[String]){
+        let lotRef = dB.collection("lots").document(LotId)
+        lotRef.updateData(["seePeopleId": arrayID]) { (error) in
+            if let error = error {
+                print("Error updating document: \(error)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
 }

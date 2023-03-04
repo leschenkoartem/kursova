@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SmallLot: View {
     
+    
     //для анимации
     @State var selfHeight = 150
     
@@ -62,21 +63,80 @@ struct SmallLot: View {
                     //Основной контект маленького экрана
                     HStack(alignment: .top){
                         
-                        Image("1").resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 120, height: 120)
-                            .cornerRadius(12)
-                            .padding()
-                            .clipShape(Rectangle())
-                            .padding(.horizontal, -5)
+                      
+                            Image("1").resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 120, height: 120)
+                                .cornerRadius(12)
+                                .padding()
+                                .clipShape(Rectangle())
+                                .padding(.horizontal, -5)
+                            
+                        
+                        
                                                         
                             
                         // Текстовая информация о лоте
                         VStack(alignment: .leading){
-                            Text(lot.mainText+"\(simId ? "(Yours)": " ")").font(.title2)
-                                .fontWeight(.bold)
-                                .opacity(0.7)
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            HStack {
+                                if lot.idCreator != idUser{
+                                    
+                                    
+                                    if !lot.seePeopleId.contains(idUser) {
+                                        Button {
+                                            if !lot.seePeopleId.contains(idUser) {
+                                                lot.seePeopleId.append(idUser)
+                                                    }
+                                            DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+                                            lotView.getLots()
+                                            
+                                        } label: {
+                                            Image(systemName: "eye.slash")
+                                            
+                                        }.opacity(0.6)
+                                            .foregroundColor(Color(.label))
+                                            .fontWeight(.bold)
+                                    }else{
+                                        Button {
+                                            if let index = lot.seePeopleId.firstIndex(of: AuthService.shared.currentUser!.uid) {
+                                                lot.seePeopleId.remove(at: index)
+                                                    }
+                                            DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+                                            lotView.getLots()
+                                            
+                                        } label: {
+                                            Image(systemName: "eye")
+                                            
+                                        }.fontWeight(.bold)
+                                        
+                                        
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                Text(lot.mainText+"\(simId ? "(Yours)": " ")").font(.title2)
+                                    .fontWeight(.bold)
+                                    .opacity(0.7)
                                 .foregroundColor(simId ? .yellow : Color(.label))
+                            }
                             
                             HStack(spacing:0){
                                 Text("Current Price: ").opacity(0.6)
@@ -122,7 +182,8 @@ struct SmallLot: View {
                         }
                         
                         Spacer()
-                        
+                       
+
                         //кнопки
                         HStack {
                             
@@ -235,13 +296,12 @@ struct SmallLot: View {
                     
                     //Полная инфа
                     .sheet(isPresented: $showBigImage){
-                        FullInfoLotView(title: lot.mainText, currentUser: lot.currentPerson, LotID: lot.id, currentPrice: lot.currentPrice, CreatorID: lot.idCreator, date: lot.date)
+                        FullInfoLotView(title: lot.mainText, currentUser: lot.currentPerson, LotID: lot.id, currentPrice: lot.currentPrice, CreatorID: lot.idCreator, date: lot.date, count: lot.seePeopleId.count)
                         
                     }
         
                     //"Если будет нажато" то происходит изменение высоты с анимацией
                     .onTapGesture {
-                        print(lot.date)
                         getBigger.toggle()
                         withAnimation {
                             selfHeight = selfHeight == 150 ? 350:150
@@ -306,7 +366,12 @@ struct SmallLot: View {
                                 //обновляет данные лота
                                 DatabaseService.shared.changeCurentDataLot(LotId: lot.id, currentPrice: lot.currentPrice, currentPerson: lot.currentPerson, idCurrentPerson: idUser, currentEmail: lot.currentEmail)
                                 
-                                
+                                //Добавление в наблюдаемые
+                                if !lot.seePeopleId.contains(idUser) {
+                                    lot.seePeopleId.append(idUser)
+                                        }
+                                DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+                                lotView.getLots()
                                 //Финиш лота
                             case 2:
                                 
@@ -327,8 +392,9 @@ struct SmallLot: View {
                                     textAlert = "Successfully closed the lot. Your balance is replenished by 0$"
                                     showAletr.toggle()
                                 }
-                                DatabaseService.shared.deleteLotData(LotId: lot.id)
-                                lotView.getLots()
+                                
+                                
+                                
                                 
                                 //Удаление лота
                             case 3:
@@ -369,7 +435,7 @@ struct SmallLot: View {
 
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
-        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "In addition to the uses shown below, about is used after some verbs, nouns, and adjectives to introduce extra information. About is also often used after verbs of movement.", date: Date()),
-                 idUser: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
+        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo", date: Date(), seePeopleId: []),
+                 idUser: "4HW1ZWlnbCPbKCTVjbFOcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }

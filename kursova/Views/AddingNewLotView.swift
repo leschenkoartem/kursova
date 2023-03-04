@@ -169,7 +169,7 @@ struct AddingNewLotView: View {
             //Кнопка да
             Button(role: .destructive) {
                 print("Okay")
-                DatabaseService.shared.addLotToFirestore(lot: Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date()))
+                DatabaseService.shared.addLotToFirestore(lot: Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: []))
                         lotView.getLots()
                         dismiss()
             }label: {

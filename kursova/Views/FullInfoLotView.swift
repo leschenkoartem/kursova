@@ -20,6 +20,7 @@ struct FullInfoLotView: View {
     var currentPrice:Int
     var CreatorID:String
     var date:Date
+    var count:Int
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -64,7 +65,7 @@ struct FullInfoLotView: View {
                 
             Divider()
             
-            VStack(alignment: .leading){
+            VStack(alignment: .leading, spacing: 5){
                 HStack{
                     Text("Current Price:").opacity(0.6)
                         .fontWeight(.bold)
@@ -74,21 +75,31 @@ struct FullInfoLotView: View {
                     Text("Current User:").opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(currentUser)").opacity(0.6)
-                }.padding(.bottom, 5)
+                }
                 
-                Text("Lot ID:").opacity(0.6)
+                HStack{
+                    Text("Observed by:").opacity(0.6)
                         .fontWeight(.bold)
-                Text("\(LotID)").opacity(0.6).font(.subheadline)
-                    .padding(.bottom, 1)
+                    Text("\(count) user/s").opacity(0.6)
+                }
                 
-                Text("Creator ID:").opacity(0.6)
+                VStack{
+                    Text("Lot ID:").opacity(0.6)
                         .fontWeight(.bold)
-                Text("\(CreatorID)").opacity(0.6).font(.subheadline)
-                    .padding(.bottom, 1)
+                    Text("\(LotID)").opacity(0.6).font(.subheadline)
+                }
                 
-                Text("Made Time:").opacity(0.6)
+                VStack {
+                    Text("Creator ID:").opacity(0.6)
                         .fontWeight(.bold)
-                Text("\(dateFormatter.string(from: date))").opacity(0.6).font(.subheadline)
+                    Text("\(CreatorID)").opacity(0.6).font(.subheadline)
+                }
+                  
+                VStack{
+                    Text("Made Time:").opacity(0.6)
+                        .fontWeight(.bold)
+                    Text("\(dateFormatter.string(from: date))").opacity(0.6).font(.subheadline)
+                }
                 
             }.frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
@@ -104,6 +115,6 @@ struct FullInfoLotView: View {
 
 struct FullInfoLotView_Previews: PreviewProvider {
     static var previews: some View {
-        FullInfoLotView(title: "Main Title", currentUser: "Artem Leschenko",  LotID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", currentPrice: 20000, CreatorID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", date: Date() )
+        FullInfoLotView(title: "Main Title", currentUser: "Artem Leschenko",  LotID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", currentPrice: 20000, CreatorID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", date: Date(), count: 32 )
     }
 }

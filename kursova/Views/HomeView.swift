@@ -122,6 +122,19 @@ struct HomeView: View {
                 Text("Lots You Marked").foregroundColor(Color(.systemGray3).opacity(0.75))
                 Divider()
                 
+                ScrollView{
+                    Spacer().frame(height: 10)
+                    ForEach(0..<lotView.lots_info.count, id: \.self){item in
+                        if let user = AuthService.shared.currentUser?.uid{
+                            let lot = lotView.lots_info[item]
+                            if lot.seePeopleId.contains(user){
+                                SmallLot(lot: lot, idUser:  AuthService.shared.currentUser!.uid)
+                            }
+                        }
+                    }
+                    Spacer().frame(height: 130)
+                    
+                }
                 
                 Spacer()
             }
