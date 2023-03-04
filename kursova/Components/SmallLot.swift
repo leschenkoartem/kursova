@@ -22,6 +22,9 @@ struct SmallLot: View {
     @State var textDialog = ""
     @State var variationdialog = 1
     
+    //Для доп информации
+    @State var showBigImage = false
+    
     //Для конекта с текущим юзером
     @EnvironmentObject var profilView:AccountViewModel
     @EnvironmentObject var lotView:LotViewModel
@@ -66,6 +69,7 @@ struct SmallLot: View {
                             .padding()
                             .clipShape(Rectangle())
                             .padding(.horizontal, -5)
+                                                        
                             
                         // Текстовая информация о лоте
                         VStack(alignment: .leading){
@@ -229,16 +233,30 @@ struct SmallLot: View {
                     //Делаем анимацию
                     .animation(.easeInOut(duration: 0.3))
                     
+                    //Полная инфа
+                    .sheet(isPresented: $showBigImage){
+                        FullInfoLotView(title: lot.mainText, currentUser: lot.currentPerson, LotID: lot.id, currentPrice: lot.currentPrice, CreatorID: lot.idCreator, date: lot.date)
+                        
+                    }
+        
                     //"Если будет нажато" то происходит изменение высоты с анимацией
                     .onTapGesture {
+                        print(lot.date)
                         getBigger.toggle()
                         withAnimation {
                             selfHeight = selfHeight == 150 ? 350:150
                                         }
                     }
+                    .onLongPressGesture(minimumDuration: 0.2) {
+                        showBigImage.toggle()
+                                }
+        
+                    //Ошибка
                     .alert(textAlert, isPresented: $showAletr){
                         Text("OK")
                     }
+        
+                    //Диалог подтверждения
                     .confirmationDialog(textDialog, isPresented: $showDialog, titleVisibility: .visible) {
                         //Кнопка нет
                         Button(role: .cancel) {
@@ -351,7 +369,7 @@ struct SmallLot: View {
 
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
-        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "In addition to the uses shown below, about is used after some verbs, nouns, and adjectives to introduce extra information. About is also often used after verbs of movement."),
+        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "In addition to the uses shown below, about is used after some verbs, nouns, and adjectives to introduce extra information. About is also often used after verbs of movement.", date: Date()),
                  idUser: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }

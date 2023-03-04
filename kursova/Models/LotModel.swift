@@ -26,6 +26,7 @@ struct Lot_str: Identifiable, Equatable{
     var currentPerson:String = "None"
     var currentEmail:String = "..."
     var informationText:String
+    var date:Date
     
     
     //функция подготовки данных для передачи в бд
@@ -39,6 +40,7 @@ struct Lot_str: Identifiable, Equatable{
         repres["currentPerson"] = self.currentPerson
         repres["currentEmail"] = self.currentEmail
         repres["informationText"] = self.informationText
+        repres["date"] = self.date
         return repres
     }
     

@@ -28,7 +28,7 @@ struct SignInView : View {
                     
                     VStack(alignment: .leading){
                         
-                        CustomTextFild(text: $email, titlet: "Email", texft: "Enter Your Email").padding(.bottom, 15)
+                        CustomTextFild(text: $email, titlet: "Email", texft: "Enter Your Email", maxLettes: 200).padding(.bottom, 15)
                         
                         
                         //Поле с паролем

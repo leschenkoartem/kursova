@@ -79,7 +79,7 @@ struct AddingNewLotView: View {
             
             //Поля для ввода инфы
             VStack {
-                CustomTextFild(text: $mainText, titlet: "Title", texft: "Enter lot`s title").padding(.bottom, 15)
+                CustomTextFild(text: $mainText, titlet: "Title", texft: "Enter lot`s title", maxLettes: 35).padding(.bottom, 15)
                 
                 //Текст для цены
                 VStack(alignment: .leading){
@@ -103,7 +103,7 @@ struct AddingNewLotView: View {
                 
                 //Большой текст
                 VStack(alignment: .leading){
-                    Text("Information (140lt Max)").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                    Text("Information (180lt Max)").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                     ZStack {
                         
                         
@@ -169,7 +169,7 @@ struct AddingNewLotView: View {
             //Кнопка да
             Button(role: .destructive) {
                 print("Okay")
-                    DatabaseService.shared.addLotToFirestore(lot: Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText))
+                DatabaseService.shared.addLotToFirestore(lot: Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date()))
                         lotView.getLots()
                         dismiss()
             }label: {

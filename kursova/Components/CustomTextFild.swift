@@ -12,6 +12,8 @@ struct CustomTextFild: View {
     @Binding var text:String
     var titlet:String
     var texft:String
+    let maxLettes:Int
+    
     
     var body: some View {
         VStack(alignment: .leading){
@@ -20,6 +22,11 @@ struct CustomTextFild: View {
             
             HStack{
                 TextField(texft, text: $text).autocorrectionDisabled(true).textInputAutocapitalization(.never)
+                    .onChange(of: text) { newText in
+                    if newText.count > maxLettes { // Limit input to 180 characters
+                        text = String(newText.prefix(maxLettes))
+                    }
+                }
             }
             
             Divider()
@@ -29,6 +36,6 @@ struct CustomTextFild: View {
 struct CustomTextFild_Previews: PreviewProvider {
     @State static var a = ""
     static var previews: some View {
-        CustomTextFild(text: $a, titlet: "cd", texft: "wdx")
+        CustomTextFild(text: $a, titlet: "cd", texft: "wdx", maxLettes: 10)
     }
 }

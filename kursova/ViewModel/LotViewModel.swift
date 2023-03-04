@@ -12,7 +12,7 @@ import SwiftUI
 
 class LotViewModel: ObservableObject{
     
-    
+    @EnvironmentObject var profilView:AccountViewModel
     @Published var lots_info = [Lot_str]()
     
     
@@ -33,4 +33,7 @@ class LotViewModel: ObservableObject{
             }
         }
     }
+    
+   
+    
 }

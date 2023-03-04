@@ -49,7 +49,9 @@ struct AuctionsView: View {
                 .padding(.horizontal, 10)
             
             ScrollView{
+                Spacer().frame(height: 10)
                 ForEach(0..<lotView.lots_info.count, id: \.self){item in
+
                     if lotView.lots_info[item].mainText.uppercased().contains(searchStringWord.uppercased()){
                         SmallLot(lot: lotView.lots_info[item], idUser:  AuthService.shared.currentUser!.uid)
                     }
@@ -62,8 +64,7 @@ struct AuctionsView: View {
         }.edgesIgnoringSafeArea(.bottom)
         .onAppear{
                 lotView.getLots()
-                
-                print(lotView.lots_info.count)
+
             }
         .onTapGesture {
                     UIApplication.shared.endEditing()

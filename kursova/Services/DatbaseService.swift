@@ -16,7 +16,7 @@ class DatabaseService{
     
     static var shared = DatabaseService()
     //1) делаем переменную обращения датабазы 2) Делаем ссылку на список "users"
-    private let dB = Firestore.firestore()
+    let dB = Firestore.firestore()
     
     var userRef:CollectionReference{
         return dB.collection("users")
@@ -25,6 +25,8 @@ class DatabaseService{
     var lotRef:CollectionReference{
         return dB.collection("lots")
     }
+    
+   
     
     
     
@@ -118,8 +120,8 @@ class DatabaseService{
                     guard let currentPerson = doc["currentPerson"] as? String else {return}
                     guard let currentEmail = doc["currentEmail"] as? String else {return}
                     guard let informationText = doc["informationText"] as? String else {return}
-                    print(mainText)
-                    let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText)
+                    guard let date = doc["date"] as? Timestamp else {return}
+                    let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText, date: date.dateValue())
                     lots.append(lot)
                 }
                 
