@@ -12,7 +12,7 @@ struct AddingNewLotView: View {
     //Для выбора картинки
     @State var isImage = false
     @State var showSheet = false
-    @State private var image = UIImage()
+    @State var image = UIImage()
     
     //для текстовой информации
     @State var mainText:String = ""

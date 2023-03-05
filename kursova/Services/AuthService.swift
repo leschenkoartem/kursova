@@ -26,7 +26,7 @@ class AuthService{
             if let result = result{
                 
                 //Создаэм юзера
-                let user_ = User_str(name: name_, id: result.user.uid, email: email)
+                let user_ = User_str(name: name_, id: result.user.uid, email: email, image: "")
                 
                 //помещаем его в базу данных
                 DatabaseService.shared.setProfile(user: user_) { resultDB in

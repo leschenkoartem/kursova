@@ -5,6 +5,7 @@
 //  Created by Artem Leschenko on 21.02.2023.
 //
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct HomeView: View {
     
@@ -24,8 +25,9 @@ struct HomeView: View {
             //Панелька с инфой юзера
             ZStack{
                 HStack(spacing: 15){
-                    Image(uiImage: self.image)
+                    WebImage(url: URL(string: profileView.profile.image ?? ""))
                         .resizable()
+                        .placeholder(Image(systemName: "person.crop.circle"))
                         .frame(width: 60, height: 60)
                         .background(Color.black.opacity(0.7))
                         .aspectRatio(contentMode: .fill)
@@ -166,13 +168,15 @@ struct HomeView: View {
                         self.profileView.getProfile()
                     }
                 }
-                .sheet(isPresented: $showSheet) {
+                .sheet(isPresented: $showSheet, onDismiss: DatabaseService.shared.uploadImage(image: image); print("okay")) {
                     ImagePicker(selectedImage: $image)
+  
                 }
                 .fullScreenCover(isPresented: $creatLot) {
                     AddingNewLotView()
                 }
     }
+    
 }
     
 struct HomeView_Previews: PreviewProvider {

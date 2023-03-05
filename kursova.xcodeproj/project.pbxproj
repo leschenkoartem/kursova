@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */; };
+		E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */; };
 		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
 		E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */; };
 		E3D764C529AFB96B0070DDC9 /* CustomTextFild.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */; };
@@ -65,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */,
 				E3E3058229AB7B1800426066 /* FirebaseAuth in Frameworks */,
 				E3E3058829AB7B1800426066 /* FirebaseStorage in Frameworks */,
 				E3E3058429AB7B1800426066 /* FirebaseFirestore in Frameworks */,
@@ -189,6 +191,7 @@
 				E3E3058329AB7B1800426066 /* FirebaseFirestore */,
 				E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */,
 				E3E3058729AB7B1800426066 /* FirebaseStorage */,
+				E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */,
 			);
 			productName = kursova;
 			productReference = E3E3054D29AB76A500426066 /* kursova.app */;
@@ -220,6 +223,7 @@
 			mainGroup = E3E3054429AB76A500426066;
 			packageReferences = (
 				E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E3D3812229B40251009EDDE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = E3E3054E29AB76A500426066 /* Products */;
 			projectDirPath = "";
@@ -465,6 +469,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E3D3812229B40251009EDDE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -476,6 +488,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3D3812229B40251009EDDE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		E3E3058129AB7B1800426066 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

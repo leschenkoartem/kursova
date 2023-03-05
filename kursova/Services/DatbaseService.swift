@@ -10,6 +10,8 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SwiftUI
+import FirebaseStorage
+
 
 class DatabaseService{
     
@@ -60,8 +62,9 @@ class DatabaseService{
             guard let userID = data["id"] as? String else {return}
             guard let userEmail = data["email"] as? String else {return}
             guard let userBalance = data["balance"] as? Int else {return}
+            guard let image = data["image"] as? String else {return}
             
-            let user = User_str(name: userName, id: userID, balance: userBalance, email: userEmail)
+            let user = User_str(name: userName, id: userID, balance: userBalance, email: userEmail, image: image)
             completion(.success(user))
         }
         
@@ -156,14 +159,8 @@ class DatabaseService{
         lotRef.updateData(["currentEmail": currentEmail])
         
     }
-    
-    
-    func addPeoplSee(LotId:String, idCurrentPerson:String){
-        let lotRef = dB.collection("lots").document(LotId)
-        lotRef.updateData([    "seePeopleId": FieldValue.arrayUnion([idCurrentPerson])
-        ])
-    }
-    
+
+    //Обновляет список айди наблюдателей
     func delPeoplSee(LotId:String, arrayID:[String]){
         let lotRef = dB.collection("lots").document(LotId)
         lotRef.updateData(["seePeopleId": arrayID]) { (error) in
@@ -174,4 +171,22 @@ class DatabaseService{
             }
         }
     }
+    
+    func uploadImage(image:UIImage){
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.9) else {return}
+        guard let uid = AuthService.shared.currentUser?.uid else {return}
+        let ref = Storage.storage().reference().child("users_logo/\(uid).jpg")
+        
+        ref.putData(imageData, metadata: nil){url, error in
+            if error != nil{
+                print("\nSomething wrong!!!!!\n")
+                return
+            }
+            
+            print("Succses: \(String(describing: url))")
+        }
+        
+    }
+    
 }

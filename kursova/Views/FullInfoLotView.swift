@@ -65,7 +65,7 @@ struct FullInfoLotView: View {
                 
             Divider()
             
-            VStack(alignment: .leading, spacing: 5){
+            VStack(alignment: .leading, spacing: 8){
                 HStack{
                     Text("Current Price:").opacity(0.6)
                         .fontWeight(.bold)
@@ -83,19 +83,19 @@ struct FullInfoLotView: View {
                     Text("\(count) user/s").opacity(0.6)
                 }
                 
-                VStack{
+                VStack(alignment: .leading){
                     Text("Lot ID:").opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(LotID)").opacity(0.6).font(.subheadline)
                 }
                 
-                VStack {
+                VStack(alignment: .leading){
                     Text("Creator ID:").opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(CreatorID)").opacity(0.6).font(.subheadline)
                 }
                   
-                VStack{
+                VStack(alignment: .leading){
                     Text("Made Time:").opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(dateFormatter.string(from: date))").opacity(0.6).font(.subheadline)

@@ -14,6 +14,7 @@ struct User_str:Identifiable{
     var id:String
     var balance = Int.random(in: 10000..<50001)
     var email:String
+    var image:String
     
     //функция подготовки данных для передачи в бд
     var representation:[String: Any]{
@@ -22,6 +23,7 @@ struct User_str:Identifiable{
         repres["balance"] = self.balance
         repres["email"] = self.email
         repres["name"] = self.name
+        repres["image"] = self.image
         return repres
     }
 }
