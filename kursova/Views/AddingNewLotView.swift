@@ -10,7 +10,7 @@ import SwiftUI
 struct AddingNewLotView: View {
     
     //Для выбора картинки
-    @State var isImage = false
+    
     @State var showSheet = false
     @State var image:UIImage?
     
@@ -73,7 +73,7 @@ struct AddingNewLotView: View {
                     .frame(height: 300)
                     
             }//при нажатии срабатывает выбор картинки
-            .onTapGesture {isImage = true;  showSheet.toggle()}
+            .onTapGesture {showSheet.toggle()}
                 .frame(maxWidth: .infinity, maxHeight: 300)
                 .background(Color(.label).opacity(0.5))
                 .cornerRadius(12)
@@ -132,7 +132,7 @@ struct AddingNewLotView: View {
                 
                 //Кнопка регистрации лота
                 Button {
-                    if mainText == "" || price == "" || informationText == "" || isImage==false{
+                    if mainText == "" || price == "" || informationText == "" || image == nil {
                         showAlert.toggle()
                     }else{
                         showDialog.toggle()

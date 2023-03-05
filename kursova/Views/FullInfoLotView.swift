@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct FullInfoLotView: View {
     
@@ -21,6 +22,7 @@ struct FullInfoLotView: View {
     var CreatorID:String
     var date:Date
     var count:Int
+    var image:String
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -58,12 +60,16 @@ struct FullInfoLotView: View {
             
             Divider().padding(.horizontal, 10)
             
-            Image("1").resizable()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(5)
-                .padding(.horizontal, 10)
+            WebImage(url: URL(string: image))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
                 
-            Divider()
+                .frame(width: UIScreen.main.bounds.width - 10, height: 350)
+                
+                .cornerRadius(5)
+                
+                
+            Divider().padding(.horizontal, 10)
             
             VStack(alignment: .leading, spacing: 8){
                 HStack{
@@ -115,6 +121,6 @@ struct FullInfoLotView: View {
 
 struct FullInfoLotView_Previews: PreviewProvider {
     static var previews: some View {
-        FullInfoLotView(title: "Main Title", currentUser: "Artem Leschenko",  LotID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", currentPrice: 20000, CreatorID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", date: Date(), count: 32 )
+        FullInfoLotView(title: "Main Title", currentUser: "Artem Leschenko",  LotID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", currentPrice: 20000, CreatorID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", date: Date(), count: 32, image: "k" )
     }
 }

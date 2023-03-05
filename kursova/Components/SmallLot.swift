@@ -292,7 +292,7 @@ struct SmallLot: View {
         
         //Полная инфа(ЛИСТ)
             .sheet(isPresented: $showBigImage){
-                FullInfoLotView(title: lot.mainText, currentUser: lot.currentPerson, LotID: lot.id, currentPrice: lot.currentPrice, CreatorID: lot.idCreator, date: lot.date, count: lot.seePeopleId.count)
+                FullInfoLotView(title: lot.mainText, currentUser: lot.currentPerson, LotID: lot.id, currentPrice: lot.currentPrice, CreatorID: lot.idCreator, date: lot.date, count: lot.seePeopleId.count, image: lot.image)
                 
             }
         
@@ -394,7 +394,7 @@ struct SmallLot: View {
                             showAletr.toggle()
                         }
                         
-                        
+                        DatabaseService.shared.deleteLotPhoto(LotId: lot.id)
                         DatabaseService.shared.deleteLotData(LotId: lot.id)
                         lotView.getLots()
                         
@@ -423,6 +423,7 @@ struct SmallLot: View {
                         }
                         
                         showAletr.toggle()
+                        DatabaseService.shared.deleteLotPhoto(LotId: lot.id)
                         DatabaseService.shared.deleteLotData(LotId: lot.id)
                         lotView.getLots()
                         

@@ -186,7 +186,7 @@ struct HomeView: View {
                     print("Okay")
                     
                     //Добавляем картинку в бд
-                    DatabaseService.shared.uploadUserImage(image: image!)
+                    DatabaseService.shared.uploadUserImage(image: image ?? UIImage(imageLiteralResourceName: "1"))
                     
                     //Получаем ЮРЛ из бд
                     DatabaseService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo") { url in
@@ -196,8 +196,9 @@ struct HomeView: View {
                             DatabaseService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
                         }
                     }
-                    
-                    profileView.getProfile()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        profileView.getProfile()
+                    }
                 }) {
                     ImagePicker(selectedImage: $image)
   

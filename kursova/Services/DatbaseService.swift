@@ -202,7 +202,7 @@ class DatabaseService{
     //Загружаем картинку лота в бд
     func uploadLotImage(image:UIImage, LotId:String){
         
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {return}
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {return}
         let ref = Storage.storage().reference().child("lots_loogo/\(LotId).jpg")
         
         ref.putData(imageData, metadata: nil){url, error in
@@ -241,4 +241,16 @@ class DatabaseService{
         }
     }
     
+    
+    // Удаление фото лота
+    func deleteLotPhoto(LotId: String) {
+        
+        Storage.storage().reference().child("lots_loogo/\(LotId).jpg").delete() { err in
+            if let err = err {
+                print("Ошибка при удалении документа: \(err)")
+            } else {
+                print("Документ успешно удален")
+            }
+        }
+    }
 }
