@@ -88,7 +88,17 @@ class DatabaseService{
         }
     }
     
-    
+    //Обновляем данные пользователя по картинке
+    func updatePhotoUrl(userId: String, newPhotoUrl: String) {
+        let userRef = userRef.document(userId)
+        userRef.updateData(["image": newPhotoUrl]) { error in
+            if let error = error {
+                print("Error updating photo URL for user \(error)")
+            } else {
+                print("Successfully updated photo URL for user ")
+            }
+        }
+    }
     
     
     
@@ -172,9 +182,10 @@ class DatabaseService{
         }
     }
     
+    //Загружаэм картинку в бд
     func uploadImage(image:UIImage){
         
-        guard let imageData = image.jpegData(compressionQuality: 0.9) else {return}
+        guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}
         guard let uid = AuthService.shared.currentUser?.uid else {return}
         let ref = Storage.storage().reference().child("users_logo/\(uid).jpg")
         
@@ -183,10 +194,21 @@ class DatabaseService{
                 print("\nSomething wrong!!!!!\n")
                 return
             }
-            
-            print("Succses: \(String(describing: url))")
+            print("Succses upload image")
         }
-        
+    }
+    
+    //Получаем ЮРЛ картинки
+    func getImageUrl(imagePath: String, completion: @escaping (URL?) -> Void) {
+        let storageRef = Storage.storage().reference().child("users_logo/\(imagePath).jpg")
+        storageRef.downloadURL { (url, error) in
+            if let error = error {
+                print("Error getting download URL for image \(imagePath): \(error)")
+                completion(nil)
+            } else {
+                completion(url)
+            }
+        }
     }
     
 }

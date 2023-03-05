@@ -12,7 +12,7 @@ struct AddingNewLotView: View {
     //Для выбора картинки
     @State var isImage = false
     @State var showSheet = false
-    @State var image = UIImage()
+    @State var image:UIImage?
     
     //для текстовой информации
     @State var mainText:String = ""
@@ -40,9 +40,12 @@ struct AddingNewLotView: View {
                 }.frame(maxWidth: 150, maxHeight: 150)
                 
                 //Картинка
-                Image(uiImage: self.image)
-                    .resizable()
-                    .frame(width: .infinity, height: 300)
+                if let image = image{
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: .infinity, height: 300)
+                }
+                
                     
                                     
                 

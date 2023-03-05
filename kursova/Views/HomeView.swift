@@ -9,9 +9,11 @@ import SDWebImageSwiftUI
 
 struct HomeView: View {
     
+    
+    
     @State var creatLot = false
     @State var showSheet = false
-    @State private var image = UIImage()
+    @State private var image:UIImage?
     @Binding var isUserLogin:Bool
     @State var isConfirm = false
     @State var showLots = 1
@@ -25,7 +27,7 @@ struct HomeView: View {
             //Панелька с инфой юзера
             ZStack{
                 HStack(spacing: 15){
-                    WebImage(url: URL(string: profileView.profile.image ?? ""))
+                    WebImage(url: URL(string: profileView.profile.image))
                         .resizable()
                         .placeholder(Image(systemName: "person.crop.circle"))
                         .frame(width: 60, height: 60)
@@ -167,8 +169,27 @@ struct HomeView: View {
                     if AuthService.shared.currentUser != nil{
                         self.profileView.getProfile()
                     }
+                    print(profileView.profile.image)
                 }
-                .sheet(isPresented: $showSheet, onDismiss: DatabaseService.shared.uploadImage(image: image); print("okay")) {
+                .sheet(isPresented: $showSheet, onDismiss: {
+                    print("Okay")
+                    
+                    //Добавляем картинку в бд
+                    DatabaseService.shared.uploadImage(image: image!)
+                    
+                    //Получаем ЮРЛ из бд
+                    DatabaseService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid) { url in
+                        if let url = url{
+                            profileView.profile.image = url.absoluteString
+                            //Обновляем инф юрл в инф пользователя 
+                            DatabaseService.shared.updatePhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
+                        }
+                    }
+                    
+                    
+                    
+                    
+                }) {
                     ImagePicker(selectedImage: $image)
   
                 }
