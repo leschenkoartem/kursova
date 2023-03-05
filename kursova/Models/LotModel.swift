@@ -28,7 +28,7 @@ struct Lot_str: Identifiable, Equatable{
     var informationText:String
     var date:Date
     var seePeopleId:[String]
-    
+    var image:String
     
     //функция подготовки данных для передачи в бд
     var representation:[String: Any]{
@@ -43,6 +43,7 @@ struct Lot_str: Identifiable, Equatable{
         repres["informationText"] = self.informationText
         repres["date"] = self.date
         repres["seePeopleId"] = self.seePeopleId
+        repres["image"] = self.image
         
         return repres
     }

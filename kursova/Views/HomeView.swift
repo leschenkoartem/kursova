@@ -27,14 +27,25 @@ struct HomeView: View {
             //Панелька с инфой юзера
             ZStack{
                 HStack(spacing: 15){
-                    WebImage(url: URL(string: profileView.profile.image))
-                        .resizable()
-                        .placeholder(Image(systemName: "person.crop.circle"))
-                        .frame(width: 60, height: 60)
-                        .background(Color.black.opacity(0.7))
-                        .aspectRatio(contentMode: .fill)
-                        .clipShape(Circle())
-                        .onTapGesture {showSheet.toggle()}
+                    
+                    if profileView.profile.image == ""{
+                        Image(systemName: "plus").resizable()
+                            .foregroundColor(Color(.label).opacity(0.6))
+                            .frame(width: 40, height: 40)
+                            .frame(width: 60, height: 60)
+                            .background(Color(.label).opacity(0.1))
+                            .clipShape(Circle())
+                            .onTapGesture {showSheet.toggle()}
+                    }else{
+                        WebImage(url: URL(string: profileView.profile.image))
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .background(Color.black.opacity(0.1))
+                            .aspectRatio(contentMode: .fill)
+                            .clipShape(Circle())
+                            .onTapGesture {showSheet.toggle()}
+                    }
+                    
                     
                     Divider()
                     
@@ -175,20 +186,18 @@ struct HomeView: View {
                     print("Okay")
                     
                     //Добавляем картинку в бд
-                    DatabaseService.shared.uploadImage(image: image!)
+                    DatabaseService.shared.uploadUserImage(image: image!)
                     
                     //Получаем ЮРЛ из бд
-                    DatabaseService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid) { url in
+                    DatabaseService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo") { url in
                         if let url = url{
-                            profileView.profile.image = url.absoluteString
+                            
                             //Обновляем инф юрл в инф пользователя 
-                            DatabaseService.shared.updatePhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
+                            DatabaseService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
                         }
                     }
                     
-                    
-                    
-                    
+                    profileView.getProfile()
                 }) {
                     ImagePicker(selectedImage: $image)
   

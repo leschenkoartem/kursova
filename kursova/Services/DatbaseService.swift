@@ -89,7 +89,7 @@ class DatabaseService{
     }
     
     //Обновляем данные пользователя по картинке
-    func updatePhotoUrl(userId: String, newPhotoUrl: String) {
+    func updateUserPhotoUrl(userId: String, newPhotoUrl: String) {
         let userRef = userRef.document(userId)
         userRef.updateData(["image": newPhotoUrl]) { error in
             if let error = error {
@@ -135,7 +135,8 @@ class DatabaseService{
                     guard let informationText = doc["informationText"] as? String else {return}
                     guard let seePeopleId = doc["seePeopleId"] as? [String] else {return}
                     guard let date = doc["date"] as? Timestamp else {return}
-                    let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText, date: date.dateValue(), seePeopleId: seePeopleId)
+                    guard let image = doc["image"] as? String else {return}
+                    let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText, date: date.dateValue(), seePeopleId: seePeopleId, image: image)
                     lots.append(lot)
                 }
                 
@@ -183,7 +184,7 @@ class DatabaseService{
     }
     
     //Загружаэм картинку в бд
-    func uploadImage(image:UIImage){
+    func uploadUserImage(image:UIImage){
         
         guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}
         guard let uid = AuthService.shared.currentUser?.uid else {return}
@@ -198,15 +199,44 @@ class DatabaseService{
         }
     }
     
+    //Загружаем картинку лота в бд
+    func uploadLotImage(image:UIImage, LotId:String){
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {return}
+        let ref = Storage.storage().reference().child("lots_loogo/\(LotId).jpg")
+        
+        ref.putData(imageData, metadata: nil){url, error in
+            if error != nil{
+                print("\nSomething wrong!!!!!\n")
+                return
+            }
+            print("Succses upload image of lot")
+        }
+    }
+    
+    
+    
     //Получаем ЮРЛ картинки
-    func getImageUrl(imagePath: String, completion: @escaping (URL?) -> Void) {
-        let storageRef = Storage.storage().reference().child("users_logo/\(imagePath).jpg")
+    func getImageUrl(imagePath: String, path:String,completion: @escaping (URL?) -> Void) {
+        let storageRef = Storage.storage().reference().child("\(path)/\(imagePath).jpg")
         storageRef.downloadURL { (url, error) in
             if let error = error {
                 print("Error getting download URL for image \(imagePath): \(error)")
                 completion(nil)
             } else {
                 completion(url)
+            }
+        }
+    }
+    
+    //Обновляем данные пользователя по картинке
+    func updateLotPhotoUrl(LotId: String, newPhotoUrl: String) {
+        let userRef = lotRef.document(LotId)
+        userRef.updateData(["image": newPhotoUrl]) { error in
+            if let error = error {
+                print("Error updating photo URL for user \(error)")
+            } else {
+                print("Successfully updated photo URL for user ")
             }
         }
     }

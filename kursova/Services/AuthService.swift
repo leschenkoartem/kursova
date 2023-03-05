@@ -37,7 +37,6 @@ class AuthService{
                         completion(.failure(error))
                     }
                 }
-                
                 completion(.success(result.user))
             }else if let error = error{
                 completion(.failure(error))

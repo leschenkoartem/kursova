@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SDWebImageSwiftUI
 
 struct SmallLot: View {
     
@@ -67,7 +67,8 @@ struct SmallLot: View {
             HStack(alignment: .top){
                 
                 
-                Image("1").resizable()
+                WebImage(url: URL(string: lot.image))
+                    .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 120, height: 120)
                     .cornerRadius(12)
@@ -209,6 +210,13 @@ struct SmallLot: View {
                     }
                     //Кнопка плюс
                     Button {
+                        DatabaseService.shared.getImageUrl(imagePath: lot.id, path: "lots_loogo") { url in
+                            if let url = url{
+                                DatabaseService.shared.updateLotPhotoUrl(LotId: lot.id, newPhotoUrl: url.absoluteString)
+                            }else{
+                                print("fail")
+                            }
+                        }
                         plusPrice+=500
                     } label: {
                         Image(systemName: "plus")
@@ -433,7 +441,7 @@ struct SmallLot: View {
 
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
-        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo", date: Date(), seePeopleId: []),
+        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo", date: Date(), seePeopleId: [], image: ""),
                  idUser: "4HW1ZWlnbCPbKCTVjbFOcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }

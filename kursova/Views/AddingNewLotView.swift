@@ -172,9 +172,35 @@ struct AddingNewLotView: View {
             //Кнопка да
             Button(role: .destructive) {
                 print("Okay")
-                DatabaseService.shared.addLotToFirestore(lot: Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: []))
-                        lotView.getLots()
-                        dismiss()
+                
+                //Создаём лот
+                let lotcreat = Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: [], image: "")
+                
+                //Передаём его в бд
+                DatabaseService.shared.addLotToFirestore(lot: lotcreat)
+                
+                //передаём картинку в бд
+                DatabaseService.shared.uploadLotImage(image: image ?? UIImage(imageLiteralResourceName: "1"), LotId: lotcreat.id)
+                
+                
+                //Lаэм время бд загрузить картинку, а потом достаём её юрл
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    //достаём ЮРЛ картинки
+                    DatabaseService.shared.getImageUrl(imagePath: lotcreat.id, path: "lots_loogo") { url in
+                        if let url = url{
+                            DatabaseService.shared.updateLotPhotoUrl(LotId: lotcreat.id, newPhotoUrl: url.absoluteString)
+                            lotView.getLots()
+                            dismiss()
+                        }else{
+                            print("fail")
+                        }
+                    }
+                }
+                
+                
+                
+                
+                        
             }label: {
                 Text("Yes")
             }
