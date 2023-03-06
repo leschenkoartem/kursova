@@ -189,15 +189,25 @@ struct SmallLot: View {
                     
                     //Основная кнопка, которая вызывает Диалог с подтверждение сделки
                     Button {
-                        if profilView.profile.balance >= lot.currentPrice + plusPrice{
-                            textDialog = "\(self.plusPrice + lot.currentPrice)$ will be deducted from your balance. Make an offer?"
-                            variationdialog = 1
-                            showDialog.toggle()
+                        if lot.idCurrentPerson == idUser{
+                            if profilView.profile.balance >= plusPrice{
+                                textDialog = "\(self.plusPrice)$ will be deducted from your balance. Make an offer?"
+                                variationdialog = 1
+                                showDialog.toggle()
+                            }else{
+                                textAlert = "Not Enough money on balance"
+                                showAletr.toggle()
+                            }
                         }else{
-                            textAlert = "Not Enough money on balance"
-                            showAletr.toggle()
+                            if profilView.profile.balance >= lot.currentPrice + plusPrice{
+                                textDialog = "\(self.plusPrice + lot.currentPrice)$ will be deducted from your balance. Make an offer?"
+                                variationdialog = 1
+                                showDialog.toggle()
+                            }else{
+                                textAlert = "Not Enough money on balance"
+                                showAletr.toggle()
+                            }
                         }
-                        
                     } label: {
                         
                         Text("make an offer + \(self.plusPrice)$").padding(8)
@@ -340,11 +350,20 @@ struct SmallLot: View {
                             }
                         }
                         
-                        //изменения лота
-                        lot.idCurrentPerson = idUser
-                        lot.currentPrice += plusPrice
-                        lot.currentPerson = profilView.profile.name
-                        lot.currentEmail = profilView.profile.email
+                        if lot.idCurrentPerson == idUser{
+                            lot.currentPrice += plusPrice
+                            textAlert = "Successful deal. \(plusPrice)$ deducted from your balance"
+                        }else{
+                            //изменения лота
+                            lot.idCurrentPerson = idUser
+                            lot.currentPrice += plusPrice
+                            lot.currentPerson = profilView.profile.name
+                            lot.currentEmail = profilView.profile.email
+                            
+                            textAlert = "Successful deal. \(lot.currentPrice)$ deducted from your balance"
+                        }
+                        
+                        
                         
                         //изменения счёта пользователя
                         DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: -Double(lot.currentPrice)) { error in
@@ -357,7 +376,7 @@ struct SmallLot: View {
                             }
                         }
                         
-                        textAlert = "Successful deal. \(lot.currentPrice)$ deducted from your balance"
+                        
                         plusPrice = 500
                         showAletr.toggle()
                         profilView.getProfile()
@@ -442,7 +461,7 @@ struct SmallLot: View {
 
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
-        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo", date: Date(), seePeopleId: [], image: ""),
+        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "none", date: Date(), seePeopleId: [], image: ""),
                  idUser: "4HW1ZWlnbCPbKCTVjbFOcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }
