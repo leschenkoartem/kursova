@@ -62,10 +62,9 @@ struct AuctionsView: View {
             
             Spacer()
         }.edgesIgnoringSafeArea(.bottom)
-        .onAppear{
-                lotView.getLots()
-
-            }
+        .onAppear{lotView.getLots()}
+                
+            
         .onTapGesture {
                     UIApplication.shared.endEditing()
                 }
