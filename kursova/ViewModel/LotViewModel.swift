@@ -19,7 +19,6 @@ class LotViewModel: ObservableObject{
     init(lots_info: [Lot_str] = [Lot_str]()) {
         self.lots_info = lots_info
         getLots()
-        print("")
     }
     
     func getLots(){

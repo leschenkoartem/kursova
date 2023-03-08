@@ -11,10 +11,12 @@ import SwiftUI
 
 class AccountViewModel: ObservableObject{
     
-    @Published var profile = User_str(name: "", id: "xwdx", email: "", image: "")
+    @Published var profile = User_str(name: "", id: "", email: "", image: "")
      
+
+    
     init() {
-        self.getProfile()
+        getProfile()
     }
     
    

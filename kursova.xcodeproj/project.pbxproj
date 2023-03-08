@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3033EFC29B8EFC800B2B23E /* SmallLotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */; };
 		E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */; };
 		E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */; };
 		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLotViewModel.swift; sourceTree = "<group>"; };
 		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
 		E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = kursova/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
@@ -101,8 +103,8 @@
 				E3E3058D29AB7BC800426066 /* Services */,
 				E3E3058C29AB7BAB00426066 /* Models */,
 				E3E3058A29AB7B6A00426066 /* ViewModel */,
-				E3E3058929AB7B2700426066 /* Views */,
 				E3E3058B29AB7B8E00426066 /* Components */,
+				E3E3058929AB7B2700426066 /* Views */,
 				E3E3055429AB76A600426066 /* Assets.xcassets */,
 				E3E3055629AB76A600426066 /* Preview Content */,
 			);
@@ -136,6 +138,7 @@
 			children = (
 				E3E3056E29AB78FF00426066 /* LotViewModel.swift */,
 				E3E3056C29AB78EC00426066 /* AccountViewModel.swift */,
+				E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -143,8 +146,8 @@
 		E3E3058B29AB7B8E00426066 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */,
 				E3E3056229AB783C00426066 /* SmallLot.swift */,
+				E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */,
 				E3E3056029AB782B00426066 /* CustomTabBar.swift */,
 				E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */,
 			);
@@ -261,6 +264,7 @@
 				E3E3055F29AB780500426066 /* HomeView.swift in Sources */,
 				E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */,
 				E3E3056D29AB78EC00426066 /* AccountViewModel.swift in Sources */,
+				E3033EFC29B8EFC800B2B23E /* SmallLotViewModel.swift in Sources */,
 				E3E3057929AB79BA00426066 /* SignInView.swift in Sources */,
 				E3E3056329AB783C00426066 /* SmallLot.swift in Sources */,
 				E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */,

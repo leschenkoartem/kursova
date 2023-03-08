@@ -92,19 +92,21 @@ struct HomeView: View {
                 } label: {
                     Text("Add new lot +").foregroundColor(Color(.systemGray).opacity(0.75)).fontWeight(.bold)
                 }
+                
                 ScrollView{
                     Spacer().frame(height: 10)
                     ForEach(0..<lotView.lots_info.count, id: \.self){item in
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lots_info[item]
                             if lot.idCreator == user{
-                                SmallLot(lot: lot, idUser:  AuthService.shared.currentUser!.uid)
+                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
                             }
                         }
                     }
                     Spacer().frame(height: 130)
                     
                 }
+                
             }else if showLots == 2{
                 Text("Active Offers:").foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
@@ -119,7 +121,7 @@ struct HomeView: View {
                             let lot = lotView.lots_info[item]
                             if lot.idCurrentPerson == user{
                                 
-                                SmallLot(lot: lot, idUser:  AuthService.shared.currentUser!.uid)
+                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
                             }
                         }
                     }
@@ -143,10 +145,11 @@ struct HomeView: View {
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lots_info[item]
                             if lot.seePeopleId.contains(user){
-                                SmallLot(lot: lot, idUser:  AuthService.shared.currentUser!.uid)
+                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
                             }
                         }
                     }
+                    
                     Spacer().frame(height: 130)
                     
                 }
@@ -177,10 +180,9 @@ struct HomeView: View {
                     
                 }//При показе экрана запрашываются даные из базы данных
                 .onAppear{
-                    if AuthService.shared.currentUser != nil{
-                        self.profileView.getProfile()
-                    }
-                    print(profileView.profile.image)
+                    
+                        profileView.getProfile()
+                    lotView.getLots()
                 }
                 .sheet(isPresented: $showSheet, onDismiss: {
                     print("Okay")

@@ -54,7 +54,7 @@ struct AuctionsView: View {
                 ForEach(0..<lotView.lots_info.count, id: \.self){item in
 
                     if lotView.lots_info[item].mainText.uppercased().contains(searchStringWord.uppercased()){
-                        SmallLot(lot: lotView.lots_info[item], idUser:  AuthService.shared.currentUser!.uid)
+                        SmallLot(selfViewModel: SmallLotViewModel(lot: lotView.lots_info[item]), idUser: AuthService.shared.currentUser!.uid).environmentObject(AccountViewModel()).environmentObject(LotViewModel())
                     }
                 }
                 Spacer().frame(height: 130)

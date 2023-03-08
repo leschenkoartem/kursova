@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct SmallLot: View {
     
+    var selfViewModel : SmallLotViewModel
     
     //для анимации
     @State var selfHeight = 150
@@ -27,14 +28,12 @@ struct SmallLot: View {
     @State var showBigImage = false
     
     
-    
     //Для конекта с текущим юзером
-    @EnvironmentObject var profilView:AccountViewModel
-    @EnvironmentObject var lotView:LotViewModel
+    @EnvironmentObject var profilView : AccountViewModel
+    @EnvironmentObject var lotView : LotViewModel
     @Environment(\.dismiss) var dismiss
     
-    //для конекта с списком лотов
-    @State var lot:Lot_str
+    
     
     @State var plusPrice = 500{
         didSet{
@@ -50,7 +49,7 @@ struct SmallLot: View {
     
     var simId:Bool{
         get{
-            if lot.idCreator == idUser{
+            if selfViewModel.lot.idCreator == idUser{
                 return true
             }else{
                 return false
@@ -67,7 +66,7 @@ struct SmallLot: View {
             HStack(alignment: .top){
                 
                 
-                WebImage(url: URL(string: lot.image))
+                WebImage(url: URL(string: selfViewModel.lot.image))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 120, height: 120)
@@ -85,19 +84,15 @@ struct SmallLot: View {
                     
                     HStack {
                         //Кнопка показываеться только для учасника
-                        if lot.idCreator != idUser{
+                        if selfViewModel.lot.idCreator != idUser{
                             
                             //если участника нет в списке наблюдателей
-                            if !lot.seePeopleId.contains(idUser) {
+                            if !selfViewModel.lot.seePeopleId.contains(idUser) {
                                 Button {
                                     //добавляем его в список
-                                    if !lot.seePeopleId.contains(idUser) {
-                                        lot.seePeopleId.append(idUser)
-                                    }
-                                    //сохраняем в бд
-                                    DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+                                    selfViewModel.AddToObserve()
                                     lotView.getLots()
-                                    
+
                                 } label: {
                                     Image(systemName: "eye.slash")
                                     
@@ -109,11 +104,7 @@ struct SmallLot: View {
                                 //если он есть
                                 Button {
                                     //удаляем из списка
-                                    if let index = lot.seePeopleId.firstIndex(of: AuthService.shared.currentUser!.uid) {
-                                        lot.seePeopleId.remove(at: index)
-                                    }
-                                    //сохраняем в бд
-                                    DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+                                    selfViewModel.DellFromObserve()
                                     lotView.getLots()
                                     
                                 } label: {
@@ -123,7 +114,7 @@ struct SmallLot: View {
                             }
                         }
                         
-                        Text(lot.mainText+"\(simId ? "(Yours)": " ")").font(.title2)
+                        Text(selfViewModel.lot.mainText+"\(simId ? "(Yours)": " ")").font(.title2)
                             .fontWeight(.bold)
                             .opacity(0.7)
                             .foregroundColor(simId ? .yellow : Color(.label))
@@ -134,7 +125,7 @@ struct SmallLot: View {
                         Text("Current Price: ").opacity(0.6)
                             .padding(.bottom, 2)
                             .fontWeight(.bold)
-                        Text("\(lot.currentPrice)$").opacity(0.6)
+                        Text("\(selfViewModel.lot.currentPrice)$").opacity(0.6)
                             .padding(.bottom, 2)
                     }
                     
@@ -142,13 +133,13 @@ struct SmallLot: View {
                     Text("Current Person: ").opacity(0.6)
                         .fontWeight(.bold)
                     
-                    Text("\(lot.currentPerson)").opacity(0.7)
-                        .foregroundColor(lot.idCurrentPerson == idUser ? .green: Color(.label))
-                        .fontWeight(lot.idCurrentPerson == idUser ? .bold: .regular)
+                    Text("\(selfViewModel.lot.currentPerson)").opacity(0.7)
+                        .foregroundColor(selfViewModel.lot.idCurrentPerson == idUser ? .green: Color(.label))
+                        .fontWeight(selfViewModel.lot.idCurrentPerson == idUser ? .bold: .regular)
                     
-                    Text("(\(lot.currentEmail))").opacity(0.7)
-                        .foregroundColor(lot.idCurrentPerson == idUser ? .green: Color(.label))
-                        .fontWeight(lot.idCurrentPerson == idUser ? .bold: .regular)
+                    Text("(\(selfViewModel.lot.currentEmail))").opacity(0.7)
+                        .foregroundColor(selfViewModel.lot.idCurrentPerson == idUser ? .green: Color(.label))
+                        .fontWeight(selfViewModel.lot.idCurrentPerson == idUser ? .bold: .regular)
                     
                     Spacer()
                     
@@ -163,13 +154,13 @@ struct SmallLot: View {
             
             
             //Усли экран увеличивается и лот не принадлежит текущему юзеру - есть кнопка добавления цены
-            if getBigger && idUser != lot.idCreator{
+            if getBigger && idUser != selfViewModel.lot.idCreator{
                 
                 VStack{
                     //Информация по лоту
                     Text("  Information:").opacity(0.7).padding(.horizontal, 5).fontWeight(.bold)
                         .padding(.top, -10)
-                    Text("\(lot.informationText)").opacity(0.6).padding(.horizontal, 5)
+                    Text("\(selfViewModel.lot.informationText)").opacity(0.6).padding(.horizontal, 5)
                         .padding(.top, -10)
                 }
                 
@@ -189,7 +180,7 @@ struct SmallLot: View {
                     
                     //Основная кнопка, которая вызывает Диалог с подтверждение сделки
                     Button {
-                        if lot.idCurrentPerson == idUser{
+                        if selfViewModel.lot.idCurrentPerson == idUser{
                             if profilView.profile.balance >= plusPrice{
                                 textDialog = "\(self.plusPrice)$ will be deducted from your balance. Make an offer?"
                                 variationdialog = 1
@@ -199,8 +190,8 @@ struct SmallLot: View {
                                 showAletr.toggle()
                             }
                         }else{
-                            if profilView.profile.balance >= lot.currentPrice + plusPrice{
-                                textDialog = "\(self.plusPrice + lot.currentPrice)$ will be deducted from your balance. Make an offer?"
+                            if profilView.profile.balance >= selfViewModel.lot.currentPrice + plusPrice{
+                                textDialog = "\(self.plusPrice + selfViewModel.lot.currentPrice)$ will be deducted from your balance. Make an offer?"
                                 variationdialog = 1
                                 showDialog.toggle()
                             }else{
@@ -220,13 +211,6 @@ struct SmallLot: View {
                     }
                     //Кнопка плюс
                     Button {
-                        DatabaseService.shared.getImageUrl(imagePath: lot.id, path: "lots_loogo") { url in
-                            if let url = url{
-                                DatabaseService.shared.updateLotPhotoUrl(LotId: lot.id, newPhotoUrl: url.absoluteString)
-                            }else{
-                                print("fail")
-                            }
-                        }
                         plusPrice+=500
                     } label: {
                         Image(systemName: "plus")
@@ -242,7 +226,7 @@ struct SmallLot: View {
                 VStack{
                     Text("  Information:").opacity(0.7).padding(.horizontal, 5).fontWeight(.bold)
                         .padding(.top, -10)
-                    Text("\(lot.informationText)").opacity(0.6).padding(.horizontal, 5)
+                    Text("\(selfViewModel.lot.informationText)").opacity(0.6).padding(.horizontal, 5)
                         .padding(.top, -10)
                 }
                 
@@ -252,8 +236,8 @@ struct SmallLot: View {
                 HStack{
                     //Основная кнопка, которая вызывает Диалог с подтверждением завершения аукциона
                     Button {
-                        if lot.idCurrentPerson != ""{
-                            textDialog = "Do you want to end the auction? Your balance will be replenished by \(lot.currentPrice)$"
+                        if selfViewModel.lot.idCurrentPerson != ""{
+                            textDialog = "Do you want to end the auction? Your balance will be replenished by \(selfViewModel.lot.currentPrice)$"
                         }else{
                             textDialog = "Do you want to end the auction? Your Balance does Not Change."
                         }
@@ -300,9 +284,10 @@ struct SmallLot: View {
         //Делаем анимацию
             .animation(.easeInOut(duration: 0.3))
         
+           
         //Полная инфа(ЛИСТ)
             .sheet(isPresented: $showBigImage){
-                FullInfoLotView(title: lot.mainText, currentUser: lot.currentPerson, LotID: lot.id, currentPrice: lot.currentPrice, CreatorID: lot.idCreator, date: lot.date, count: lot.seePeopleId.count, image: lot.image)
+                FullInfoLotView(title: selfViewModel.lot.mainText, currentUser: selfViewModel.lot.currentPerson, LotID: selfViewModel.lot.id, currentPrice: selfViewModel.lot.currentPrice, CreatorID: selfViewModel.lot.idCreator, date: selfViewModel.lot.date, count: selfViewModel.lot.seePeopleId.count, image: selfViewModel.lot.image)
                 
             }
         
@@ -337,114 +322,37 @@ struct SmallLot: View {
                     switch variationdialog{
                         //Смена цены и пользователя
                     case 1:
-                        //Dозвращаем деньги прошлому ставщику
-                        if lot.idCurrentPerson != ""{
-                            DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: +Double(lot.currentPrice)) { error in
-                                if let error = error {
-                                    print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
-                                    
-                                } else {
-                                    print("Баланс пользователя успешно обновлен")
-                                    
-                                }
-                            }
-                        }
-                        
-                        if lot.idCurrentPerson == idUser{
-                            lot.currentPrice += plusPrice
-                            textAlert = "Successful deal. \(plusPrice)$ deducted from your balance"
-                        }else{
-                            //изменения лота
-                            lot.idCurrentPerson = idUser
-                            lot.currentPrice += plusPrice
-                            lot.currentPerson = profilView.profile.name
-                            lot.currentEmail = profilView.profile.email
-                            
-                            textAlert = "Successful deal. \(lot.currentPrice)$ deducted from your balance"
-                        }
                         
                         
-                        
-                        //изменения счёта пользователя
-                        DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: -Double(lot.currentPrice)) { error in
-                            if let error = error {
-                                print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
-                                
-                            } else {
-                                print("Баланс пользователя успешно обновлен")
-                                
-                            }
-                        }
+                        textAlert = selfViewModel.addPrice(idUser: idUser, plusPrice: plusPrice, name: profilView.profile.name, email: profilView.profile.email)
                         
                         
+                        profilView.getProfile()
+                        lotView.getLots()
                         plusPrice = 500
                         showAletr.toggle()
-                        profilView.getProfile()
                         
-                        //обновляет данные лота
-                        DatabaseService.shared.changeCurentDataLot(LotId: lot.id, currentPrice: lot.currentPrice, currentPerson: lot.currentPerson, idCurrentPerson: idUser, currentEmail: lot.currentEmail)
                         
-                        //Добавление в наблюдаемые
-                        if !lot.seePeopleId.contains(idUser) {
-                            lot.seePeopleId.append(idUser)
-                        }
-                        
-                        DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
-                        lotView.getLots()
-                        //Финиш лота
                     case 2:
-                        //Если есть текущий пользователь, передаём деньги создателю
-                        if lot.idCurrentPerson != ""{
-                            DatabaseService.shared.updateBalance(for: lot.idCreator, amountToAdd: Double(lot.currentPrice)) { error in
-                                if let error = error {
-                                    print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
-                                    
-                                } else {
-                                    print("Баланс пользователя успешно обновлен")
-                                    
-                                }
-                            }
-                            profilView.getProfile()
-                            textAlert = "Successfully closed the lot. Your balance is replenished by \(lot.currentPrice)$"
-                            showAletr.toggle()
-                        }else{
-                            //если нет, то просто выводим ошибку
-                            textAlert = "Successfully closed the lot. Your balance is replenished by 0$"
-                            showAletr.toggle()
-                        }
                         
-                        DatabaseService.shared.deleteLotPhoto(LotId: lot.id)
-                        DatabaseService.shared.deleteLotData(LotId: lot.id)
+                        textAlert = selfViewModel.FinishLot(idUser: idUser, plusPrice: plusPrice, name: profilView.profile.name, email: profilView.profile.email)
+                        
+                        profilView.getProfile()
                         lotView.getLots()
                         
+                        showAletr.toggle()
                         
+                       
                         //Удаление лота
                     case 3:
                         
-                        //Если есть текущий пользователь, возвразаем ему деньги
-                        if lot.idCurrentPerson != ""{
-                            DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: Double(lot.currentPrice)) { error in
-                                if let error = error {
-                                    print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
-                                    
-                                } else {
-                                    print("Баланс пользователя успешно обновлен")
-                                    
-                                }
-                            }
-                            
-                            textAlert = "Lot removed. Money returned to:\n \(lot.currentPerson)\n\(lot.currentEmail)"
-                            
-                        }else{
-                            //если нет - просто удаляем
-                            textAlert = "Lot removed."
-                            
-                        }
+                        
+                        textAlert = selfViewModel.DelLot(idUser: idUser, plusPrice: plusPrice, name: profilView.profile.name, email: profilView.profile.email)
+                        
+                        profilView.getProfile()
+                        lotView.getLots()
                         
                         showAletr.toggle()
-                        DatabaseService.shared.deleteLotPhoto(LotId: lot.id)
-                        DatabaseService.shared.deleteLotData(LotId: lot.id)
-                        lotView.getLots()
                         
                         
                     default:
@@ -461,7 +369,7 @@ struct SmallLot: View {
 
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
-        SmallLot(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "none", date: Date(), seePeopleId: [], image: ""),
+        SmallLot(selfViewModel: SmallLotViewModel(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "none", date: Date(), seePeopleId: [], image: "")),
                  idUser: "4HW1ZWlnbCPbKCTVjbFOcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }
