@@ -28,7 +28,7 @@ struct SignInView : View {
                     
                     VStack(alignment: .leading){
                         
-                        CustomTextFild(text: $email, titlet: "Email", texft: "Enter Your Email", maxLettes: 200).padding(.bottom, 15)
+                        CustomTextField(text: $email, titlet: "Email", texft: "Enter Your Email", maxLettes: 200).padding(.bottom, 15)
                         
                         
                         //Поле с паролем
@@ -47,7 +47,7 @@ struct SignInView : View {
                 VStack{
                     
                     Button(action: {
-                        AuthService.shared.SignIn(email: email, password: pass) { result in
+                        AuthService.shared.signIn(email: email, password: pass) { result in
                             switch result{
                             case .success(_):
                                 email.removeAll()

@@ -15,7 +15,7 @@ import FirebaseAuth
 import SwiftUI
 
 
-struct Lot_str: Identifiable, Equatable{
+struct LotStruct: Identifiable, Equatable{
     //Структура лот
     
     var id: String = UUID().uuidString

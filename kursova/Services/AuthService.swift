@@ -19,17 +19,17 @@ class AuthService{
     
     
     //Функция для регистрации
-    func signUp(email:String, password:String, name_:String, completion:@escaping(Result<User, Error>)->() ){
+    func signUp(email:String, password:String, name:String, completion:@escaping(Result<User, Error>)->() ){
         
         auth.createUser(withEmail: email, password: password) { result, error in
             
             if let result = result{
                 
                 //Создаэм юзера
-                let user_ = User_str(name: name_, id: result.user.uid, email: email, image: "")
+                let user = MainUser(name: name, id: result.user.uid, email: email, image: "")
                 
                 //помещаем его в базу данных
-                DatabaseService.shared.setProfile(user: user_) { resultDB in
+                DatabaseService.shared.setProfile(user: user) { resultDB in
                     switch resultDB {
                     case .success(_):
                         completion(.success(result.user))
@@ -45,7 +45,7 @@ class AuthService{
     }
     
     //функция для входа
-    func SignIn(email:String, password:String, completion:@escaping(Result<User, Error>)->() ){
+    func signIn(email:String, password:String, completion:@escaping(Result<User, Error>)->() ){
         auth.signIn(withEmail: email, password: password) { result, error in
             if let result = result{
                 completion(.success(result.user))
@@ -54,17 +54,11 @@ class AuthService{
             }
         }
     }
+    
     //Функция выхода из пользователя
     func signOut(){
         try? Auth.auth().signOut()
     }
     
-    //Функция, которая проверяет наличие пользователя и возвращает соответственно бул значение
-    func isUser()->Bool{
-        if AuthService.shared.currentUser != nil{
-            return true
-        }else{
-            return false
-        }
-    }
+    
 }

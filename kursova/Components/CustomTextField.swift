@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomTextFild: View {
+struct CustomTextField: View {
     
     @Binding var text:String
     var titlet:String
@@ -33,9 +33,9 @@ struct CustomTextFild: View {
         }
     }
 }
-struct CustomTextFild_Previews: PreviewProvider {
+struct CustomTextField_Previews: PreviewProvider {
     @State static var a = ""
     static var previews: some View {
-        CustomTextFild(text: $a, titlet: "cd", texft: "wdx", maxLettes: 10)
+        CustomTextField(text: $a, titlet: "cd", texft: "wdx", maxLettes: 10)
     }
 }

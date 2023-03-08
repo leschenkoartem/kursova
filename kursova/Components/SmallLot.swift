@@ -35,8 +35,8 @@ struct SmallLot: View {
     
     
     
-    @State var plusPrice = 500{
-        didSet{
+    @State var plusPrice = 500 {
+        didSet {
             if plusPrice < 500{
                 plusPrice = 500
             }
@@ -47,11 +47,11 @@ struct SmallLot: View {
     var idUser: String
     
     
-    var simId:Bool{
-        get{
-            if selfViewModel.lot.idCreator == idUser{
+    var simId:Bool {
+        get {
+            if selfViewModel.lot.idCreator == idUser {
                 return true
-            }else{
+            } else {
                 return false
             }
         }
@@ -60,10 +60,10 @@ struct SmallLot: View {
     
     var body: some View {
         
-        VStack{
+        VStack {
             
             //Основной контект маленького экрана
-            HStack(alignment: .top){
+            HStack(alignment: .top) {
                 
                 
                 WebImage(url: URL(string: selfViewModel.lot.image))
@@ -80,7 +80,7 @@ struct SmallLot: View {
                 
                 
                 // Текстовая информация о лоте
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     
                     HStack {
                         //Кнопка показываеться только для учасника
@@ -90,7 +90,7 @@ struct SmallLot: View {
                             if !selfViewModel.lot.seePeopleId.contains(idUser) {
                                 Button {
                                     //добавляем его в список
-                                    selfViewModel.AddToObserve()
+                                    selfViewModel.addToObserve()
                                     lotView.getLots()
 
                                 } label: {
@@ -100,11 +100,11 @@ struct SmallLot: View {
                                     .foregroundColor(Color(.label))
                                     .fontWeight(.bold)
                                 
-                            }else{
+                            } else {
                                 //если он есть
                                 Button {
                                     //удаляем из списка
-                                    selfViewModel.DellFromObserve()
+                                    selfViewModel.dellFromObserve()
                                     lotView.getLots()
                                     
                                 } label: {
@@ -154,9 +154,9 @@ struct SmallLot: View {
             
             
             //Усли экран увеличивается и лот не принадлежит текущему юзеру - есть кнопка добавления цены
-            if getBigger && idUser != selfViewModel.lot.idCreator{
+            if getBigger && idUser != selfViewModel.lot.idCreator {
                 
-                VStack{
+                VStack {
                     //Информация по лоту
                     Text("  Information:").opacity(0.7).padding(.horizontal, 5).fontWeight(.bold)
                         .padding(.top, -10)
@@ -222,7 +222,7 @@ struct SmallLot: View {
                     .padding(.bottom, 5)
                 
             }//Усли экран увеличивается и лот принадлежит текущему юзеру - есть две кнопки
-            else if getBigger && simId{
+            else if getBigger && simId {
                 VStack{
                     Text("  Information:").opacity(0.7).padding(.horizontal, 5).fontWeight(.bold)
                         .padding(.top, -10)
@@ -335,7 +335,7 @@ struct SmallLot: View {
                         
                     case 2:
                         
-                        textAlert = selfViewModel.FinishLot(idUser: idUser, plusPrice: plusPrice, name: profilView.profile.name, email: profilView.profile.email)
+                        textAlert = selfViewModel.finishLot(idUser: idUser, plusPrice: plusPrice, name: profilView.profile.name, email: profilView.profile.email)
                         
                         profilView.getProfile()
                         lotView.getLots()
@@ -347,7 +347,7 @@ struct SmallLot: View {
                     case 3:
                         
                         
-                        textAlert = selfViewModel.DelLot(idUser: idUser, plusPrice: plusPrice, name: profilView.profile.name, email: profilView.profile.email)
+                        textAlert = selfViewModel.delLot(idUser: idUser, plusPrice: plusPrice, name: profilView.profile.name, email: profilView.profile.email)
                         
                         profilView.getProfile()
                         lotView.getLots()
@@ -369,7 +369,7 @@ struct SmallLot: View {
 
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
-        SmallLot(selfViewModel: SmallLotViewModel(lot: Lot_str(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "none", date: Date(), seePeopleId: [], image: "")),
+        SmallLot(selfViewModel: SmallLotViewModel(lot: LotStruct(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "none", date: Date(), seePeopleId: [], image: "")),
                  idUser: "4HW1ZWlnbCPbKCTVjbFOcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }

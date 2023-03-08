@@ -95,9 +95,9 @@ struct HomeView: View {
                 
                 ScrollView{
                     Spacer().frame(height: 10)
-                    ForEach(0..<lotView.lots_info.count, id: \.self){item in
+                    ForEach(0..<lotView.lotsList.count, id: \.self){item in
                         if let user = AuthService.shared.currentUser?.uid{
-                            let lot = lotView.lots_info[item]
+                            let lot = lotView.lotsList[item]
                             if lot.idCreator == user{
                                 SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
                             }
@@ -116,9 +116,9 @@ struct HomeView: View {
                 
                 ScrollView{
                     Spacer().frame(height: 10)
-                    ForEach(0..<lotView.lots_info.count, id: \.self) {item in
+                    ForEach(0..<lotView.lotsList.count, id: \.self) {item in
                         if let user = AuthService.shared.currentUser?.uid{
-                            let lot = lotView.lots_info[item]
+                            let lot = lotView.lotsList[item]
                             if lot.idCurrentPerson == user{
                                 
                                 SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
@@ -141,9 +141,9 @@ struct HomeView: View {
                 
                 ScrollView{
                     Spacer().frame(height: 10)
-                    ForEach(0..<lotView.lots_info.count, id: \.self){item in
+                    ForEach(0..<lotView.lotsList.count, id: \.self){item in
                         if let user = AuthService.shared.currentUser?.uid{
-                            let lot = lotView.lots_info[item]
+                            let lot = lotView.lotsList[item]
                             if lot.seePeopleId.contains(user){
                                 SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
                             }

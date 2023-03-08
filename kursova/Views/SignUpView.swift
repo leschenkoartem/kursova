@@ -29,10 +29,10 @@ struct SignUpView : View {
                 
                 VStack(alignment: .leading){
                     //Поле Имя/Фамилия
-                    CustomTextFild(text: $name, titlet: "Name / Surname", texft: "Enter Your Name And Surname", maxLettes: 40).padding(.bottom, 15)
+                    CustomTextField(text: $name, titlet: "Name / Surname", texft: "Enter Your Name And Surname", maxLettes: 40).padding(.bottom, 15)
                     
                     //Поле емайл
-                    CustomTextFild(text: $email, titlet: "Email", texft: "Enter Your Email", maxLettes: 60).padding(.bottom, 15)
+                    CustomTextField(text: $email, titlet: "Email", texft: "Enter Your Email", maxLettes: 60).padding(.bottom, 15)
                     
                     //Поле пароль
                     VStack(alignment: .leading){
@@ -73,7 +73,7 @@ struct SignUpView : View {
                         return
                     }
                     
-                    AuthService.shared.signUp(email: email, password: pass, name_: name) { result in
+                    AuthService.shared.signUp(email: email, password: pass, name: name) { result in
                         switch result{
                             
                         case .success(let user):

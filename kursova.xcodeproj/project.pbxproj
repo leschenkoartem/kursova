@@ -12,14 +12,14 @@
 		E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */; };
 		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
 		E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */; };
-		E3D764C529AFB96B0070DDC9 /* CustomTextFild.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */; };
+		E3D764C529AFB96B0070DDC9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */; };
 		E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055029AB76A500426066 /* kursovaApp.swift */; };
 		E3E3055529AB76A600426066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055429AB76A600426066 /* Assets.xcassets */; };
 		E3E3055829AB76A600426066 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055729AB76A600426066 /* Preview Assets.xcassets */; };
 		E3E3055F29AB780500426066 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055E29AB780500426066 /* HomeView.swift */; };
 		E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056029AB782B00426066 /* CustomTabBar.swift */; };
 		E3E3056329AB783C00426066 /* SmallLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056229AB783C00426066 /* SmallLot.swift */; };
-		E3E3056529AB788A00426066 /* accountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056429AB788A00426066 /* accountModel.swift */; };
+		E3E3056529AB788A00426066 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056429AB788A00426066 /* UserModel.swift */; };
 		E3E3056729AB789C00426066 /* LotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056629AB789C00426066 /* LotModel.swift */; };
 		E3E3056929AB78B600426066 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056829AB78B600426066 /* AuthService.swift */; };
 		E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056A29AB78CF00426066 /* DatbaseService.swift */; };
@@ -42,7 +42,7 @@
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
 		E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = kursova/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
 		E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewLotView.swift; sourceTree = "<group>"; };
-		E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFild.swift; sourceTree = "<group>"; };
+		E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E3E3054D29AB76A500426066 /* kursova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kursova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E3055029AB76A500426066 /* kursovaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kursovaApp.swift; sourceTree = "<group>"; };
 		E3E3055429AB76A600426066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		E3E3055E29AB780500426066 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3E3056029AB782B00426066 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		E3E3056229AB783C00426066 /* SmallLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLot.swift; sourceTree = "<group>"; };
-		E3E3056429AB788A00426066 /* accountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountModel.swift; sourceTree = "<group>"; };
+		E3E3056429AB788A00426066 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E3E3056629AB789C00426066 /* LotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotModel.swift; sourceTree = "<group>"; };
 		E3E3056829AB78B600426066 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E3E3056A29AB78CF00426066 /* DatbaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatbaseService.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 				E3E3056229AB783C00426066 /* SmallLot.swift */,
 				E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */,
 				E3E3056029AB782B00426066 /* CustomTabBar.swift */,
-				E3D764C429AFB96B0070DDC9 /* CustomTextFild.swift */,
+				E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 		E3E3058C29AB7BAB00426066 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E3E3056429AB788A00426066 /* accountModel.swift */,
+				E3E3056429AB788A00426066 /* UserModel.swift */,
 				E3E3056629AB789C00426066 /* LotModel.swift */,
 			);
 			path = Models;
@@ -258,7 +258,7 @@
 				E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */,
 				E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */,
 				E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */,
-				E3E3056529AB788A00426066 /* accountModel.swift in Sources */,
+				E3E3056529AB788A00426066 /* UserModel.swift in Sources */,
 				E3E3057529AB793E00426066 /* ContentView.swift in Sources */,
 				E3E3056729AB789C00426066 /* LotModel.swift in Sources */,
 				E3E3055F29AB780500426066 /* HomeView.swift in Sources */,
@@ -268,7 +268,7 @@
 				E3E3057929AB79BA00426066 /* SignInView.swift in Sources */,
 				E3E3056329AB783C00426066 /* SmallLot.swift in Sources */,
 				E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */,
-				E3D764C529AFB96B0070DDC9 /* CustomTextFild.swift in Sources */,
+				E3D764C529AFB96B0070DDC9 /* CustomTextField.swift in Sources */,
 				E3E3057B29AB79D400426066 /* SignUpView.swift in Sources */,
 				E3E3056929AB78B600426066 /* AuthService.swift in Sources */,
 				E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */,

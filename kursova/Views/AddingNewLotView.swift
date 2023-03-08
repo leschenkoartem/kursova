@@ -82,7 +82,7 @@ struct AddingNewLotView: View {
             
             //Поля для ввода инфы
             VStack {
-                CustomTextFild(text: $mainText, titlet: "Title", texft: "Enter lot`s title", maxLettes: 35).padding(.bottom, 15)
+                CustomTextField(text: $mainText, titlet: "Title", texft: "Enter lot`s title", maxLettes: 35).padding(.bottom, 15)
                 
                 //Текст для цены
                 VStack(alignment: .leading){
@@ -174,7 +174,7 @@ struct AddingNewLotView: View {
                 print("Okay")
                 
                 //Создаём лот
-                let lotcreat = Lot_str(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: [], image: "")
+                let lotcreat = LotStruct(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: [], image: "")
                 
                 //Передаём его в бд
                 DatabaseService.shared.addLotToFirestore(lot: lotcreat)

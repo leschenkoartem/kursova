@@ -9,17 +9,14 @@ import SwiftUI
 
 class SmallLotViewModel : ObservableObject {
     
-
-
     
-    var lot : Lot_str
+    var lot : LotStruct
     
-    init(lot: Lot_str) {
+    init(lot: LotStruct) {
         self.lot = lot
     }
     
-    
-    func AddToObserve(){
+    func addToObserve(){
         
         let idUser = AuthService.shared.currentUser!.uid
         
@@ -32,7 +29,7 @@ class SmallLotViewModel : ObservableObject {
         
     }
     
-    func DellFromObserve(){
+    func dellFromObserve(){
         if let index = lot.seePeopleId.firstIndex(of: AuthService.shared.currentUser!.uid) {
             lot.seePeopleId.remove(at: index)
         }
@@ -101,7 +98,7 @@ class SmallLotViewModel : ObservableObject {
  
     }
     
-    func FinishLot(idUser: String, plusPrice:Int, name:String, email:String) -> String{
+    func finishLot(idUser: String, plusPrice:Int, name:String, email:String) -> String{
         
         var textAlert = ""
         //Если есть текущий пользователь, передаём деньги создателю
@@ -132,7 +129,7 @@ class SmallLotViewModel : ObservableObject {
     }
     
     
-    func DelLot(idUser: String, plusPrice:Int, name:String, email:String) -> String{
+    func delLot(idUser: String, plusPrice:Int, name:String, email:String) -> String{
         
         var textAlert = ""
         //Если есть текущий пользователь, возвразаем ему деньги

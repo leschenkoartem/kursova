@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-struct User_str:Identifiable{
+struct MainUser:Identifiable{
     //Структура пользователя
     var name:String
     var id:String

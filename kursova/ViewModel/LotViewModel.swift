@@ -13,11 +13,11 @@ import SwiftUI
 class LotViewModel: ObservableObject{
     
     @EnvironmentObject var profilView:AccountViewModel
-    @Published var lots_info = [Lot_str]()
+    @Published var lotsList = [LotStruct]()
     
     
-    init(lots_info: [Lot_str] = [Lot_str]()) {
-        self.lots_info = lots_info
+    init(lotsList: [LotStruct] = [LotStruct]()) {
+        self.lotsList = lotsList
         getLots()
     }
     
@@ -25,7 +25,7 @@ class LotViewModel: ObservableObject{
         DatabaseService.shared.getLots { result in
             switch result{
             case .success(let lots):
-                self.lots_info = lots
+                self.lotsList = lots
                
             case .failure(let error):
                 print(error.localizedDescription)

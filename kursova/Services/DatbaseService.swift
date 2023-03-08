@@ -37,7 +37,7 @@ class DatabaseService{
     
     
     //Запись юзера в базу даных
-    func setProfile(user: User_str, completion:@escaping (Result<User_str, Error>)->()){
+    func setProfile(user: MainUser, completion:@escaping (Result<MainUser, Error>)->()){
         
         userRef.document(user.id).setData(user.representation) { error in
             if let error = error{
@@ -49,7 +49,7 @@ class DatabaseService{
     }
     
     //Функция, которая заберает инфу про пользователя с бд
-    func getProfile(completion: @escaping(Result<User_str, Error>)->()){
+    func getProfile(completion: @escaping(Result<MainUser, Error>)->()){
         
         guard let user = AuthService.shared.currentUser else {return}
         userRef.document(user.uid).getDocument { docSnapshot, error in
@@ -64,10 +64,15 @@ class DatabaseService{
             guard let userBalance = data["balance"] as? Int else {return}
             guard let image = data["image"] as? String else {return}
             
-            let user = User_str(name: userName, id: userID, balance: userBalance, email: userEmail, image: image)
+            let user = MainUser(name: userName,
+                                id: userID,
+                                balance: userBalance,
+                                email: userEmail,
+                                image: image)
+            
             completion(.success(user))
         }
-        
+
     }
     
     
@@ -104,7 +109,7 @@ class DatabaseService{
     
     
     //Добавление лота
-    func addLotToFirestore(lot: Lot_str) {
+    func addLotToFirestore(lot: LotStruct) {
         
         var docData: [String: Any] = lot.representation
         docData["idCreator"] = AuthService.shared.currentUser!.uid
@@ -120,33 +125,45 @@ class DatabaseService{
     }
     
     //Получение лота
-    func getLots(completion: @escaping(Result<[Lot_str], Error>)->()){
-        lotRef.getDocuments{ qSnap, error in
-            if let qSnap = qSnap{
-                var lots = [Lot_str]()
-                for doc in qSnap.documents{
-                    guard let id = doc["id"] as? String else {return}
-                    guard let idCurrentPerson = doc["idCurrentPerson"] as? String else {return}
-                    guard let mainText = doc["mainText"] as? String else {return}
-                    guard let idCreator = doc["idCreator"] as? String else {return}
-                    guard let currentPrice = doc["currentPrice"] as? Int else {return}
-                    guard let currentPerson = doc["currentPerson"] as? String else {return}
-                    guard let currentEmail = doc["currentEmail"] as? String else {return}
-                    guard let informationText = doc["informationText"] as? String else {return}
-                    guard let seePeopleId = doc["seePeopleId"] as? [String] else {return}
-                    guard let date = doc["date"] as? Timestamp else {return}
-                    guard let image = doc["image"] as? String else {return}
-                    let lot = Lot_str(id: id, idCreator: idCreator, idCurrentPerson: idCurrentPerson, mainText: mainText, currentPrice: currentPrice, currentPerson: currentPerson, currentEmail:currentEmail, informationText: informationText, date: date.dateValue(), seePeopleId: seePeopleId, image: image)
-                    lots.append(lot)
+    func getLots(completion: @escaping (Result<[LotStruct], Error>) -> Void) {
+        lotRef.getDocuments { qSnap, error in
+            guard let qSnap = qSnap else {
+                if let error = error {
+                    completion(.failure(error))
                 }
-                
-                completion(.success(lots))
-            }else if let error = error{
-                completion(.failure(error))
+                return
             }
-           
+            
+            let lots = qSnap.documents.compactMap { doc -> LotStruct? in
+                guard let id = doc["id"] as? String,
+                      let idCurrentPerson = doc["idCurrentPerson"] as? String,
+                      let mainText = doc["mainText"] as? String,
+                      let idCreator = doc["idCreator"] as? String,
+                      let currentPrice = doc["currentPrice"] as? Int,
+                      let currentPerson = doc["currentPerson"] as? String,
+                      let currentEmail = doc["currentEmail"] as? String,
+                      let informationText = doc["informationText"] as? String,
+                      let seePeopleId = doc["seePeopleId"] as? [String],
+                      let date = doc["date"] as? Timestamp,
+                      let image = doc["image"] as? String else {
+                    return nil
+                }
+                return LotStruct(id: id,
+                                  idCreator: idCreator,
+                                  idCurrentPerson: idCurrentPerson,
+                                  mainText: mainText,
+                                  currentPrice: currentPrice,
+                                  currentPerson: currentPerson,
+                                  currentEmail: currentEmail,
+                                  informationText: informationText,
+                                  date: date.dateValue(),
+                                  seePeopleId: seePeopleId,
+                                  image: image)
             }
+            
+            completion(.success(lots))
         }
+    }
     
     
     // Удаление лота
