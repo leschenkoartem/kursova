@@ -198,9 +198,11 @@ struct HomeView: View {
                             DatabaseService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
                         }
                     }
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         profileView.getProfile()
                     }
+                    
                 }) {
                     ImagePicker(selectedImage: $image)
   

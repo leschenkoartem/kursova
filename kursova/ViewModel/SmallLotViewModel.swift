@@ -63,7 +63,7 @@ class SmallLotViewModel : ObservableObject {
             lot.idCurrentPerson = idUser
             lot.currentPrice += plusPrice
             lot.currentPerson = name
-            lot.currentEmail = name
+            lot.currentEmail = email
             
             textAlert = "Successful deal. \(lot.currentPrice)$ deducted from your balance"
         }
