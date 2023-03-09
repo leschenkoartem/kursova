@@ -75,22 +75,22 @@ struct HomeView: View {
             
             //Выбор своих или чужих лотов
             Picker("", selection: $showLots) {
-                Text("Self Lots").tag(1)
-                Text("Active Offers").tag(2)
-                Text("Marked lots").tag(3)
+                Text("Self Lots".localaized()).tag(1)
+                Text("Active Offers".localaized()).tag(2)
+                Text("Marked lots".localaized()).tag(3)
             }.pickerStyle(SegmentedPickerStyle())
                 .padding(5)
             
             //Скролы с лотами
             if showLots == 1{
-                Text("Your Lots:").foregroundColor(Color(.label).opacity(0.75))
+                Text("Your Lots:".localaized()).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
-                Text("Lots, That You Made.").foregroundColor(Color(.systemGray3).opacity(0.75))
+                Text("Lots, That You Made.".localaized()).foregroundColor(Color(.systemGray3).opacity(0.75))
                 Divider()
                 Button {
                     creatLot.toggle()
                 } label: {
-                    Text("Add new lot +").foregroundColor(Color(.systemGray).opacity(0.75)).fontWeight(.bold)
+                    Text("Add new lot +".localaized()).foregroundColor(Color(.systemGray).opacity(0.75)).fontWeight(.bold)
                 }
                 
                 ScrollView{
@@ -108,9 +108,9 @@ struct HomeView: View {
                 }
                 
             }else if showLots == 2{
-                Text("Active Offers:").foregroundColor(Color(.label).opacity(0.75))
+                Text("Active Offers:".localaized()).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
-                Text("Lots, in Which You Participate").foregroundColor(Color(.systemGray3).opacity(0.75))
+                Text("Lots, in Which You Participate".localaized()).foregroundColor(Color(.systemGray3).opacity(0.75))
                 Divider()
                 
                 
@@ -134,9 +134,9 @@ struct HomeView: View {
                 Spacer()
                 
             }else{
-                Text("Marked Lots:").foregroundColor(Color(.label).opacity(0.75))
+                Text("Marked Lots:".localaized()).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
-                Text("Lots You Marked").foregroundColor(Color(.systemGray3).opacity(0.75))
+                Text("Lots You Marked".localaized()).foregroundColor(Color(.systemGray3).opacity(0.75))
                 Divider()
                 
                 ScrollView{
@@ -164,18 +164,18 @@ struct HomeView: View {
             
         }.edgesIgnoringSafeArea(.bottom)
             //Подтверждение выхода
-                .confirmationDialog("Are You sure you want to Log Out?", isPresented: $isConfirm, titleVisibility: .visible) {
+            .confirmationDialog("Are You sure you want to Log Out?".localaized(), isPresented: $isConfirm, titleVisibility: .visible) {
                     
                     Button(role: .cancel) {
                         isConfirm.toggle()
                     } label: {
-                        Text("No")
+                        Text("No".localaized())
                     }
                     Button(role: .destructive) {
                         AuthService.shared.signOut()
                         isUserLogin.toggle()
                     } label: {
-                        Text("Yeah")
+                        Text("Yeah".localaized())
                     }
                     
                 }//При показе экрана запрашываются даные из базы данных

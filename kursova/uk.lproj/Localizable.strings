@@ -1,0 +1,89 @@
+/* 
+  Localizable.strings
+  kursova
+
+  Created by Artem Leschenko on 09.03.2023.
+  
+*/
+
+//SignInView
+"Sign In" = "Увійти";
+"Email" = "Електронна пошта";
+"Enter Your Email" = "Введіть вашу пошту";
+"Password"= "Пароль";
+"Enter Your Password" = "Введіть ваш пароль";
+"Sign In" = "Увійти";
+"(or)" = "(або)";
+"Don't Have An Account ?" = "Не маєте облікового запису?";
+"Sign Up" = "Зареєструватися";
+
+//SignUpView
+"Name / Surname" = "Ім'я / Прізвище";
+"Enter Your Name And Surname" = "Введіть своє ім'я та прізвище" ;
+"Confirm your password" = "Підтвердити пароль" ;
+"Repeat Your Password" = "Повторіть свій пароль";
+"Password mismatch" =  "Невідповідність пароля";
+"Too short name and surname" = "Занадто коротке ім'я та прізвище";
+"Registration with " = "Реєстрація з ";
+"Already Have An Account ?" = "Вже є аккаунт ?";
+
+//AuctionView
+"Search by keyword..." = "Пошук за ключовим словом...";
+
+//HomeView
+"Self Lots" = "Ваші лоти" ;
+"Active Offers" = "Активні лоти";
+"Marked lots" = "Помічені лоти";
+"Your Lots:" = "Ваші лоти:";
+"Lots, That You Made." = "Лоти, які виставили ви.";
+"Add new lot +" = "Додати новий лот +";
+"Active Offers:" = "Активні ставки:";
+"Lots, in Which You Participate" = "Лоти, в яких ви виграєте.";
+"Marked Lots:" = "Відмічені лоти";
+"Lots You Marked" = "Лоти, за якими ви слідкуєте.";
+"Are You sure you want to Log Out?" = "Ви впевнені, що хочете вийти?";
+"No" = "Ні";
+"Yeah" = "Так";
+
+//fullInfoLotView
+"Current Price: " = "Поточна ціна: ";
+"Current User: " = "Поточний користувач: ";
+"Observed by: " = "Спостерігає: ";
+" user/s" = " користувач/чі";
+"Lot ID:" = "Ідентифікатор лота:";
+"Creator ID:" = "Ідентифікатор творця:";
+"Made Time:" = "Час публікації:";
+
+//AddingNewLotView
+"Add photo +" = "Додати фото +";
+"Сlose" = "Закрити";
+"Title" = "Заголовок";
+"Enter lot`s title" = "Введіть заголовок лоту";
+"Price" = "Ціна";
+"Enter lot`s price" = "Введіть ціну лоту";
+"Information (180lt Max)" = "Інформація (180 символів макс.)";
+"Enter text here..." = "Введіть ваш текст тут...";
+"Add" = "Додати";
+"Not Enough Data" = "Недостатньо інформації";
+"Do you confirm the creation of the lot?" = "Ви підтверджуєте створення лоту?";
+"Okay" = "Гаразд";
+
+//SmallLotViewModel
+"Successful deal." = "Вдала угода.";
+"$ deducted from your balance" = "$ списано з вашого балансу";
+"Successfully closed the lot. Your balance is replenished by" = "Лот успішно закрито. Ваш баланс поповнено на";
+"Successfully closed the lot. Your balance is replenished by 0$" = "Лот успішно закрито. Ваш баланс поповнено на 0$";
+"Lot removed. Money returned to:\n" = "Лот видалено. Гроші повернуто:\n";
+"Lot removed." = "Лот видалено.";
+
+//SmallLot
+"(Yours)" = "(Ваш)";
+"$ will be deducted from your balance. Make an offer?" = "$ буде списано з вашого балансу. Зробити пропозицію?";
+"Not Enough money on balance" = "Недостатньо грошей на балансі";
+"Do you want to end the auction? Your balance will be replenished by " = "Бажаєте завершити аукціон? Ваш баланс буде поповнено на ";
+"Do you want to end the auction? Your Balance does Not Change." = "Ви хочете завершити аукціон? Ваш баланс не зміниться.";
+"Do you want to delete the lot? Your account will not change, the money will be returned to the participant" = "Видалити лот? Ваш баланс не зміниться, гроші будуть повернені учаснику.";
+"Delete" = "Видалити";
+" Information:"= " Інформація:";
+"make an offer + " = " Зробити пропозицію +";
+"Finish" = "Завершити";

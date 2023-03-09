@@ -23,23 +23,23 @@ struct SignUpView : View {
         //верхний текст
         VStack {
            
-            Text("Sign Up").fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
+            Text("Sign Up".localaized()).fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
             //поля ввода
             VStack{
                 
                 VStack(alignment: .leading){
                     //Поле Имя/Фамилия
-                    CustomTextField(text: $name, titlet: "Name / Surname", texft: "Enter Your Name And Surname", maxLettes: 40).padding(.bottom, 15)
+                    CustomTextField(text: $name, titlet: "Name / Surname".localaized(), texft: "Enter Your Name And Surname".localaized(), maxLettes: 40).padding(.bottom, 15)
                     
                     //Поле емайл
-                    CustomTextField(text: $email, titlet: "Email", texft: "Enter Your Email", maxLettes: 60).padding(.bottom, 15)
+                    CustomTextField(text: $email, titlet: "Email".localaized(), texft: "Enter Your Email".localaized(), maxLettes: 60).padding(.bottom, 15)
                     
                     //Поле пароль
                     VStack(alignment: .leading){
                         
-                        Text("Password").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                        Text("Password".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                         
-                        SecureField("Enter Your Password", text: $pass)
+                        SecureField("Enter Your Password".localaized(), text: $pass)
                         
                         Divider()
                     }.padding(.bottom, 15)
@@ -47,9 +47,9 @@ struct SignUpView : View {
                     //Поле confirm апроль
                     VStack(alignment: .leading){
                         
-                        Text("Confirm your password").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                        Text("Confirm your password".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                         
-                        SecureField("Repeat Your Password", text: $confirmPass)
+                        SecureField("Repeat Your Password".localaized(), text: $confirmPass)
                         
                         Divider()
                     }
@@ -62,13 +62,13 @@ struct SignUpView : View {
                 
                 Button(action: {
                     guard pass == confirmPass else{
-                        textAlert = "Password mismatch"
+                        textAlert = "Password mismatch".localaized()
                         confirmPass.removeAll()
                         isAlert.toggle()
                         return
                     }
                     guard name.count > 3 else{
-                        textAlert = "Too short name and surname"
+                        textAlert = "Too short name and surname".localaized()
                         isAlert.toggle()
                         return
                     }
@@ -77,7 +77,7 @@ struct SignUpView : View {
                         switch result{
                             
                         case .success(let user):
-                            textAlert = "Registration with \(user.email!)"
+                            textAlert = "Registration with ".localaized() + user.email!
                             isAlert.toggle()
                             name.removeAll()
                             pass.removeAll()
@@ -90,24 +90,24 @@ struct SignUpView : View {
                     }
                     
                 }) {
-                    Text("Sign Up").foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
+                    Text("Sign Up".localaized()).foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
                     
                 }.background(Color(.systemGray5))
                     .clipShape(Capsule())
                     .padding(.top, 45)
                     .shadow(radius: 5)
                 
-                Text("(or)").foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
+                Text("(or)".localaized()).foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
                 //Поля вернуться к входу
                 HStack(spacing: 8){
                     
-                    Text("Already Have An Account ?").foregroundColor(Color.gray.opacity(0.5))
+                    Text("Already Have An Account ?".localaized()).foregroundColor(Color.gray.opacity(0.5))
                     
                     Button(action: {
                         dismiss()
                     }) {
                         
-                        Text("Sign In")
+                        Text("Sign In".localaized())
                         
                     }.foregroundColor(.blue)
                     

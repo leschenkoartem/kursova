@@ -22,20 +22,20 @@ struct SignInView : View {
         NavigationView{
             //верхний текст
             VStack {
-                Text("Sign In").fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
+                Text("Sign In".localaized()).fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
                 //поля ввода
                 VStack{
                     
                     VStack(alignment: .leading){
                         
-                        CustomTextField(text: $email, titlet: "Email", texft: "Enter Your Email", maxLettes: 200).padding(.bottom, 15)
+                        CustomTextField(text: $email, titlet: "Email".localaized(), texft: "Enter Your Email".localaized(), maxLettes: 200).padding(.bottom, 15)
                         
                         
                         //Поле с паролем
                         VStack(alignment: .leading){
-                            Text("Password").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                            Text("Password".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                             
-                            SecureField("Enter Your Password", text: $pass).autocorrectionDisabled(true)
+                            SecureField("Enter Your Password".localaized(), text: $pass).autocorrectionDisabled(true)
                             
                             Divider()
                         }
@@ -58,18 +58,18 @@ struct SignInView : View {
                             }
                         }
                     }) {
-                        Text("Sign In").foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
+                        Text("Sign In".localaized()).foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
                         
                     }.background(Color(.systemGray5))
                         .clipShape(Capsule())
                         .padding(.top, 45)
                         .shadow(radius: 5)
                     
-                    Text("(or)").foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
+                    Text("(or)".localaized()).foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
                     
                     HStack(spacing: 8){
                         //Поля "Может зарегестрирован"
-                        Text("Don't Have An Account ?").foregroundColor(Color.gray.opacity(0.5))
+                        Text("Don't Have An Account ?".localaized()).foregroundColor(Color.gray.opacity(0.5))
                         
                         
                         
@@ -77,7 +77,7 @@ struct SignInView : View {
                             SignUpView(email: $email, pass: $pass)
                         } label: {
                             
-                            Text("Sign Up")
+                            Text("Sign Up".localaized())
                             
                         }.foregroundColor(.blue)
                         

@@ -57,7 +57,7 @@ class SmallLotViewModel : ObservableObject {
         
         if lot.idCurrentPerson == idUser{
             lot.currentPrice += plusPrice
-            textAlert = "Successful deal. \(plusPrice)$ deducted from your balance"
+            textAlert = "Successful deal.".localaized() +  String(plusPrice) + "$ deducted from your balance".localaized()
         }else{
             //изменения лота
             lot.idCurrentPerson = idUser
@@ -65,7 +65,7 @@ class SmallLotViewModel : ObservableObject {
             lot.currentPerson = name
             lot.currentEmail = email
             
-            textAlert = "Successful deal. \(lot.currentPrice)$ deducted from your balance"
+            textAlert = "Successful deal." +  String(lot.currentPrice) + "$ deducted from your balance".localaized()
         }
         
         
@@ -113,10 +113,10 @@ class SmallLotViewModel : ObservableObject {
                 }
             }
             
-            textAlert = "Successfully closed the lot. Your balance is replenished by \(lot.currentPrice)$"
+            textAlert = "Successfully closed the lot. Your balance is replenished by".localaized() +  String(lot.currentPrice) + "$"
         }else{
             //если нет, то просто выводим ошибку
-            textAlert = "Successfully closed the lot. Your balance is replenished by 0$"
+            textAlert = "Successfully closed the lot. Your balance is replenished by 0$".localaized()
             
         }
         
@@ -144,11 +144,11 @@ class SmallLotViewModel : ObservableObject {
                 }
             }
             
-            textAlert = "Lot removed. Money returned to:\n \(lot.currentPerson)\n\(lot.currentEmail)"
+            textAlert = "Lot removed. Money returned to:\n".localaized() +  String(lot.currentPerson) + "\n" + String(lot.currentEmail)
             
         }else{
             //если нет - просто удаляем
-            textAlert = "Lot removed."
+            textAlert = "Lot removed.".localaized()
             
         }
         

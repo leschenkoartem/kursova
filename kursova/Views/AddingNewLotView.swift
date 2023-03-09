@@ -36,7 +36,10 @@ struct AddingNewLotView: View {
                 VStack {
                     Spacer().frame(height: 20)
                     Image(systemName: "plus.circle").resizable().aspectRatio(contentMode: .fill).foregroundColor(Color(.secondaryLabel).opacity(0.75))
-                    Text("Add photo +").foregroundColor(Color(.secondaryLabel).opacity(0.75)).fontWeight(.bold).font(.title2)
+                    Text("Add photo +".localaized()).frame(width: 200)
+                        .foregroundColor(Color(.secondaryLabel).opacity(0.75))
+                        .fontWeight(.bold)
+                        .font(.title2)
                 }.frame(maxWidth: 150, maxHeight: 150)
                 
                 //Картинка
@@ -57,7 +60,7 @@ struct AddingNewLotView: View {
                             dismiss()
                         } label: {
                             Image(systemName: "xmark")
-                            Text("Сlose")
+                            Text("Сlose".localaized())
                             Spacer().frame(width: 7)
                         }.padding(7)
                             .background()
@@ -82,15 +85,15 @@ struct AddingNewLotView: View {
             
             //Поля для ввода инфы
             VStack {
-                CustomTextField(text: $mainText, titlet: "Title", texft: "Enter lot`s title", maxLettes: 35).padding(.bottom, 15)
+                CustomTextField(text: $mainText, titlet: "Title".localaized(), texft: "Enter lot`s title".localaized(), maxLettes: 35).padding(.bottom, 15)
                 
                 //Текст для цены
                 VStack(alignment: .leading){
                     
-                    Text("Price").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                    Text("Price".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                     
                     HStack{
-                        TextField("Enter lot`s price", text: $price)
+                        TextField("Enter lot`s price".localaized(), text: $price)
                             .onChange(of: price) { newValue in
                             if newValue.first == "0"{
                                 price = ""
@@ -106,7 +109,7 @@ struct AddingNewLotView: View {
                 
                 //Большой текст
                 VStack(alignment: .leading){
-                    Text("Information (180lt Max)").font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                    Text("Information (180lt Max)".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                     ZStack {
                         
                         
@@ -120,7 +123,7 @@ struct AddingNewLotView: View {
                             }
                         }
                         
-                        Text("Enter text here...")
+                        Text("Enter text here...".localaized())
                             .foregroundColor(Color(.label).opacity(0.2))
                             .opacity(informationText.isEmpty ? 1 : 0) // Show the background text when the text is empty
 
@@ -138,7 +141,7 @@ struct AddingNewLotView: View {
                         showDialog.toggle()
                     }
                 }label: {
-                    Text("Add").foregroundColor(Color(.label).opacity(0.75)).frame(width: 120).padding()
+                    Text("Add".localaized()).foregroundColor(Color(.label).opacity(0.75)).frame(width: 120).padding()
                     
                 }.background(Color(.systemGray5))
                     .clipShape(Capsule())
@@ -158,20 +161,20 @@ struct AddingNewLotView: View {
             ImagePicker(selectedImage: $image)
         }
         //Ошибка
-        .alert("Not Enough Data", isPresented: $showAlert){
+        .alert("Not Enough Data".localaized(), isPresented: $showAlert){
             Text("OK")
         }
         //Диалог подтверждения
-        .confirmationDialog("Do you confirm the creation of the lot?", isPresented: $showDialog, titleVisibility: .visible) {
+        .confirmationDialog("Do you confirm the creation of the lot?".localaized(), isPresented: $showDialog, titleVisibility: .visible) {
             //Кнопка нет
             Button(role: .cancel) {
                 showDialog.toggle()
             } label: {
-                Text("No")
+                Text("No".localaized())
             }
             //Кнопка да
             Button(role: .destructive) {
-                print("Okay")
+                print("Okay".localaized())
                 
                 //Создаём лот
                 let lotcreat = LotStruct(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: [], image: "")
@@ -202,7 +205,7 @@ struct AddingNewLotView: View {
                 
                         
             }label: {
-                Text("Yes")
+                Text("Yeah".localaized())
             }
         }
         //Для клавиатуры

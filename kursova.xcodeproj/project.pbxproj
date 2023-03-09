@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E3033EFC29B8EFC800B2B23E /* SmallLotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */; };
+		E34E5D0429BA7A3C0063A5EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E34E5D0629BA7A3C0063A5EC /* Localizable.strings */; };
 		E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */; };
 		E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */; };
 		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLotViewModel.swift; sourceTree = "<group>"; };
+		E34E5D0529BA7A3C0063A5EC /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
 		E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = kursova/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
@@ -100,6 +102,7 @@
 			children = (
 				E3ABB4E829AE8E8D0035DDFB /* Info.plist */,
 				E3E3055029AB76A500426066 /* kursovaApp.swift */,
+				E34E5D0629BA7A3C0063A5EC /* Localizable.strings */,
 				E3E3058D29AB7BC800426066 /* Services */,
 				E3E3058C29AB7BAB00426066 /* Models */,
 				E3E3058A29AB7B6A00426066 /* ViewModel */,
@@ -122,10 +125,10 @@
 		E3E3058929AB7B2700426066 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E3E3057429AB793E00426066 /* ContentView.swift */,
-				E3E3057229AB792800426066 /* AuctionView.swift */,
 				E3E3057829AB79BA00426066 /* SignInView.swift */,
 				E3E3057A29AB79D400426066 /* SignUpView.swift */,
+				E3E3057429AB793E00426066 /* ContentView.swift */,
+				E3E3057229AB792800426066 /* AuctionView.swift */,
 				E3E3055E29AB780500426066 /* HomeView.swift */,
 				E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */,
 				E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */,
@@ -222,6 +225,7 @@
 			knownRegions = (
 				en,
 				Base,
+				uk,
 			);
 			mainGroup = E3E3054429AB76A500426066;
 			packageReferences = (
@@ -243,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3E3055829AB76A600426066 /* Preview Assets.xcassets in Resources */,
+				E34E5D0429BA7A3C0063A5EC /* Localizable.strings in Resources */,
 				E3E3055529AB76A600426066 /* Assets.xcassets in Resources */,
 				E3E3057F29AB7A9A00426066 /* GoogleService-Info.plist in Resources */,
 			);
@@ -278,6 +283,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E34E5D0629BA7A3C0063A5EC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E34E5D0529BA7A3C0063A5EC /* uk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E3E3055929AB76A600426066 /* Debug */ = {

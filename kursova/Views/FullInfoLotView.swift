@@ -73,36 +73,36 @@ struct FullInfoLotView: View {
             
             VStack(alignment: .leading, spacing: 8){
                 HStack{
-                    Text("Current Price:").opacity(0.6)
+                    Text("Current Price: ".localaized()).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(currentPrice)$").opacity(0.6)
                 }
                 HStack{
-                    Text("Current User:").opacity(0.6)
+                    Text("Current User: ".localaized()).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(currentUser)").opacity(0.6)
                 }
                 
                 HStack{
-                    Text("Observed by:").opacity(0.6)
+                    Text("Observed by: ".localaized()).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(count) user/s").opacity(0.6)
+                    Text( String(count) + " user/s".localaized()).opacity(0.6)
                 }
                 
                 VStack(alignment: .leading){
-                    Text("Lot ID:").opacity(0.6)
+                    Text("Lot ID:".localaized()).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(LotID)").opacity(0.6).font(.subheadline)
                 }
                 
                 VStack(alignment: .leading){
-                    Text("Creator ID:").opacity(0.6)
+                    Text("Creator ID:".localaized()).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(CreatorID)").opacity(0.6).font(.subheadline)
                 }
                   
                 VStack(alignment: .leading){
-                    Text("Made Time:").opacity(0.6)
+                    Text("Made Time:".localaized()).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(dateFormatter.string(from: date))").opacity(0.6).font(.subheadline)
                 }

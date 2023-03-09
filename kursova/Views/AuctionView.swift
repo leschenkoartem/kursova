@@ -40,7 +40,7 @@ struct AuctionsView: View {
 
                 }
                 
-                TextField("Search by keyword...", text: $searchWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
+                TextField("Search by keyword...".localaized(), text: $searchWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
                     .foregroundColor(Color(.label).opacity(0.5))
                 
             }.padding(12)
