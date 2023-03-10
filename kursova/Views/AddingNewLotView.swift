@@ -36,7 +36,7 @@ struct AddingNewLotView: View {
                 VStack {
                     Spacer().frame(height: 20)
                     Image(systemName: "plus.circle").resizable().aspectRatio(contentMode: .fill).foregroundColor(Color(.secondaryLabel).opacity(0.75))
-                    Text("Add photo +".localaized()).frame(width: 200)
+                    Text("Add photo +".localaized()).frame(width: 300)
                         .foregroundColor(Color(.secondaryLabel).opacity(0.75))
                         .fontWeight(.bold)
                         .font(.title2)

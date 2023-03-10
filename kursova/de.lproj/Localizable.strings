@@ -1,0 +1,89 @@
+/* 
+  Localizable.strings
+  kursova
+
+  Created by Artem Leschenko on 09.03.2023.
+  
+*/
+
+//SignInView
+"Sign In" = "Anmelden";
+"Email" = "E-Mail";
+"Enter Your Email" = "Geben Sie Ihre E-Mail ein";
+"Password"= "Passwort";
+"Enter Your Password" = "Geben Sie Ihr Passwort ein";
+"Sign In" = "Anmelden";
+"(or)" = "(oder)";
+"Don't Have An Account ?" = "Sie haben noch kein Konto?";
+"Sign Up" = "Registrieren";
+
+//SignUpView
+"Name / Surname" = "Name / Nachname";
+"Enter Your Name And Surname" = "Geben Sie Ihren Namen und Nachnamen ein" ;
+"Confirm your password" = "Bestätigen Sie Ihr Passwort" ;
+"Repeat Your Password" = "Wiederholen Sie Ihr Passwort";
+"Password mismatch" = "Passwort stimmt nicht überein";
+"Too short name and surname" = "Name und Nachname zu kurz";
+"Registration with " = "Registrierung mit ";
+"Already Have An Account ?" = "Sie haben bereits ein Konto?";
+
+//AuctionView
+"Search by keyword..." = "Suche nach Schlüsselwort...";
+
+//HomeView
+"Self Lots" = "Eigene Lots" ;
+"Active Offers" = "Aktive Angebote";
+"Marked lots" = "Markierte Lots";
+"Your Lots:" = "Ihre Lots:";
+"Lots, That You Made." = "Lots, die Sie erstellt haben.";
+"Add new lot +" = "Neues Los hinzufügen +";
+"Active Offers:" = "Aktive Angebote:";
+"Lots, in Which You Participate" = "Lots, an denen Sie teilnehmen.";
+"Marked Lots:" = "Markierte Lots";
+"Lots You Marked" = "Lots, die Sie markiert haben.";
+"Are You sure you want to Log Out?" = "Sind Sie sicher, dass Sie sich abmelden möchten?";
+"No" = "Nein";
+"Yeah" = "Ja";
+
+//fullInfoLotView
+"Current Price: " = "Aktueller Preis: ";
+"Current User: " = "Aktueller Benutzer: ";
+"Observed by: " = "Beobachtet von: ";
+" user/s" = " Benutzer";
+"Lot ID:" = "Los-ID:";
+"Creator ID:" = "Ersteller-ID:";
+"Made Time:" = "Erstellungszeit:";
+
+//AddingNewLotView
+"Add photo +" = "Foto hinzufügen +";
+"Сlose" = "Schließen";
+"Title" = "Titel";
+"Enter lots title" = "Geben Sie den Titel des Loses ein";
+"Price" = "Preis";
+"Enter lots price" = "Geben Sie den Preis des Loses ein";
+"Information (180lt Max)" = "Informationen (max. 180 Zeichen)";
+"Enter text here..." = "Geben Sie hier Ihren Text ein...";
+"Add" = "Hinzufügen";
+"Not Enough Data" = "Nicht genug Daten";
+"Do you confirm the creation of the lot?" = "Bestätigen Sie die Erstellung des Loses?";
+"Okay" = "Okay";
+
+//SmallLotViewModel
+"Successful deal." = "Erfolgreicher Deal.";
+"$ deducted from your balance" = "$ von Ihrem Konto abgebucht";
+"Successfully closed the lot. Your balance is replenished by" = "Das Los wurde erfolgreich geschlossen. Ihr Konto wurde um folgenden Betrag aufgestockt:";
+"Successfully closed the lot. Your balance is replenished by 0$" = "Das Los wurde erfolgreich geschlossen. Ihr Konto wurde um 0$ aufgestockt.";
+"Lot removed. Money returned to:\n" = "Das Los wurde entfernt. Geld wurde zurückgegeben an:\n";
+"Lot removed." = "Das Los wurde entfernt.";
+
+//SmallLot
+"(Yours)" = "(Dein)";
+"$ will be deducted from your balance. Make an offer?" = "$ wird von Ihrem Guthaben abgebucht. Möchten Sie ein Angebot machen?";
+"Not Enough money on balance" = "Nicht genug Geld auf dem Konto";
+"Do you want to end the auction? Your balance will be replenished by " = "Möchten Sie die Auktion beenden? Ihr Guthaben wird aufgefüllt um";
+"Do you want to end the auction? Your Balance does Not Change." = "Möchten Sie die Auktion beenden? Ihr Guthaben ändert sich nicht.";
+"Do you want to delete the lot? Your account will not change, the money will be returned to the participant" = "Möchten Sie den Artikel löschen? Ihr Guthaben bleibt unverändert, das Geld wird dem Teilnehmer zurückgegeben.";
+"Delete" = "Löschen";
+" Information:"= " Informationen:";
+"make an offer + " = " Ein Angebot machen +";
+"Finish" = "Beenden";

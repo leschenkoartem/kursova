@@ -39,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLotViewModel.swift; sourceTree = "<group>"; };
+		E31DCF4B29BB2CDD00AE6542 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E31DCF4C29BB319500AE6542 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E31DCF4D29BB33B100AE6542 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E34E5D0529BA7A3C0063A5EC /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
@@ -224,8 +227,11 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				uk,
+				de,
+				Base,
+				fr,
+				es,
 			);
 			mainGroup = E3E3054429AB76A500426066;
 			packageReferences = (
@@ -289,6 +295,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				E34E5D0529BA7A3C0063A5EC /* uk */,
+				E31DCF4B29BB2CDD00AE6542 /* de */,
+				E31DCF4C29BB319500AE6542 /* fr */,
+				E31DCF4D29BB33B100AE6542 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
