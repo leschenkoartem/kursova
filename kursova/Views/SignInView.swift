@@ -11,6 +11,9 @@ import SwiftUI
 
 struct SignInView : View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+ 
     @Binding var isUserLogin:Bool
     @State var email = ""
     @State var pass = ""
@@ -22,20 +25,20 @@ struct SignInView : View {
         NavigationView{
             //верхний текст
             VStack {
-                Text("Sign In".localaized()).fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
+                Text("Sign In".localized(language)).fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
                 //поля ввода
                 VStack{
                     
                     VStack(alignment: .leading){
                         
-                        CustomTextField(text: $email, titlet: "Email".localaized(), texft: "Enter Your Email".localaized(), maxLettes: 200).padding(.bottom, 15)
+                        CustomTextField(text: $email, titlet: "Email".localized(language), texft: "Enter Your Email".localized(language), maxLettes: 200).padding(.bottom, 15)
                         
                         
                         //Поле с паролем
                         VStack(alignment: .leading){
-                            Text("Password".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                            Text("Password".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                             
-                            SecureField("Enter Your Password".localaized(), text: $pass).autocorrectionDisabled(true)
+                            SecureField("Enter Your Password".localized(language), text: $pass).autocorrectionDisabled(true)
                             
                             Divider()
                         }
@@ -47,7 +50,7 @@ struct SignInView : View {
                 VStack{
                     
                     Button(action: {
-                        AuthService.shared.signIn(email: email, password: pass) { result in
+                                                AuthService.shared.signIn(email: email, password: pass) { result in
                             switch result{
                             case .success(_):
                                 email.removeAll()
@@ -58,18 +61,18 @@ struct SignInView : View {
                             }
                         }
                     }) {
-                        Text("Sign In".localaized()).foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
+                        Text("Sign In".localized(language)).foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
                         
                     }.background(Color(.systemGray5))
                         .clipShape(Capsule())
                         .padding(.top, 45)
                         .shadow(radius: 5)
                     
-                    Text("(or)".localaized()).foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
+                    Text("(or)".localized(language)).foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
                     
                     HStack(spacing: 8){
                         //Поля "Может зарегестрирован"
-                        Text("Don't Have An Account ?".localaized()).foregroundColor(Color.gray.opacity(0.5))
+                        Text("Don't Have An Account ?".localized(language)).foregroundColor(Color.gray.opacity(0.5))
                         
                         
                         
@@ -77,7 +80,7 @@ struct SignInView : View {
                             SignUpView(email: $email, pass: $pass)
                         } label: {
                             
-                            Text("Sign Up".localaized())
+                            Text("Sign Up".localized(language))
                             
                         }.foregroundColor(.blue)
                         

@@ -10,6 +10,10 @@ import SDWebImageSwiftUI
 
 struct SmallLot: View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
+    
     var selfViewModel : SmallLotViewModel
     
     //для анимации
@@ -114,7 +118,7 @@ struct SmallLot: View {
                             }
                         }
                         
-                        Text(selfViewModel.lot.mainText+"\(simId ? "(Yours)".localaized(): " ")").font(.title2)
+                        Text(selfViewModel.lot.mainText+"\(simId ? "(Yours)".localized(language) : " ")").font(.title2)
                             .fontWeight(.bold)
                             .opacity(0.7)
                             .foregroundColor(simId ? .yellow : Color(.label))
@@ -122,7 +126,7 @@ struct SmallLot: View {
                     }
                     //Поля с инфой лота
                     HStack(spacing:0){
-                        Text("Current Price: ".localaized()).opacity(0.6)
+                        Text("Current Price: ".localized(language)).opacity(0.6)
                             .padding(.bottom, 2)
                             .fontWeight(.bold)
                         Text("\(selfViewModel.lot.currentPrice)$").opacity(0.6)
@@ -130,7 +134,7 @@ struct SmallLot: View {
                     }
                     
                     
-                    Text("Current User: ".localaized()).opacity(0.6)
+                    Text("Current User: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
                     
                     Text("\(selfViewModel.lot.currentPerson)").opacity(0.7)
@@ -158,7 +162,7 @@ struct SmallLot: View {
                 
                 VStack {
                     //Информация по лоту
-                    Text(" Information:".localaized()).opacity(0.7).padding(.horizontal, 5).fontWeight(.bold)
+                    Text(" Information:".localized(language)).opacity(0.7).padding(.horizontal, 5).fontWeight(.bold)
                         .padding(.top, -10)
                     Text("\(selfViewModel.lot.informationText)").opacity(0.6).padding(.horizontal, 5)
                         .padding(.top, -10)
@@ -184,26 +188,26 @@ struct SmallLot: View {
                         Button {
                             if selfViewModel.lot.idCurrentPerson == idUser{
                                 if profilView.profile.balance >= plusPrice{
-                                    textDialog = String(self.plusPrice) + "$ will be deducted from your balance. Make an offer?".localaized()
+                                    textDialog = String(self.plusPrice) + "$ will be deducted from your balance. Make an offer?".localized(language)
                                     variationdialog = 1
                                     showDialog.toggle()
                                 }else{
-                                    textAlert = "Not Enough money on balance".localaized()
+                                    textAlert = "Not Enough money on balance".localized(language)
                                     showAletr.toggle()
                                 }
                             }else{
                                 if profilView.profile.balance >= selfViewModel.lot.currentPrice + plusPrice{
-                                    textDialog = String(self.plusPrice + selfViewModel.lot.currentPrice) + "$ will be deducted from your balance. Make an offer?".localaized()
+                                    textDialog = String(self.plusPrice + selfViewModel.lot.currentPrice) + "$ will be deducted from your balance. Make an offer?".localized(language)
                                     variationdialog = 1
                                     showDialog.toggle()
                                 }else{
-                                    textAlert = "Not Enough money on balance".localaized()
+                                    textAlert = "Not Enough money on balance".localized(language)
                                     showAletr.toggle()
                                 }
                             }
                         } label: {
                             
-                            Text("make an offer + ".localaized() + String(self.plusPrice) +  "$").padding(8)
+                            Text("make an offer + ".localized(language) + String(self.plusPrice) +  "$").padding(8)
                                 .fontWeight(.bold)
                                 .frame(width: 230)
                                 .background(.blue)
@@ -230,9 +234,9 @@ struct SmallLot: View {
                         //Основная кнопка, которая вызывает Диалог с подтверждением завершения аукциона
                         Button {
                             if selfViewModel.lot.idCurrentPerson != ""{
-                                textDialog = "Do you want to end the auction? Your balance will be replenished by ".localaized() +  String(selfViewModel.lot.currentPrice) + "$"
+                                textDialog = "Do you want to end the auction? Your balance will be replenished by ".localized(language) +  String(selfViewModel.lot.currentPrice) + "$"
                             }else{
-                                textDialog = "Do you want to end the auction? Your Balance does Not Change.".localaized()
+                                textDialog = "Do you want to end the auction? Your Balance does Not Change.".localized(language)
                             }
                             
                             
@@ -240,7 +244,7 @@ struct SmallLot: View {
                             showDialog.toggle()
                         } label: {
                             
-                            Text("Finish".localaized()).padding(8)
+                            Text("Finish".localized(language)).padding(8)
                                 .fontWeight(.bold)
                                 .frame(width: 150)
                                 .background(.green)
@@ -252,12 +256,12 @@ struct SmallLot: View {
                         
                         //Основная кнопка, которая вызывает Диалог с подтверждением удаления аукциона
                         Button {
-                            textDialog = "Do you want to delete the lot? Your account will not change, the money will be returned to the participant".localaized()
+                            textDialog = "Do you want to delete the lot? Your account will not change, the money will be returned to the participant".localized(language)
                             variationdialog = 3
                             showDialog.toggle()
                         } label: {
                             
-                            Text("Delete".localaized()).padding(8)
+                            Text("Delete".localized(language)).padding(8)
                                 .fontWeight(.bold)
                                 .frame(width: 150)
                                 .background(.red)
@@ -308,7 +312,7 @@ struct SmallLot: View {
                 Button(role: .cancel) {
                     showDialog.toggle()
                 } label: {
-                    Text("No".localaized())
+                    Text("No".localized(language))
                 }
                 //Кнопка да
                 Button(role: .destructive) {
@@ -354,7 +358,7 @@ struct SmallLot: View {
                         
                     }
                 } label: {
-                    Text("Yeah".localaized())
+                    Text("Yeah".localized(language))
                 }
                 
             }

@@ -9,6 +9,9 @@ import SwiftUI
 
 class SmallLotViewModel : ObservableObject {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     
     var lot : LotStruct
     
@@ -57,7 +60,7 @@ class SmallLotViewModel : ObservableObject {
         
         if lot.idCurrentPerson == idUser{
             lot.currentPrice += plusPrice
-            textAlert = "Successful deal.".localaized() +  String(plusPrice) + "$ deducted from your balance".localaized()
+            textAlert = "Successful deal.".localized(language) +  String(plusPrice) + "$ deducted from your balance".localized(language)
         }else{
             //изменения лота
             lot.idCurrentPerson = idUser
@@ -65,7 +68,7 @@ class SmallLotViewModel : ObservableObject {
             lot.currentPerson = name
             lot.currentEmail = email
             
-            textAlert = "Successful deal." +  String(lot.currentPrice) + "$ deducted from your balance".localaized()
+            textAlert = "Successful deal." +  String(lot.currentPrice) + "$ deducted from your balance".localized(language)
         }
         
         
@@ -113,10 +116,10 @@ class SmallLotViewModel : ObservableObject {
                 }
             }
             
-            textAlert = "Successfully closed the lot. Your balance is replenished by".localaized() +  String(lot.currentPrice) + "$"
+            textAlert = "Successfully closed the lot. Your balance is replenished by".localized(language) +  String(lot.currentPrice) + "$"
         }else{
             //если нет, то просто выводим ошибку
-            textAlert = "Successfully closed the lot. Your balance is replenished by 0$".localaized()
+            textAlert = "Successfully closed the lot. Your balance is replenished by 0$".localized(language)
             
         }
         
@@ -144,11 +147,11 @@ class SmallLotViewModel : ObservableObject {
                 }
             }
             
-            textAlert = "Lot removed. Money returned to:\n".localaized() +  String(lot.currentPerson) + "\n" + String(lot.currentEmail)
+            textAlert = "Lot removed. Money returned to:\n".localized(language) +  String(lot.currentPerson) + "\n" + String(lot.currentEmail)
             
         }else{
             //если нет - просто удаляем
-            textAlert = "Lot removed.".localaized()
+            textAlert = "Lot removed.".localized(language)
             
         }
         

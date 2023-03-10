@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AddingNewLotView: View {
     
+    
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
+    
     //Для выбора картинки
     
     @State var showSheet = false
@@ -36,7 +41,7 @@ struct AddingNewLotView: View {
                 VStack {
                     Spacer().frame(height: 20)
                     Image(systemName: "plus.circle").resizable().aspectRatio(contentMode: .fill).foregroundColor(Color(.secondaryLabel).opacity(0.75))
-                    Text("Add photo +".localaized()).frame(width: 300)
+                    Text("Add photo +".localized(language)).frame(width: 300)
                         .foregroundColor(Color(.secondaryLabel).opacity(0.75))
                         .fontWeight(.bold)
                         .font(.title2)
@@ -60,7 +65,7 @@ struct AddingNewLotView: View {
                             dismiss()
                         } label: {
                             Image(systemName: "xmark")
-                            Text("Сlose".localaized())
+                            Text("Сlose".localized(language))
                             Spacer().frame(width: 7)
                         }.padding(7)
                             .background()
@@ -85,15 +90,15 @@ struct AddingNewLotView: View {
             
             //Поля для ввода инфы
             VStack {
-                CustomTextField(text: $mainText, titlet: "Title".localaized(), texft: "Enter lot`s title".localaized(), maxLettes: 35).padding(.bottom, 15)
+                CustomTextField(text: $mainText, titlet: "Title".localized(language), texft: "Enter lot`s title".localized(language), maxLettes: 35).padding(.bottom, 15)
                 
                 //Текст для цены
                 VStack(alignment: .leading){
                     
-                    Text("Price".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                    Text("Price".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                     
                     HStack{
-                        TextField("Enter lot`s price".localaized(), text: $price)
+                        TextField("Enter lot`s price".localized(language), text: $price)
                             .onChange(of: price) { newValue in
                             if newValue.first == "0"{
                                 price = ""
@@ -109,7 +114,7 @@ struct AddingNewLotView: View {
                 
                 //Большой текст
                 VStack(alignment: .leading){
-                    Text("Information (180lt Max)".localaized()).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+                    Text("Information (180lt Max)".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                     ZStack {
                         
                         
@@ -123,7 +128,7 @@ struct AddingNewLotView: View {
                             }
                         }
                         
-                        Text("Enter text here...".localaized())
+                        Text("Enter text here...".localized(language))
                             .foregroundColor(Color(.label).opacity(0.2))
                             .opacity(informationText.isEmpty ? 1 : 0) // Show the background text when the text is empty
 
@@ -141,7 +146,7 @@ struct AddingNewLotView: View {
                         showDialog.toggle()
                     }
                 }label: {
-                    Text("Add".localaized()).foregroundColor(Color(.label).opacity(0.75)).frame(width: 120).padding()
+                    Text("Add".localized(language)).foregroundColor(Color(.label).opacity(0.75)).frame(width: 120).padding()
                     
                 }.background(Color(.systemGray5))
                     .clipShape(Capsule())
@@ -161,20 +166,20 @@ struct AddingNewLotView: View {
             ImagePicker(selectedImage: $image)
         }
         //Ошибка
-        .alert("Not Enough Data".localaized(), isPresented: $showAlert){
+        .alert("Not Enough Data".localized(language), isPresented: $showAlert){
             Text("OK")
         }
         //Диалог подтверждения
-        .confirmationDialog("Do you confirm the creation of the lot?".localaized(), isPresented: $showDialog, titleVisibility: .visible) {
+        .confirmationDialog("Do you confirm the creation of the lot?".localized(language), isPresented: $showDialog, titleVisibility: .visible) {
             //Кнопка нет
             Button(role: .cancel) {
                 showDialog.toggle()
             } label: {
-                Text("No".localaized())
+                Text("No".localized(language))
             }
             //Кнопка да
             Button(role: .destructive) {
-                print("Okay".localaized())
+                print("Okay".localized(language))
                 
                 //Создаём лот
                 let lotcreat = LotStruct(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: [], image: "")
@@ -205,7 +210,7 @@ struct AddingNewLotView: View {
                 
                         
             }label: {
-                Text("Yeah".localaized())
+                Text("Yeah".localized(language))
             }
         }
         //Для клавиатуры

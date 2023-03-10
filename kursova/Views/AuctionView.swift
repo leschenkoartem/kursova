@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AuctionsView: View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     
     @State var searchWord = ""
     @EnvironmentObject var lotView: LotViewModel
@@ -27,27 +29,32 @@ struct AuctionsView: View {
     var body: some View {
         VStack{
             
-            HStack{
-                if searchWord == ""{
-                    Image(systemName: "magnifyingglass").foregroundColor(Color(.label).opacity(0.5))
-                    
-                }else{
-                    Button {
-                        searchWord.removeAll()
-                    } label: {
-                        Image(systemName: "xmark").foregroundColor(Color(.label).opacity(0.5))
-                    }
+            HStack {
+                HStack{
+                    if searchWord == ""{
+                        Image(systemName: "magnifyingglass").foregroundColor(Color(.label).opacity(0.5))
+                        
+                    }else{
+                        Button {
+                            searchWord.removeAll()
+                        } label: {
+                            Image(systemName: "xmark").foregroundColor(Color(.label).opacity(0.5))
+                        }
 
-                }
+                    }
+                    
+                    TextField("Search by keyword...".localized(language), text: $searchWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
+                        .foregroundColor(Color(.label).opacity(0.5))
+                    
+                    
+                }.padding(12)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                    .padding(.top, 10)
+                .padding(.leading, 10)
                 
-                TextField("Search by keyword...".localaized(), text: $searchWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
-                    .foregroundColor(Color(.label).opacity(0.5))
-                
-            }.padding(12)
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
-                .padding(.top, 10)
-                .padding(.horizontal, 10)
+                LanguageView(width: 60.0, height: 40.0).padding(.top, 6)
+            }
             
             ScrollView{
                 Spacer().frame(height: 10)
@@ -58,7 +65,7 @@ struct AuctionsView: View {
                     }
                 }
                 Spacer().frame(height: 130)
-                
+
             }
             
             Spacer()

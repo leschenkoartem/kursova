@@ -10,6 +10,9 @@ import SDWebImageSwiftUI
 
 struct FullInfoLotView: View {
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     //Общая инфа
     @EnvironmentObject var profilView:AccountViewModel
     @EnvironmentObject var lotView:LotViewModel
@@ -73,36 +76,36 @@ struct FullInfoLotView: View {
             
             VStack(alignment: .leading, spacing: 8){
                 HStack{
-                    Text("Current Price: ".localaized()).opacity(0.6)
+                    Text("Current Price: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(currentPrice)$").opacity(0.6)
                 }
                 HStack{
-                    Text("Current User: ".localaized()).opacity(0.6)
+                    Text("Current User: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(currentUser)").opacity(0.6)
                 }
                 
                 HStack{
-                    Text("Observed by: ".localaized()).opacity(0.6)
+                    Text("Observed by: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text( String(count) + " user/s".localaized()).opacity(0.6)
+                    Text( String(count) + " user/s".localized(language)).opacity(0.6)
                 }
                 
                 VStack(alignment: .leading){
-                    Text("Lot ID:".localaized()).opacity(0.6)
+                    Text("Lot ID:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(LotID)").opacity(0.6).font(.subheadline)
                 }
                 
                 VStack(alignment: .leading){
-                    Text("Creator ID:".localaized()).opacity(0.6)
+                    Text("Creator ID:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(CreatorID)").opacity(0.6).font(.subheadline)
                 }
                   
                 VStack(alignment: .leading){
-                    Text("Made Time:".localaized()).opacity(0.6)
+                    Text("Made Time:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
                     Text("\(dateFormatter.string(from: date))").opacity(0.6).font(.subheadline)
                 }
