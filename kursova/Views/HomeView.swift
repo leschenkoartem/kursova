@@ -121,17 +121,12 @@ struct HomeView: View {
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lotsList[item]
                             if lot.idCurrentPerson == user{
-                                
                                 SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
                             }
                         }
                     }
                     Spacer().frame(height: 130)
                 }
-                
-                
-                
-                
                 Spacer()
                 
             }else{
@@ -150,71 +145,56 @@ struct HomeView: View {
                             }
                         }
                     }
-                    
                     Spacer().frame(height: 130)
-                    
                 }
-                
                 Spacer()
             }
-            
-            
-            
-            
-            
-            
         }.edgesIgnoringSafeArea(.bottom)
-            //Подтверждение выхода
+        //Подтверждение выхода
             .confirmationDialog("Are You sure you want to Log Out?".localized(language), isPresented: $isConfirm, titleVisibility: .visible) {
-                    
-                    Button(role: .cancel) {
-                        isConfirm.toggle()
-                    } label: {
-                        Text("No".localized(language))
-                    }
-                    Button(role: .destructive) {
-                        AuthService.shared.signOut()
-                        isUserLogin.toggle()
-                    } label: {
-                        Text("Yeah".localized(language))
-                    }
-                    
-                }//При показе экрана запрашываются даные из базы данных
-                .onAppear{
-                    
-                        profileView.getProfile()
-                    lotView.getLots()
+                
+                Button(role: .cancel) {
+                    isConfirm.toggle()
+                } label: {
+                    Text("No".localized(language))
                 }
-                .sheet(isPresented: $showSheet, onDismiss: {
-                    
-                    
-                    //Добавляем картинку в бд
-                    DatabaseService.shared.uploadUserImage(image: image ?? UIImage(imageLiteralResourceName: "1"))
-                    
-                    //Получаем ЮРЛ из бд
-                    DatabaseService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo") { url in
-                        if let url = url{
-                            
-                            //Обновляем инф юрл в инф пользователя 
-                            DatabaseService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
-                        }
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        profileView.getProfile()
-                    }
-                    
-                }) {
-                    ImagePicker(selectedImage: $image)
-  
+                Button(role: .destructive) {
+                    AuthService.shared.signOut()
+                    isUserLogin.toggle()
+                } label: {
+                    Text("Yeah".localized(language))
                 }
-                .fullScreenCover(isPresented: $creatLot) {
-                    AddingNewLotView()
+                
+            }//При показе экрана запрашываются даные из базы данных
+            .onAppear{
+                
+                profileView.getProfile()
+                lotView.getLots()
+            }
+            .sheet(isPresented: $showSheet, onDismiss: {
+                
+                //Добавляем картинку в бд
+                DBUserService.shared.uploadUserImage(image: image ?? UIImage(imageLiteralResourceName: "1"))
+                //Получаем ЮРЛ из бд
+                DBLotsService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo") { url in
+                    if let url = url{
+                        //Обновляем инф юрл в инф пользователя
+                        DBUserService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
+                    }
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    profileView.getProfile()
+                }
+            }) {
+                ImagePicker(selectedImage: $image)
+            }
+            .fullScreenCover(isPresented: $creatLot) {
+                AddingNewLotView()
+            }
     }
-    
 }
     
+
 struct HomeView_Previews: PreviewProvider {
     @State static var a:Bool = false
     static var previews: some View {

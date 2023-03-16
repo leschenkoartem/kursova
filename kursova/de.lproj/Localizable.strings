@@ -69,9 +69,9 @@
 "Okay" = "Okay";
 
 //SmallLotViewModel
-"Successful deal." = "Erfolgreicher Deal.";
+"Successful deal. " = "Erfolgreicher Deal. ";
 "$ deducted from your balance" = "$ von Ihrem Konto abgebucht";
-"Successfully closed the lot. Your balance is replenished by" = "Das Los wurde erfolgreich geschlossen. Ihr Konto wurde um folgenden Betrag aufgestockt:";
+"Successfully closed the lot. Your balance is replenished by " = "Erfolgreich die Auktion geschlossen. Ihr Kontostand wird aufgefüllt um ";
 "Successfully closed the lot. Your balance is replenished by 0$" = "Das Los wurde erfolgreich geschlossen. Ihr Konto wurde um 0$ aufgestockt.";
 "Lot removed. Money returned to:\n" = "Das Los wurde entfernt. Geld wurde zurückgegeben an:\n";
 "Lot removed." = "Das Los wurde entfernt.";

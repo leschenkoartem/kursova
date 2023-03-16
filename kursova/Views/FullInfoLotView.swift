@@ -18,15 +18,8 @@ struct FullInfoLotView: View {
     @EnvironmentObject var lotView:LotViewModel
     @Environment(\.dismiss) var dismiss
     
-    var title:String
-    var currentUser:String
-    var LotID:String
-    var currentPrice:Int
-    var CreatorID:String
-    var date:Date
-    var count:Int
-    var image:String
-    
+    var lot: SmallLotViewModel
+
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -39,7 +32,7 @@ struct FullInfoLotView: View {
             Spacer().frame(height: 15)
             
             ZStack {
-                Text(title).font(.title)
+                Text(lot.lot.mainText).font(.title)
                     .fontWeight(.bold)
                     .opacity(0.7)
                 .foregroundColor(Color(.label))
@@ -55,67 +48,60 @@ struct FullInfoLotView: View {
                             .opacity(0.7)
                         .foregroundColor(Color(.label))
                     }
-
-                    
                     Spacer().frame(width: 15)
                 }
             }.padding(.bottom, -1)
             
             Divider().padding(.horizontal, 10)
             
-            WebImage(url: URL(string: image))
+            WebImage(url: URL(string: lot.lot.image))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                
                 .frame(width: UIScreen.main.bounds.width - 10, height: 350)
-                
                 .cornerRadius(5)
-                
-                
+      
             Divider().padding(.horizontal, 10)
             
-            VStack(alignment: .leading, spacing: 8){
+            VStack(alignment: .leading, spacing: 8) {
                 HStack{
                     Text("Current Price: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(currentPrice)$").opacity(0.6)
+                    Text("\(lot.lot.currentPrice)$").opacity(0.6)
                 }
+                
                 HStack{
                     Text("Current User: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(currentUser)").opacity(0.6)
+                    Text("\(lot.lot.currentPerson)").opacity(0.6)
                 }
                 
                 HStack{
                     Text("Observed by: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text( String(count) + " user/s".localized(language)).opacity(0.6)
+                    Text( String(lot.lot.seePeopleId.count) + " user/s".localized(language)).opacity(0.6)
                 }
                 
                 VStack(alignment: .leading){
                     Text("Lot ID:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(LotID)").opacity(0.6).font(.subheadline)
+                    Text("\(lot.lot.id)").opacity(0.6).font(.subheadline)
                 }
                 
                 VStack(alignment: .leading){
                     Text("Creator ID:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(CreatorID)").opacity(0.6).font(.subheadline)
+                    Text("\(lot.lot.idCreator)").opacity(0.6).font(.subheadline)
                 }
                   
                 VStack(alignment: .leading){
                     Text("Made Time:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(dateFormatter.string(from: date))").opacity(0.6).font(.subheadline)
+                    Text("\(dateFormatter.string(from: lot.lot.date))").opacity(0.6).font(.subheadline)
                 }
                 
             }.frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-            
-            
-            
-            
+              
             Spacer()
         }
         
@@ -124,6 +110,6 @@ struct FullInfoLotView: View {
 
 struct FullInfoLotView_Previews: PreviewProvider {
     static var previews: some View {
-        FullInfoLotView(title: "Main Title", currentUser: "Artem Leschenko",  LotID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", currentPrice: 20000, CreatorID: "2138D424-E0B2-430B-A8A6-D9EF6569212D", date: Date(), count: 32, image: "k" )
+        FullInfoLotView(lot: SmallLotViewModel(lot: LotStruct(idCreator: "dcwd", idCurrentPerson: "wdcwc", mainText: "wdc", currentPrice: 2341, informationText: "wdc", date: Date(), seePeopleId: [], image: "wqxw")))
     }
 }

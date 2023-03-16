@@ -1,0 +1,92 @@
+/* 
+  Localizable.strings
+  kursova
+
+  Created by Artem Leschenko on 09.03.2023.
+  
+*/
+
+//SignInView
+"Sign In" = "Sign In";
+"Email" = "Email";
+"Enter Your Email" = "Enter Your Email";
+"Password"= "Password";
+"Enter Your Password" = "Enter Your Password";
+"Sign In" = "Sign In";
+"(or)" = "(or)";
+"Don't Have An Account ?" = "Don't Have An Account ?";
+"Sign Up" = "Sign Up";
+
+//SignUpView
+"Name / Surname" = "Name / Surname";
+"Enter Your Name And Surname" = "Enter Your Name And Surname" ;
+"Confirm your password" = "Confirm your password" ;
+"Repeat Your Password" = "Repeat Your Password";
+"Password mismatch" =  "Password mismatch";
+"Too short name and surname" = "Too short name and surname";
+"Registration with " = "Registration with ";
+"Already Have An Account ?" = "Already Have An Account ?";
+
+//AuctionView
+"Search by keyword..." = "Search by keyword...";
+
+//HomeView
+"Self Lots" = "Your Lots" ;
+"Active Offers" = "Active Offers";
+"Marked lots" = "Marked Lots";
+"Your Lots:" = "Your Lots:";
+"Lots, That You Made." = "Lots that you've created.";
+"Add new lot +" = "Add new lot +";
+"Active Offers:" = "Active Offers:";
+"Lots, in Which You Participate" = "Lots in which you participate.";
+"Marked Lots:" = "Marked Lots";
+"Lots You Marked" = "Lots you've marked.";
+"Are You sure you want to Log Out?" = "Are you sure you want to log out?";
+"No" = "No";
+"Yeah" = "Yeah";
+
+//fullInfoLotView
+"Current Price: " = "Current Price: ";
+"Current User: " = "Current User: ";
+"Observed by: " = "Observed by: ";
+" user/s" = " user/s";
+"Lot ID:" = "Lot ID:";
+"Creator ID:" = "Creator ID:";
+"Made Time:" = "Made Time:";
+
+//AddingNewLotView
+"Add photo +" = "Add photo +";
+"Сlose" = "Close";
+"Title" = "Title";
+"Enter lots title" = "Enter lot's title";
+"Price" = "Price";
+"Enter lots price" = "Enter lot's price";
+"Information (180lt Max)" = "Information (max 180 characters)";
+"Enter text here..." = "Enter your text here...";
+"Add" = "Add";
+"Not Enough Data" = "Not enough data";
+"Do you confirm the creation of the lot?" = "Do you confirm the creation of the lot?";
+"Okay" = "Okay";
+
+//SmallLotViewModel
+"Successful deal. " = "Successful deal. ";
+"$ deducted from your balance" = "$ deducted from your balance";
+"Successfully closed the lot. Your balance is replenished by " = "Successfully closed the lot. Your balance is replenished by ";
+"Successfully closed the lot. Your balance is replenished by 0$" = "Successfully closed the lot. Your balance is replenished by 0$";
+"Lot removed. Money returned to:\n" = "Lot removed. Money returned to:\n";
+"Lot removed." = "Lot removed.";
+
+//SmallLot
+"(Yours)" = "(Yours)";
+"$ will be deducted from your balance. Make an offer?" = "$ will be deducted from your balance. Make an offer?";
+"Not Enough money on balance" = "Not enough money on balance";
+"Do you want to end the auction? Your balance will be replenished by " = "Do you want to end the auction? Your balance will be replenished by ";
+"Do you want to end the auction? Your Balance does Not Change." = "Do you want to end the auction? Your balance does not change.";
+"Do you want to delete the lot? Your account will not change, the money will be returned to the participant" = "Do you want to delete the lot? Your balance will not change, the money will be returned to the participant.";
+"Delete" = "Delete";
+" Information:"= " Information:";
+"make an offer + " = "Make an offer +";
+"Finish" = "Finish";
+
+//LanguaheView
+"Change language" = "Change language";

@@ -69,9 +69,9 @@
 "Okay" = "D'accord";
 
 //SmallLotViewModel
-"Successful deal." = "Transaction réussie.";
+"Successful deal. " = "Transaction réussie. ";
 "$ deducted from your balance" = "$ déduit de votre solde";
-"Successfully closed the lot. Your balance is replenished by" = "Lot fermé avec succès. Votre solde est reconstitué de";
+"Successfully closed the lot. Your balance is replenished by " = "Lot fermé avec succès. Votre solde est reconstitué de ";
 "Successfully closed the lot. Your balance is replenished by 0$" = "Lot fermé avec succès. Votre solde est reconstitué de 0$";
 "Lot removed. Money returned to:\n" = "Lot supprimé. Argent retourné à:\n";
 "Lot removed." = "Lot supprimé.";

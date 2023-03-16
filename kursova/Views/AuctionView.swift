@@ -24,11 +24,8 @@ struct AuctionsView: View {
             }
         }
     }
-    
-
     var body: some View {
         VStack{
-            
             HStack {
                 HStack{
                     if searchWord == ""{
@@ -40,7 +37,7 @@ struct AuctionsView: View {
                         } label: {
                             Image(systemName: "xmark").foregroundColor(Color(.label).opacity(0.5))
                         }
-
+                        
                     }
                     
                     TextField("Search by keyword...".localized(language), text: $searchWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
@@ -51,31 +48,31 @@ struct AuctionsView: View {
                     .background(Color(.systemGray6))
                     .cornerRadius(12)
                     .padding(.top, 10)
-                .padding(.leading, 10)
+                    .padding(.leading, 10)
                 
-                LanguageView(width: 60.0, height: 40.0).padding(.top, 6)
+                LanguageButton(width: 38.0, height: 40.0)
+                    .padding(.top, 6)
+                    .padding(.trailing, 5)
             }
             
             ScrollView{
                 Spacer().frame(height: 10)
                 ForEach(0..<lotView.lotsList.count, id: \.self){item in
-
                     if lotView.lotsList[item].mainText.uppercased().contains(searchStringWord.uppercased()){
-                        SmallLot(selfViewModel: SmallLotViewModel(lot: lotView.lotsList[item]), idUser: AuthService.shared.currentUser!.uid).environmentObject(AccountViewModel()).environmentObject(LotViewModel())
+                        SmallLot(selfViewModel: SmallLotViewModel(lot: lotView.lotsList[item]), idUser: AuthService.shared.currentUser!.uid)
                     }
                 }
                 Spacer().frame(height: 130)
-
+                
             }
-            
             Spacer()
         }.edgesIgnoringSafeArea(.bottom)
-        .onAppear{lotView.getLots()}
-                
-            
-        .onTapGesture {
-                    UIApplication.shared.endEditing()
-                }
+            .onAppear{
+                lotView.getLots()
+            }
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
     }
 }
 

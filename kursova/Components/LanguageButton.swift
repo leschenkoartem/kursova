@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LanguageView: View {
+struct LanguageButton: View {
     var width:CGFloat
     var height:CGFloat
     
@@ -57,10 +57,10 @@ struct LanguageView: View {
         }
                     .actionSheet(isPresented: $showActionSheet) {
                         ActionSheet(title: Text("Change language".localized(language)), buttons: [
-                            .default(Text("українська")) {
+                            .default(Text("Українська")) {
                                 // Step #3
                                 LocalizationService.shared.language = .ukraine},
-                            .default(Text("English (US)")) {  LocalizationService.shared.language = .english_us },
+                            .default(Text("English")) {  LocalizationService.shared.language = .english_us },
                             .default(Text("Español")) { LocalizationService.shared.language = .spanish },
                             .default(Text("German")) { LocalizationService.shared.language = .deich },
                             .default(Text("French")) { LocalizationService.shared.language = .france },
@@ -73,6 +73,6 @@ struct LanguageView: View {
 
 struct LanguageView_Previews: PreviewProvider {
     static var previews: some View {
-        LanguageView(width: 50.0, height: 50.0)
+        LanguageButton(width: 50.0, height: 50.0)
     }
 }

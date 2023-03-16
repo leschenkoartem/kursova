@@ -69,9 +69,9 @@
 "Okay" = "Гаразд";
 
 //SmallLotViewModel
-"Successful deal." = "Вдала угода.";
+"Successful deal. " = "Вдала угода. ";
 "$ deducted from your balance" = "$ списано з вашого балансу";
-"Successfully closed the lot. Your balance is replenished by" = "Лот успішно закрито. Ваш баланс поповнено на";
+"Successfully closed the lot. Your balance is replenished by " = "Лот успішно закрито. Ваш баланс поповнено на ";
 "Successfully closed the lot. Your balance is replenished by 0$" = "Лот успішно закрито. Ваш баланс поповнено на 0$";
 "Lot removed. Money returned to:\n" = "Лот видалено. Гроші повернуто:\n";
 "Lot removed." = "Лот видалено.";

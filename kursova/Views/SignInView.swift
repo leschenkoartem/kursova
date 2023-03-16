@@ -25,32 +25,33 @@ struct SignInView : View {
         NavigationView{
             //верхний текст
             VStack {
+                HStack{
+                    LanguageButton(width: 60.0, height: 40.0).padding(.top, 6)
+                }
+                
                 Text("Sign In".localized(language)).fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
+                
                 //поля ввода
                 VStack{
-                    
                     VStack(alignment: .leading){
-                        
-                        CustomTextField(text: $email, titlet: "Email".localized(language), texft: "Enter Your Email".localized(language), maxLettes: 200).padding(.bottom, 15)
-                        
+                        CustomTextField(text: $email, titlet: "Email".localized(language), texft: "Enter Your Email".localized(language), maxLettes: 200)
+                            .padding(.bottom, 15)
                         
                         //Поле с паролем
                         VStack(alignment: .leading){
                             Text("Password".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                             
-                            SecureField("Enter Your Password".localized(language), text: $pass).autocorrectionDisabled(true)
+                            SecureField("Enter Your Password".localized(language), text: $pass)
+                            .autocorrectionDisabled(true)
                             
                             Divider()
                         }
-                        
                     }.padding(.horizontal, 6)
-                    
                 }.padding()
                 //кнопки
                 VStack{
-                    
-                    Button(action: {
-                                                AuthService.shared.signIn(email: email, password: pass) { result in
+                    Button{
+                        AuthService.shared.signIn(email: email, password: pass) { result in
                             switch result{
                             case .success(_):
                                 email.removeAll()
@@ -60,9 +61,8 @@ struct SignInView : View {
                                 isAlert.toggle()
                             }
                         }
-                    }) {
+                    } label: {
                         Text("Sign In".localized(language)).foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
-                        
                     }.background(Color(.systemGray5))
                         .clipShape(Capsule())
                         .padding(.top, 45)
@@ -74,17 +74,11 @@ struct SignInView : View {
                         //Поля "Может зарегестрирован"
                         Text("Don't Have An Account ?".localized(language)).foregroundColor(Color.gray.opacity(0.5))
                         
-                        
-                        
                         NavigationLink {
                             SignUpView(email: $email, pass: $pass)
                         } label: {
-                            
                             Text("Sign Up".localized(language))
-                            
                         }.foregroundColor(.blue)
-                        
-                        
                         
                     }.padding(.top, 25)
                 }
@@ -93,9 +87,8 @@ struct SignInView : View {
             Text("OK")
         }//Ошибка
         .onTapGesture {
-                    UIApplication.shared.endEditing()
-                }
-    
+            UIApplication.shared.endEditing()
+        }
     }
 }
 

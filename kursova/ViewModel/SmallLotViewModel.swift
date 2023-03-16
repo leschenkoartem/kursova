@@ -27,7 +27,7 @@ class SmallLotViewModel : ObservableObject {
             lot.seePeopleId.append(idUser)
         }
         //сохраняем в бд
-        DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+        DBLotsService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
         
         
     }
@@ -37,7 +37,7 @@ class SmallLotViewModel : ObservableObject {
             lot.seePeopleId.remove(at: index)
         }
         //сохраняем в бд
-        DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+        DBLotsService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
     }
     
     
@@ -47,7 +47,7 @@ class SmallLotViewModel : ObservableObject {
         var textAlert = ""
         //Dозвращаем деньги прошлому ставщику
         if lot.idCurrentPerson != ""{
-            DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: +Double(lot.currentPrice)) { error in
+            DBUserService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: +Double(lot.currentPrice)) { error in
                 if let error = error {
                     print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
                     
@@ -60,7 +60,7 @@ class SmallLotViewModel : ObservableObject {
         
         if lot.idCurrentPerson == idUser{
             lot.currentPrice += plusPrice
-            textAlert = "Successful deal.".localized(language) +  String(plusPrice) + "$ deducted from your balance".localized(language)
+            textAlert = "Successful deal. ".localized(language) +  String(plusPrice) + "$ deducted from your balance".localized(language)
         }else{
             //изменения лота
             lot.idCurrentPerson = idUser
@@ -68,13 +68,13 @@ class SmallLotViewModel : ObservableObject {
             lot.currentPerson = name
             lot.currentEmail = email
             
-            textAlert = "Successful deal." +  String(lot.currentPrice) + "$ deducted from your balance".localized(language)
+            textAlert = "Successful deal. ".localized(language) +  String(lot.currentPrice) + "$ deducted from your balance".localized(language)
         }
         
         
         
         //изменения счёта пользователя
-        DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: -Double(lot.currentPrice)) { error in
+        DBUserService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: -Double(lot.currentPrice)) { error in
             if let error = error {
                 print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
                 
@@ -86,14 +86,14 @@ class SmallLotViewModel : ObservableObject {
         
         
         //обновляет данные лота
-        DatabaseService.shared.changeCurentDataLot(LotId: lot.id, currentPrice: lot.currentPrice, currentPerson: lot.currentPerson, idCurrentPerson: idUser, currentEmail: lot.currentEmail)
+        DBLotsService.shared.changeCurentDataLot(LotId: lot.id, currentPrice: lot.currentPrice, currentPerson: lot.currentPerson, idCurrentPerson: idUser, currentEmail: lot.currentEmail)
         
         //Добавление в наблюдаемые
         if !lot.seePeopleId.contains(idUser) {
             lot.seePeopleId.append(idUser)
         }
         
-        DatabaseService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
+        DBLotsService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
         
         
         
@@ -106,7 +106,7 @@ class SmallLotViewModel : ObservableObject {
         var textAlert = ""
         //Если есть текущий пользователь, передаём деньги создателю
         if lot.idCurrentPerson != ""{
-            DatabaseService.shared.updateBalance(for: lot.idCreator, amountToAdd: Double(lot.currentPrice)) { error in
+            DBUserService.shared.updateBalance(for: lot.idCreator, amountToAdd: Double(lot.currentPrice)) { error in
                 if let error = error {
                     print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
                     
@@ -116,15 +116,15 @@ class SmallLotViewModel : ObservableObject {
                 }
             }
             
-            textAlert = "Successfully closed the lot. Your balance is replenished by".localized(language) +  String(lot.currentPrice) + "$"
+            textAlert = "Successfully closed the lot. Your balance is replenished by ".localized(language) +  String(lot.currentPrice) + "$"
         }else{
             //если нет, то просто выводим ошибку
             textAlert = "Successfully closed the lot. Your balance is replenished by 0$".localized(language)
             
         }
         
-        DatabaseService.shared.deleteLotPhoto(LotId: lot.id)
-        DatabaseService.shared.deleteLotData(LotId: lot.id)
+        DBLotsService.shared.deleteLotPhoto(LotId: lot.id)
+        DBLotsService.shared.deleteLotData(LotId: lot.id)
         
         
         return textAlert
@@ -137,7 +137,7 @@ class SmallLotViewModel : ObservableObject {
         var textAlert = ""
         //Если есть текущий пользователь, возвразаем ему деньги
         if lot.idCurrentPerson != ""{
-            DatabaseService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: Double(lot.currentPrice)) { error in
+            DBUserService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: Double(lot.currentPrice)) { error in
                 if let error = error {
                     print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
                     
@@ -156,8 +156,8 @@ class SmallLotViewModel : ObservableObject {
         }
         
        
-        DatabaseService.shared.deleteLotPhoto(LotId: lot.id)
-        DatabaseService.shared.deleteLotData(LotId: lot.id)
+        DBLotsService.shared.deleteLotPhoto(LotId: lot.id)
+        DBLotsService.shared.deleteLotData(LotId: lot.id)
         
         
         

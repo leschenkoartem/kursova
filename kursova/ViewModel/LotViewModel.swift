@@ -22,7 +22,7 @@ class LotViewModel: ObservableObject{
     }
     
     func getLots(){
-        DatabaseService.shared.getLots { result in
+        DBLotsService.shared.getLots { result in
             switch result{
             case .success(let lots):
                 self.lotsList = lots
@@ -32,7 +32,4 @@ class LotViewModel: ObservableObject{
             }
         }
     }
-    
-   
-    
 }

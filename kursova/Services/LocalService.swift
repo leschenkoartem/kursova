@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 enum Language: String {
@@ -19,12 +20,12 @@ enum Language: String {
 class LocalizationService {
 
     static let shared = LocalizationService()
-    static let changedLanguage = Notification.Name("changedLanguage")
 
     private init() {}
     
     var language: Language {
         get {
+            
             if let languageString = UserDefaults.standard.string(forKey: "language") {
                 return Language(rawValue: languageString) ?? .english_us
             } else if let systemLanguageCode = Locale.current.language.languageCode?.identifier,
@@ -33,11 +34,39 @@ class LocalizationService {
             } else {
                 return .english_us
             }
+            
         } set {
             if newValue != language {
                 UserDefaults.standard.setValue(newValue.rawValue, forKey: "language")
-                NotificationCenter.default.post(name: LocalizationService.changedLanguage, object: nil)
             }
         }
+    }
+}
+
+
+extension String {
+
+    /// Localizes a string using given language from Language enum.
+    /// - parameter language: The language that will be used to localized string.
+    /// - Returns: localized string.
+    func localized(_ language: Language) -> String {
+        let path = Bundle.main.path(forResource: language.rawValue, ofType: "lproj")
+        let bundle: Bundle
+        if let path = path {
+            bundle = Bundle(path: path) ?? .main
+        } else {
+            bundle = .main
+        }
+        return localized(bundle: bundle)
+    }
+
+
+    /// Localizes a string using self as key.
+    ///
+    /// - Parameters:
+    ///   - bundle: the bundle where the Localizable.strings file lies.
+    /// - Returns: localized string.
+    func localized(bundle: Bundle) -> String {
+        return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
     }
 }

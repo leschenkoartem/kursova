@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E3033EFC29B8EFC800B2B23E /* SmallLotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */; };
 		E31DCF5529BBCF8000AE6542 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5429BBCF8000AE6542 /* LocalService.swift */; };
-		E31DCF5729BBD09400AE6542 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5629BBD09400AE6542 /* LanguageView.swift */; };
+		E31DCF5729BBD09400AE6542 /* LanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5629BBD09400AE6542 /* LanguageButton.swift */; };
 		E34E5D0429BA7A3C0063A5EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E34E5D0629BA7A3C0063A5EC /* Localizable.strings */; };
 		E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */; };
 		E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */; };
@@ -25,7 +25,7 @@
 		E3E3056529AB788A00426066 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056429AB788A00426066 /* UserModel.swift */; };
 		E3E3056729AB789C00426066 /* LotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056629AB789C00426066 /* LotModel.swift */; };
 		E3E3056929AB78B600426066 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056829AB78B600426066 /* AuthService.swift */; };
-		E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056A29AB78CF00426066 /* DatbaseService.swift */; };
+		E3E3056B29AB78CF00426066 /* DBUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056A29AB78CF00426066 /* DBUserService.swift */; };
 		E3E3056D29AB78EC00426066 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056C29AB78EC00426066 /* AccountViewModel.swift */; };
 		E3E3056F29AB78FF00426066 /* LotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3056E29AB78FF00426066 /* LotViewModel.swift */; };
 		E3E3057329AB792800426066 /* AuctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057229AB792800426066 /* AuctionView.swift */; };
@@ -37,6 +37,7 @@
 		E3E3058429AB7B1800426066 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058329AB7B1800426066 /* FirebaseFirestore */; };
 		E3E3058629AB7B1800426066 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */; };
 		E3E3058829AB7B1800426066 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058729AB7B1800426066 /* FirebaseStorage */; };
+		E3FB7B0129C39B3F00C83DA4 /* DBLotsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB7B0029C39B3F00C83DA4 /* DBLotsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +46,8 @@
 		E31DCF4C29BB319500AE6542 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E31DCF4D29BB33B100AE6542 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E31DCF5429BBCF8000AE6542 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
-		E31DCF5629BBD09400AE6542 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
+		E31DCF5629BBD09400AE6542 /* LanguageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageButton.swift; sourceTree = "<group>"; };
+		E31DCF5829BBE6F800AE6542 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E34E5D0529BA7A3C0063A5EC /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
@@ -62,7 +64,7 @@
 		E3E3056429AB788A00426066 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E3E3056629AB789C00426066 /* LotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotModel.swift; sourceTree = "<group>"; };
 		E3E3056829AB78B600426066 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		E3E3056A29AB78CF00426066 /* DatbaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatbaseService.swift; sourceTree = "<group>"; };
+		E3E3056A29AB78CF00426066 /* DBUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUserService.swift; sourceTree = "<group>"; };
 		E3E3056C29AB78EC00426066 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		E3E3056E29AB78FF00426066 /* LotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewModel.swift; sourceTree = "<group>"; };
 		E3E3057229AB792800426066 /* AuctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		E3E3057829AB79BA00426066 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		E3E3057A29AB79D400426066 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3FB7B0029C39B3F00C83DA4 /* DBLotsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBLotsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +163,7 @@
 				E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */,
 				E3E3056029AB782B00426066 /* CustomTabBar.swift */,
 				E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */,
-				E31DCF5629BBD09400AE6542 /* LanguageView.swift */,
+				E31DCF5629BBD09400AE6542 /* LanguageButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -179,7 +182,8 @@
 			children = (
 				E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */,
 				E3E3056829AB78B600426066 /* AuthService.swift */,
-				E3E3056A29AB78CF00426066 /* DatbaseService.swift */,
+				E3E3056A29AB78CF00426066 /* DBUserService.swift */,
+				E3FB7B0029C39B3F00C83DA4 /* DBLotsService.swift */,
 				E31DCF5429BBCF8000AE6542 /* LocalService.swift */,
 			);
 			path = Services;
@@ -284,14 +288,15 @@
 				E3033EFC29B8EFC800B2B23E /* SmallLotViewModel.swift in Sources */,
 				E3E3057929AB79BA00426066 /* SignInView.swift in Sources */,
 				E3E3056329AB783C00426066 /* SmallLot.swift in Sources */,
-				E3E3056B29AB78CF00426066 /* DatbaseService.swift in Sources */,
+				E3E3056B29AB78CF00426066 /* DBUserService.swift in Sources */,
 				E31DCF5529BBCF8000AE6542 /* LocalService.swift in Sources */,
 				E3D764C529AFB96B0070DDC9 /* CustomTextField.swift in Sources */,
 				E3E3057B29AB79D400426066 /* SignUpView.swift in Sources */,
 				E3E3056929AB78B600426066 /* AuthService.swift in Sources */,
+				E3FB7B0129C39B3F00C83DA4 /* DBLotsService.swift in Sources */,
 				E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */,
 				E3E3057329AB792800426066 /* AuctionView.swift in Sources */,
-				E31DCF5729BBD09400AE6542 /* LanguageView.swift in Sources */,
+				E31DCF5729BBD09400AE6542 /* LanguageButton.swift in Sources */,
 				E3E3056F29AB78FF00426066 /* LotViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +311,7 @@
 				E31DCF4B29BB2CDD00AE6542 /* de */,
 				E31DCF4C29BB319500AE6542 /* fr */,
 				E31DCF4D29BB33B100AE6542 /* es */,
+				E31DCF5829BBE6F800AE6542 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -12,10 +12,7 @@ import SwiftUI
 struct SignUpView : View {
     
     
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
-    
-    
+    @AppStorage("language") private var language = LocalizationService.shared.language
     
     @State var name = ""
     @Binding  var email:String
@@ -28,11 +25,10 @@ struct SignUpView : View {
     var body : some View{
         //верхний текст
         VStack {
-           
+            
             Text("Sign Up".localized(language)).fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
             //поля ввода
             VStack{
-                
                 VStack(alignment: .leading){
                     //Поле Имя/Фамилия
                     CustomTextField(text: $name, titlet: "Name / Surname".localized(language), texft: "Enter Your Name And Surname".localized(language), maxLettes: 40).padding(.bottom, 15)
@@ -61,7 +57,7 @@ struct SignUpView : View {
                     }
                     
                 }.padding(.horizontal, 6)
-                
+                   
             }.padding()
             //кнопки
             VStack{
@@ -81,7 +77,6 @@ struct SignUpView : View {
                     
                     AuthService.shared.signUp(email: email, password: pass, name: name) { result in
                         switch result{
-                            
                         case .success(let user):
                             textAlert = "Registration with ".localized(language) + user.email!
                             isAlert.toggle()
@@ -124,10 +119,9 @@ struct SignUpView : View {
                 Text("OK")
             }
             .onTapGesture {
-                        UIApplication.shared.endEditing()
-                    }
+                UIApplication.shared.endEditing()
+            }
     }
-    
 }
 
 

@@ -29,7 +29,7 @@ class AuthService{
                 let user = MainUser(name: name, id: result.user.uid, email: email, image: "")
                 
                 //помещаем его в базу данных
-                DatabaseService.shared.setProfile(user: user) { resultDB in
+                DBUserService.shared.setProfile(user: user) { resultDB in
                     switch resultDB {
                     case .success(_):
                         completion(.success(result.user))
