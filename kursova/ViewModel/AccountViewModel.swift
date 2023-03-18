@@ -11,7 +11,7 @@ import SwiftUI
 
 class AccountViewModel: ObservableObject{
     
-    @Published var profile = MainUser(name: "", id: "", email: "", image: "")
+    @Published var profile = MUser(name: "", id: "", email: "", image: "")
      
 
     init() {

@@ -43,7 +43,7 @@ struct SmallLot: View {
     }
     @State var getBigger = false
     
-    var idUser: String
+    var idUser = AuthService.shared.currentUser!.uid
     
     var simId:Bool {
         get {

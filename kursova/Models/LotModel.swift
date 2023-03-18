@@ -47,7 +47,4 @@ struct LotStruct: Identifiable, Equatable{
         
         return repres
     }
-    
-    
-    
 }

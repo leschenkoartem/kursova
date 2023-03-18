@@ -30,7 +30,7 @@ class DBUserService{
     
     
     //Запись юзера в базу даных
-    func setProfile(user: MainUser, completion:@escaping (Result<MainUser, Error>)->()){
+    func setProfile(user: MUser, completion:@escaping (Result<MUser, Error>)->()){
         
         userRef.document(user.id).setData(user.representation) { error in
             if let error = error{
@@ -42,7 +42,7 @@ class DBUserService{
     }
     
     //Функция, которая заберает инфу про пользователя с бд
-    func getProfile(completion: @escaping(Result<MainUser, Error>)->()){
+    func getProfile(completion: @escaping(Result<MUser, Error>)->()){
         
         guard let user = AuthService.shared.currentUser else {return}
         userRef.document(user.uid).getDocument { docSnapshot, error in
@@ -57,7 +57,7 @@ class DBUserService{
             guard let userBalance = data["balance"] as? Int else {return}
             guard let image = data["image"] as? String else {return}
             
-            let user = MainUser(name: userName,
+            let user = MUser(name: userName,
                                 id: userID,
                                 balance: userBalance,
                                 email: userEmail,

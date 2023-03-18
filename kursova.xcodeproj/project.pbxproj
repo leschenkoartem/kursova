@@ -10,6 +10,7 @@
 		E3033EFC29B8EFC800B2B23E /* SmallLotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */; };
 		E31DCF5529BBCF8000AE6542 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5429BBCF8000AE6542 /* LocalService.swift */; };
 		E31DCF5729BBD09400AE6542 /* LanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5629BBD09400AE6542 /* LanguageButton.swift */; };
+		E3279BD429C622BD00156D32 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3279BD329C622BD00156D32 /* CustomToggle.swift */; };
 		E34E5D0429BA7A3C0063A5EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E34E5D0629BA7A3C0063A5EC /* Localizable.strings */; };
 		E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */; };
 		E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */; };
@@ -48,6 +49,7 @@
 		E31DCF5429BBCF8000AE6542 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		E31DCF5629BBD09400AE6542 /* LanguageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageButton.swift; sourceTree = "<group>"; };
 		E31DCF5829BBE6F800AE6542 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E3279BD329C622BD00156D32 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
 		E34E5D0529BA7A3C0063A5EC /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				E3E3056029AB782B00426066 /* CustomTabBar.swift */,
 				E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */,
 				E31DCF5629BBD09400AE6542 /* LanguageButton.swift */,
+				E3279BD329C622BD00156D32 /* CustomToggle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				E3FB7B0129C39B3F00C83DA4 /* DBLotsService.swift in Sources */,
 				E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */,
 				E3E3057329AB792800426066 /* AuctionView.swift in Sources */,
+				E3279BD429C622BD00156D32 /* CustomToggle.swift in Sources */,
 				E31DCF5729BBD09400AE6542 /* LanguageButton.swift in Sources */,
 				E3E3056F29AB78FF00426066 /* LotViewModel.swift in Sources */,
 			);

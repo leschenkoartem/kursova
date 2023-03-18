@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @Environment(\.scenePhase) var scenePhase
     @StateObject var lotView: LotViewModel = LotViewModel()
     @StateObject var profileView = AccountViewModel()
     @State var selector: Tab = .hammer
@@ -24,11 +25,13 @@ struct ContentView: View {
                             .toolbar(.hidden, for: .tabBar)
                             .environmentObject(AccountViewModel())
                             .environmentObject(LotViewModel())
+                            .blur(radius: scenePhase == .inactive ? 10: 0)
                     case .house:
                             HomeView(isUserLogin: $isUsserLogin)
                                 .toolbar(.hidden, for: .tabBar)
                                 .environmentObject(AccountViewModel())
                                 .environmentObject(LotViewModel())
+                                .blur(radius: scenePhase == .inactive ? 10: 0)
                     }
                 }
                 VStack{

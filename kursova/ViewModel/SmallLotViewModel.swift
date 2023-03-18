@@ -20,7 +20,6 @@ class SmallLotViewModel : ObservableObject {
     }
     
     func addToObserve(){
-        
         let idUser = AuthService.shared.currentUser!.uid
         
         if !lot.seePeopleId.contains(idUser) {
@@ -28,8 +27,6 @@ class SmallLotViewModel : ObservableObject {
         }
         //сохраняем в бд
         DBLotsService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
-        
-        
     }
     
     func dellFromObserve(){
@@ -70,9 +67,7 @@ class SmallLotViewModel : ObservableObject {
             
             textAlert = "Successful deal. ".localized(language) +  String(lot.currentPrice) + "$ deducted from your balance".localized(language)
         }
-        
-        
-        
+ 
         //изменения счёта пользователя
         DBUserService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: -Double(lot.currentPrice)) { error in
             if let error = error {
@@ -83,8 +78,7 @@ class SmallLotViewModel : ObservableObject {
                 
             }
         }
-        
-        
+
         //обновляет данные лота
         DBLotsService.shared.changeCurentDataLot(LotId: lot.id, currentPrice: lot.currentPrice, currentPerson: lot.currentPerson, idCurrentPerson: idUser, currentEmail: lot.currentEmail)
         
@@ -94,11 +88,7 @@ class SmallLotViewModel : ObservableObject {
         }
         
         DBLotsService.shared.delPeoplSee(LotId: lot.id, arrayID: lot.seePeopleId)
-        
-        
-        
         return textAlert
- 
     }
     
     func finishLot(idUser: String, plusPrice:Int, name:String, email:String) -> String{
@@ -155,13 +145,8 @@ class SmallLotViewModel : ObservableObject {
             
         }
         
-       
         DBLotsService.shared.deleteLotPhoto(LotId: lot.id)
         DBLotsService.shared.deleteLotData(LotId: lot.id)
-        
-        
-        
-        
         return textAlert
     }
 }

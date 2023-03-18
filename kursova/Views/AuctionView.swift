@@ -12,6 +12,10 @@ struct AuctionsView: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
+    @State var priceFIlterOn = false
+    @State var minPrice = ""
+    @State var maxPrice = ""
+    @State var showFilters = false
     @State var searchWord = ""
     @EnvironmentObject var lotView: LotViewModel
     
@@ -30,14 +34,12 @@ struct AuctionsView: View {
                 HStack{
                     if searchWord == ""{
                         Image(systemName: "magnifyingglass").foregroundColor(Color(.label).opacity(0.5))
-                        
                     }else{
                         Button {
                             searchWord.removeAll()
                         } label: {
                             Image(systemName: "xmark").foregroundColor(Color(.label).opacity(0.5))
                         }
-                        
                     }
                     
                     TextField("Search by keyword...".localized(language), text: $searchWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
@@ -55,16 +57,52 @@ struct AuctionsView: View {
                     .padding(.trailing, 5)
             }
             
+            VStack{
+                HStack{
+                    Text("More filters".localized(language))
+                    
+                    Image(systemName: "chevron.down").rotationEffect(.degrees(showFilters ? 180 : 0))
+                        .animation(.easeInOut(duration: 0.3), value: showFilters)
+                }.padding(5)
+                    .background()
+                    .foregroundColor(Color(.label).opacity(0.75))
+                    .onTapGesture {
+                        withAnimation {
+                            UIApplication.shared.endEditing()
+                            showFilters.toggle()
+                        }
+                    }
+                
+                if showFilters{
+                    Divider()
+                    HStack{
+                        Text("Price: ")
+                        Spacer()
+                        TextField("From", text: $minPrice)
+                            .textFieldStyle(.roundedBorder)
+                            .keyboardType(.numberPad)
+                        TextField("To", text: $maxPrice).textFieldStyle(.roundedBorder)
+                            .keyboardType(.numberPad)
+                        CustomToggle(switchMark: $priceFIlterOn)
+                    }
+                }
+            }.padding(.horizontal)
+            
             ScrollView{
+                
                 Spacer().frame(height: 10)
                 ForEach(0..<lotView.lotsList.count, id: \.self){item in
-                    if lotView.lotsList[item].mainText.uppercased().contains(searchStringWord.uppercased()){
-                        SmallLot(selfViewModel: SmallLotViewModel(lot: lotView.lotsList[item]), idUser: AuthService.shared.currentUser!.uid)
+                    let lot = lotView.lotsList[item]
+                    
+                    if lot.mainText.uppercased().contains(searchStringWord.uppercased()) &&
+                        //Условие для фильтра цены
+                        (priceFIlterOn ? (lot.currentPrice >= Int(minPrice) ?? 0 && lot.currentPrice <= Int(maxPrice) ?? 1000000) : true) {
+                        SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
                     }
                 }
                 Spacer().frame(height: 130)
-                
             }
+            
             Spacer()
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear{

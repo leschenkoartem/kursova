@@ -100,7 +100,7 @@ struct HomeView: View {
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lotsList[item]
                             if lot.idCreator == user{
-                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
+                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
                             }
                         }
                     }
@@ -121,7 +121,7 @@ struct HomeView: View {
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lotsList[item]
                             if lot.idCurrentPerson == user{
-                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
+                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
                             }
                         }
                     }
@@ -141,7 +141,7 @@ struct HomeView: View {
                         if let user = AuthService.shared.currentUser?.uid{
                             let lot = lotView.lotsList[item]
                             if lot.seePeopleId.contains(user){
-                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot), idUser: user)
+                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
                             }
                         }
                     }
@@ -167,24 +167,26 @@ struct HomeView: View {
                 
             }//При показе экрана запрашываются даные из базы данных
             .onAppear{
-                
                 profileView.getProfile()
                 lotView.getLots()
             }
             .sheet(isPresented: $showSheet, onDismiss: {
                 
-                //Добавляем картинку в бд
-                DBUserService.shared.uploadUserImage(image: image ?? UIImage(imageLiteralResourceName: "1"))
-                //Получаем ЮРЛ из бд
-                DBLotsService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo") { url in
-                    if let url = url{
-                        //Обновляем инф юрл в инф пользователя
-                        DBUserService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
+                if let image = image{
+                    //Добавляем картинку в бд
+                    DBUserService.shared.uploadUserImage(image: image)
+                    //Получаем ЮРЛ из бд
+                    DBLotsService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo") { url in
+                        if let url = url{
+                            //Обновляем инф юрл в инф пользователя
+                            DBUserService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
+                        }
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        profileView.getProfile()
                     }
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    profileView.getProfile()
-                }
+                
             }) {
                 ImagePicker(selectedImage: $image)
             }
