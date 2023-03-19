@@ -33,6 +33,7 @@
 "From" = "Von";
 "To" = "Nach";
 "Date from:" = "Datum von:";
+"Current user status: None" = "Der Status des aktuellen Benutzers: None";
 
 //HomeView
 "Self Lots" = "Eigene Lots" ;

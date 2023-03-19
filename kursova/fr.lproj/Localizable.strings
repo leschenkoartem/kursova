@@ -33,6 +33,7 @@
 "From" = "De";
 "To" = "À";
 "Date from:" = "Date à partir de :";
+"Current user status: None" = "Le statut de l'utilisateur actuel: None";
 
 //HomeView
 "Self Lots" = "Vos lots";

@@ -33,6 +33,7 @@
 "From" = "Від";
 "To" = "До";
 "Date from:" = "Дата з:";
+"Current user status: None" = "Статус поточного користувача: None";
 
 //HomeView
 "Self Lots" = "Ваші лоти" ;

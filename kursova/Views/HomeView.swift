@@ -91,7 +91,7 @@ struct HomeView: View {
                 Button {
                     creatLot.toggle()
                 } label: {
-                    Text("Add new lot +".localized(language)).foregroundColor(Color(.systemGray).opacity(0.75)).fontWeight(.bold)
+                    Text("Add new lot +".localized(language)).foregroundColor(Color(.label).opacity(0.65)).fontWeight(.bold)
                 }
                 
                 ScrollView{

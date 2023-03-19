@@ -167,7 +167,14 @@ struct AddingNewLotView: View {
             Button(role: .destructive) {
                 
                 //Создаём лот
-                let lotcreat = LotStruct(idCreator: AuthService.shared.currentUser!.uid, idCurrentPerson: "", mainText: mainText + " ", currentPrice: Int(price)!, informationText: informationText, date: Date(), seePeopleId: [], image: "")
+                let lotcreat = LotStruct(idCreator: AuthService.shared.currentUser!.uid,
+                                         idCurrentPerson: "",
+                                         mainText: mainText + " ",
+                                         currentPrice: Int(price)!,
+                                         informationText: informationText,
+                                         date: Date(),
+                                         seePeopleId: [],
+                                         image: "")
                 
                 //Передаём его в бд
                 DBLotsService.shared.addLotToFirestore(lot: lotcreat)
@@ -175,12 +182,12 @@ struct AddingNewLotView: View {
                 //передаём картинку в бд
                 DBLotsService.shared.uploadLotImage(image: image ?? UIImage(imageLiteralResourceName: "1"), LotId: lotcreat.id)
                 
-                
-                //Lаэм время бд загрузить картинку, а потом достаём её юрл
+                //Даём время бд загрузить картинку, а потом достаём её юрл
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     //достаём ЮРЛ картинки
                     DBLotsService.shared.getImageUrl(imagePath: lotcreat.id, path: "lots_loogo") { url in
                         if let url = url{
+                            //Оновлюємо її в інформації лоту
                             DBLotsService.shared.updateLotPhotoUrl(LotId: lotcreat.id, newPhotoUrl: url.absoluteString)
                             lotView.getLots()
                             dismiss()

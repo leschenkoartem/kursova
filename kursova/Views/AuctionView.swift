@@ -8,43 +8,44 @@
 import SwiftUI
 
 struct AuctionsView: View {
-    
+    //Для мови
     @AppStorage("language")
     private var language = LocalizationService.shared.language
-    
-    @State var priceFilterOn = false
-    @State var minPrice = ""
-    @State var maxPrice = ""
+    //Для фільтру
+    @State private var showFilters = false
+    ///Для фільтру ціни
+    @State private var priceFilterOn = false
+    @State private var minPrice = ""
+    @State private var maxPrice = ""
+    ///Для фільтру дати
+    @State private var dateFilterOn = false
     @State private var selectedDate = Date()
-    @State var dateFilterIn = false
-    @State var showFilters = false
-    @State var searchWord = ""
-    @EnvironmentObject var lotView: LotViewModel
+    ///Для фільтру поточного користувача
+    @State private var currentFilterOn = false
+    ///Для пошукового слова
+    @State private var searchInputWord = ""
     
-    var searchStringWord:String{
-        get{
-            if searchWord == ""{
-                return " "
-            }else{
-                return searchWord
-            }
-        }
+    @EnvironmentObject var lotView: LotViewModel
+    ///Для оптимізації пошуку по слову
+    var searchWord:String{
+        get{return searchInputWord == "" ? " ": searchInputWord}
     }
+    
     var body: some View {
         VStack{
             HStack {
                 HStack{
-                    if searchWord == ""{
+                    if searchInputWord == ""{
                         Image(systemName: "magnifyingglass").foregroundColor(Color(.label).opacity(0.5))
                     }else{
                         Button {
-                            searchWord.removeAll()
+                            searchInputWord.removeAll()
                         } label: {
                             Image(systemName: "xmark").foregroundColor(Color(.label).opacity(0.5))
                         }
                     }
                     
-                    TextField("Search by keyword...".localized(language), text: $searchWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
+                    TextField("Search by keyword...".localized(language), text: $searchInputWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
                         .foregroundColor(Color(.label).opacity(0.5))
                     
                     
@@ -62,10 +63,14 @@ struct AuctionsView: View {
             VStack{
                 HStack{
                     Text("More filters".localized(language))
+                        .opacity(0.65)
+                        .fontWeight(.bold)
                     
-                    Image(systemName: "chevron.down").rotationEffect(.degrees(showFilters ? 180 : 0))
+                    Image(systemName: "chevron.down")
+                        .rotationEffect(.degrees(showFilters ? 180 : 0))
                         .animation(.easeInOut(duration: 0.3), value: showFilters)
-                }.padding(5)
+                        .opacity(0.65)
+                }.padding(.top, 5)
                     .background()
                     .foregroundColor(Color(.label).opacity(0.75))
                     .onTapGesture {
@@ -76,12 +81,11 @@ struct AuctionsView: View {
                     }
                 //Фильтры
                 if showFilters{
+                    //Фільтр ціни
                     Divider()
                     HStack{
-                        Text("Price".localized(language) + ": ")
-                        
-                        Spacer()
-                        
+                        Text("Price".localized(language) + ": ").opacity(0.75)
+  
                         TextField("From".localized(language), text: $minPrice)
                             .textFieldStyle(.roundedBorder)
                             .keyboardType(.numberPad)
@@ -91,19 +95,25 @@ struct AuctionsView: View {
                         
                         CustomToggle(switchMark: $priceFilterOn)
                     }
-                    
-                    
+                    //Фільтр дати
                     HStack {
-                        Text("Date from:".localized(language))
-                        
+                        Text("Date from:".localized(language)).opacity(0.75)
+                       
                         DatePicker("",
                                    selection: $selectedDate,
                                    in: Calendar.current.date(from: DateComponents(year: 2010, month: 1, day: 1))!...Date(),
                                    displayedComponents: .date
                         ).frame(maxWidth: 120)
                         Spacer()
-                        CustomToggle(switchMark: $dateFilterIn)
+                        CustomToggle(switchMark: $dateFilterOn)
                     }
+                    //Фільтр теперішнього користувача
+                    HStack{
+                        Text("Current user status: None".localized(language)).opacity(0.75)
+                        Spacer()
+                        CustomToggle(switchMark: $currentFilterOn)
+                    }
+                    
                     Divider()
                 }
             }.padding(.horizontal)
@@ -114,9 +124,10 @@ struct AuctionsView: View {
                 ForEach(0..<lotView.lotsList.count, id: \.self){item in
                     let lot = lotView.lotsList[item]
 
-                    if lot.mainText.uppercased().contains(searchStringWord.uppercased())
+                    if lot.mainText.uppercased().contains(searchWord.uppercased())
                         && (priceFilterOn ? (lot.currentPrice >= Int(minPrice) ?? 0 && lot.currentPrice <= Int(maxPrice) ?? 1000000) : true) //Фильтр цены
-                        && (dateFilterIn ? (lot.date >= selectedDate): true){ //Фильтр даты
+                        && (dateFilterOn ? (lot.date >= selectedDate): true)
+                        && (currentFilterOn ? (lot.currentPerson == "None"): true){ //Фильтр даты
                         SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
                     }
                 }
