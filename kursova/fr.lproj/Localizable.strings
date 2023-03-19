@@ -29,6 +29,10 @@
 
 //AuctionView
 "Search by keyword..." = "Rechercher par mot-clé...";
+"More filters" = "Plus de filtres";
+"From" = "De";
+"To" = "À";
+"Date from:" = "Date à partir de :";
 
 //HomeView
 "Self Lots" = "Vos lots";

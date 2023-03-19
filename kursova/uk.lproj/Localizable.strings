@@ -29,6 +29,10 @@
 
 //AuctionView
 "Search by keyword..." = "Пошук за ключовим словом...";
+"More filters" = "Більше фільтрів";
+"From" = "Від";
+"To" = "До";
+"Date from:" = "Дата з:";
 
 //HomeView
 "Self Lots" = "Ваші лоти" ;

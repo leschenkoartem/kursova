@@ -12,9 +12,11 @@ struct AuctionsView: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
-    @State var priceFIlterOn = false
+    @State var priceFilterOn = false
     @State var minPrice = ""
     @State var maxPrice = ""
+    @State private var selectedDate = Date()
+    @State var dateFilterIn = false
     @State var showFilters = false
     @State var searchWord = ""
     @EnvironmentObject var lotView: LotViewModel
@@ -72,31 +74,49 @@ struct AuctionsView: View {
                             showFilters.toggle()
                         }
                     }
-                
+                //Фильтры
                 if showFilters{
                     Divider()
                     HStack{
-                        Text("Price: ")
+                        Text("Price".localized(language) + ": ")
+                        
                         Spacer()
-                        TextField("From", text: $minPrice)
+                        
+                        TextField("From".localized(language), text: $minPrice)
                             .textFieldStyle(.roundedBorder)
                             .keyboardType(.numberPad)
-                        TextField("To", text: $maxPrice).textFieldStyle(.roundedBorder)
+                        
+                        TextField("To".localized(language), text: $maxPrice).textFieldStyle(.roundedBorder)
                             .keyboardType(.numberPad)
-                        CustomToggle(switchMark: $priceFIlterOn)
+                        
+                        CustomToggle(switchMark: $priceFilterOn)
                     }
+                    
+                    
+                    HStack {
+                        Text("Date from:".localized(language))
+                        
+                        DatePicker("",
+                                   selection: $selectedDate,
+                                   in: Calendar.current.date(from: DateComponents(year: 2010, month: 1, day: 1))!...Date(),
+                                   displayedComponents: .date
+                        ).frame(maxWidth: 120)
+                        Spacer()
+                        CustomToggle(switchMark: $dateFilterIn)
+                    }
+                    Divider()
                 }
             }.padding(.horizontal)
             
             ScrollView{
-                
+
                 Spacer().frame(height: 10)
                 ForEach(0..<lotView.lotsList.count, id: \.self){item in
                     let lot = lotView.lotsList[item]
-                    
-                    if lot.mainText.uppercased().contains(searchStringWord.uppercased()) &&
-                        //Условие для фильтра цены
-                        (priceFIlterOn ? (lot.currentPrice >= Int(minPrice) ?? 0 && lot.currentPrice <= Int(maxPrice) ?? 1000000) : true) {
+
+                    if lot.mainText.uppercased().contains(searchStringWord.uppercased())
+                        && (priceFilterOn ? (lot.currentPrice >= Int(minPrice) ?? 0 && lot.currentPrice <= Int(maxPrice) ?? 1000000) : true) //Фильтр цены
+                        && (dateFilterIn ? (lot.date >= selectedDate): true){ //Фильтр даты
                         SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
                     }
                 }

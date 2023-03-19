@@ -13,7 +13,6 @@ class AccountViewModel: ObservableObject{
     
     @Published var profile = MUser(name: "", id: "", email: "", image: "")
      
-
     init() {
         getProfile()
     }

@@ -29,6 +29,10 @@
 
 //AuctionView
 "Search by keyword..." = "Search by keyword...";
+"More filters" = "More filters";
+"From" = "From";
+"To" = "To";
+"Date from:" = "Date from:";
 
 //HomeView
 "Self Lots" = "Your Lots" ;
