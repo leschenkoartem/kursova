@@ -12,8 +12,12 @@
 		E31DCF5729BBD09400AE6542 /* LanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5629BBD09400AE6542 /* LanguageButton.swift */; };
 		E3279BD429C622BD00156D32 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3279BD329C622BD00156D32 /* CustomToggle.swift */; };
 		E34E5D0429BA7A3C0063A5EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E34E5D0629BA7A3C0063A5EC /* Localizable.strings */; };
+		E37918AB29C9C03600BA89A4 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E37918AA29C9C03600BA89A4 /* SDWebImageSwiftUI */; };
+		E37918AE29C9C0AF00BA89A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E37918AD29C9C0AF00BA89A4 /* FirebaseAuth */; };
+		E37918B029C9C0AF00BA89A4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E37918AF29C9C0AF00BA89A4 /* FirebaseFirestore */; };
+		E37918B229C9C0AF00BA89A4 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E37918B129C9C0AF00BA89A4 /* FirebaseFirestoreSwift */; };
+		E37918B429C9C0AF00BA89A4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E37918B329C9C0AF00BA89A4 /* FirebaseStorage */; };
 		E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */; };
-		E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */; };
 		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
 		E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */; };
 		E3D764C529AFB96B0070DDC9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */; };
@@ -34,12 +38,18 @@
 		E3E3057929AB79BA00426066 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057829AB79BA00426066 /* SignInView.swift */; };
 		E3E3057B29AB79D400426066 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3057A29AB79D400426066 /* SignUpView.swift */; };
 		E3E3057F29AB7A9A00426066 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E3057E29AB7A9A00426066 /* GoogleService-Info.plist */; };
-		E3E3058229AB7B1800426066 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058129AB7B1800426066 /* FirebaseAuth */; };
-		E3E3058429AB7B1800426066 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058329AB7B1800426066 /* FirebaseFirestore */; };
-		E3E3058629AB7B1800426066 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */; };
-		E3E3058829AB7B1800426066 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E3E3058729AB7B1800426066 /* FirebaseStorage */; };
 		E3FB7B0129C39B3F00C83DA4 /* DBLotsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB7B0029C39B3F00C83DA4 /* DBLotsService.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E3B5441529C7B654002BADD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3E3054529AB76A500426066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3E3054C29AB76A500426066;
+			remoteInfo = kursova;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLotViewModel.swift; sourceTree = "<group>"; };
@@ -52,6 +62,7 @@
 		E3279BD329C622BD00156D32 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
 		E34E5D0529BA7A3C0063A5EC /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E3ABB4E829AE8E8D0035DDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E3B5440F29C7B654002BADD8 /* LanguageButtonTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LanguageButtonTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
 		E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = kursova/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
 		E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewLotView.swift; sourceTree = "<group>"; };
@@ -78,15 +89,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E3B5440C29C7B654002BADD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E3E3054A29AB76A500426066 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3D3812429B40251009EDDE0 /* SDWebImageSwiftUI in Frameworks */,
-				E3E3058229AB7B1800426066 /* FirebaseAuth in Frameworks */,
-				E3E3058829AB7B1800426066 /* FirebaseStorage in Frameworks */,
-				E3E3058429AB7B1800426066 /* FirebaseFirestore in Frameworks */,
-				E3E3058629AB7B1800426066 /* FirebaseFirestoreSwift in Frameworks */,
+				E37918AB29C9C03600BA89A4 /* SDWebImageSwiftUI in Frameworks */,
+				E37918AE29C9C0AF00BA89A4 /* FirebaseAuth in Frameworks */,
+				E37918B029C9C0AF00BA89A4 /* FirebaseFirestore in Frameworks */,
+				E37918B429C9C0AF00BA89A4 /* FirebaseStorage in Frameworks */,
+				E37918B229C9C0AF00BA89A4 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				E3E3054D29AB76A500426066 /* kursova.app */,
+				E3B5440F29C7B654002BADD8 /* LanguageButtonTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,6 +214,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E3B5440E29C7B654002BADD8 /* LanguageButtonTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3B5441929C7B654002BADD8 /* Build configuration list for PBXNativeTarget "LanguageButtonTest" */;
+			buildPhases = (
+				E3B5440B29C7B654002BADD8 /* Sources */,
+				E3B5440C29C7B654002BADD8 /* Frameworks */,
+				E3B5440D29C7B654002BADD8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E3B5441629C7B654002BADD8 /* PBXTargetDependency */,
+			);
+			name = LanguageButtonTest;
+			productName = LanguageButtonTest;
+			productReference = E3B5440F29C7B654002BADD8 /* LanguageButtonTest.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E3E3054C29AB76A500426066 /* kursova */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3E3055B29AB76A600426066 /* Build configuration list for PBXNativeTarget "kursova" */;
@@ -209,11 +246,11 @@
 			);
 			name = kursova;
 			packageProductDependencies = (
-				E3E3058129AB7B1800426066 /* FirebaseAuth */,
-				E3E3058329AB7B1800426066 /* FirebaseFirestore */,
-				E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */,
-				E3E3058729AB7B1800426066 /* FirebaseStorage */,
-				E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */,
+				E37918AA29C9C03600BA89A4 /* SDWebImageSwiftUI */,
+				E37918AD29C9C0AF00BA89A4 /* FirebaseAuth */,
+				E37918AF29C9C0AF00BA89A4 /* FirebaseFirestore */,
+				E37918B129C9C0AF00BA89A4 /* FirebaseFirestoreSwift */,
+				E37918B329C9C0AF00BA89A4 /* FirebaseStorage */,
 			);
 			productName = kursova;
 			productReference = E3E3054D29AB76A500426066 /* kursova.app */;
@@ -229,6 +266,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					E3B5440E29C7B654002BADD8 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = E3E3054C29AB76A500426066;
+					};
 					E3E3054C29AB76A500426066 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -248,19 +289,27 @@
 			);
 			mainGroup = E3E3054429AB76A500426066;
 			packageReferences = (
-				E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				E3D3812229B40251009EDDE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				E37918A929C9C03600BA89A4 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */,
+				E37918AC29C9C0AF00BA89A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = E3E3054E29AB76A500426066 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E3E3054C29AB76A500426066 /* kursova */,
+				E3B5440E29C7B654002BADD8 /* LanguageButtonTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E3B5440D29C7B654002BADD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E3E3054B29AB76A500426066 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,6 +324,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E3B5440B29C7B654002BADD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E3E3054929AB76A500426066 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,6 +363,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E3B5441629C7B654002BADD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E3E3054C29AB76A500426066 /* kursova */;
+			targetProxy = E3B5441529C7B654002BADD8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		E34E5D0629BA7A3C0063A5EC /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -323,6 +387,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E3B5441729C7B654002BADD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kursova.LanguageButtonTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = kursova;
+			};
+			name = Debug;
+		};
+		E3B5441829C7B654002BADD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kursova.LanguageButtonTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = kursova;
+			};
+			name = Release;
+		};
 		E3E3055929AB76A600426066 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -495,6 +591,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E3B5441929C7B654002BADD8 /* Build configuration list for PBXNativeTarget "LanguageButtonTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3B5441729C7B654002BADD8 /* Debug */,
+				E3B5441829C7B654002BADD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E3E3054829AB76A500426066 /* Build configuration list for PBXProject "kursova" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -516,7 +621,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E3D3812229B40251009EDDE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		E37918A929C9C03600BA89A4 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
@@ -524,40 +629,40 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		E37918AC29C9C0AF00BA89A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				kind = exactVersion;
-				version = 9.6.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E3D3812329B40251009EDDE0 /* SDWebImageSwiftUI */ = {
+		E37918AA29C9C03600BA89A4 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E3D3812229B40251009EDDE0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = E37918A929C9C03600BA89A4 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI.git" */;
 			productName = SDWebImageSwiftUI;
 		};
-		E3E3058129AB7B1800426066 /* FirebaseAuth */ = {
+		E37918AD29C9C0AF00BA89A4 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = E37918AC29C9C0AF00BA89A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		E3E3058329AB7B1800426066 /* FirebaseFirestore */ = {
+		E37918AF29C9C0AF00BA89A4 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = E37918AC29C9C0AF00BA89A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		E3E3058529AB7B1800426066 /* FirebaseFirestoreSwift */ = {
+		E37918B129C9C0AF00BA89A4 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = E37918AC29C9C0AF00BA89A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		E3E3058729AB7B1800426066 /* FirebaseStorage */ = {
+		E37918B329C9C0AF00BA89A4 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E3E3058029AB7B1800426066 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = E37918AC29C9C0AF00BA89A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */

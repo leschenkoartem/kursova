@@ -14,12 +14,12 @@ struct HomeView: View {
     
     @State var creatLot = false
     @State var showSheet = false
-    @State private var image:UIImage?
-    @Binding var isUserLogin:Bool
+    @State private var image: UIImage?
+    @Binding var isUserLogin: Bool
     @State var isConfirm = false
     @State var showLots = 1
     
-    @EnvironmentObject var profileView:AccountViewModel
+    @EnvironmentObject var profileView: AccountViewModel
     @EnvironmentObject var lotView: LotViewModel
     
     var body: some View {
@@ -38,13 +38,19 @@ struct HomeView: View {
                             .clipShape(Circle())
                             .onTapGesture {showSheet.toggle()}
                     }else{
-                        WebImage(url: URL(string: profileView.profile.image))
-                            .resizable()
+                        AsyncImage(url: URL(string: profileView.profile.image)) { Image in
+                            Image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } placeholder: {
+                            ProgressView()
+                                .frame(width: 60, height: 60)
+                                .background(Color.black.opacity(0.1))
+                                .clipShape(Circle())
+                        }.onTapGesture { showSheet.toggle() }
                             .frame(width: 60, height: 60)
                             .background(Color.black.opacity(0.1))
-                            .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
-                            .onTapGesture {showSheet.toggle()}
                     }
                     
                     

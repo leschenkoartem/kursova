@@ -58,14 +58,23 @@ struct SmallLot: View {
             //Основной контект маленького экрана
             HStack(alignment: .top) {
                 
-                WebImage(url: URL(string: selfViewModel.lot.image))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 120, height: 120)
-                    .cornerRadius(12)
-                    .padding()
-                    .clipShape(Rectangle())
-                    .padding(.horizontal, -5)
+                AsyncImage(url: URL(string: selfViewModel.lot.image)) { Image in
+                    Image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 120, height: 120)
+                        .cornerRadius(12)
+                        .padding()
+                        .clipShape(Rectangle())
+                        .padding(.horizontal, -5)
+                } placeholder: {
+                    ProgressView()
+                        .frame(width: 120, height: 120)
+                        .cornerRadius(12)
+                        .padding()
+                        .clipShape(Rectangle())
+                        .padding(.horizontal, -5)
+                }
                 
                 // Текстовая информация о лоте
                 VStack(alignment: .leading) {

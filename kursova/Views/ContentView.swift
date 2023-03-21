@@ -23,14 +23,14 @@ struct ContentView: View {
                     case .hammer:
                         AuctionsView()
                             .toolbar(.hidden, for: .tabBar)
-                            .environmentObject(AccountViewModel())
-                            .environmentObject(LotViewModel())
+                            .environmentObject(profileView)
+                            .environmentObject(lotView)
                             .blur(radius: scenePhase == .inactive ? 10: 0)
                     case .house:
                             HomeView(isUserLogin: $isUsserLogin)
                                 .toolbar(.hidden, for: .tabBar)
-                                .environmentObject(AccountViewModel())
-                                .environmentObject(LotViewModel())
+                                .environmentObject(profileView)
+                                .environmentObject(lotView)
                                 .blur(radius: scenePhase == .inactive ? 10: 0)
                     }
                 }

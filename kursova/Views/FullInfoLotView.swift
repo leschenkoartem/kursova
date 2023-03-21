@@ -54,11 +54,16 @@ struct FullInfoLotView: View {
             
             Divider().padding(.horizontal, 10)
             
-            WebImage(url: URL(string: lot.lot.image))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width - 10, height: 350)
-                .cornerRadius(5)
+            AsyncImage(url: URL(string: lot.lot.image)) { Image in
+                Image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.width - 10, height: 350)
+                    .cornerRadius(5)
+            } placeholder: {
+                ProgressView().frame(width: UIScreen.main.bounds.width - 10, height: 350)
+                    .cornerRadius(5)
+            }
       
             Divider().padding(.horizontal, 10)
             
