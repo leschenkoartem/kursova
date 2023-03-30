@@ -3,7 +3,10 @@
 ### Стек:
 - Swift 5
 - SwiftUI
-- CoreData
+- UserDefaults
+- CocoaPods
+- Design patterns
+- Application lifecycle
 - Firebase (Authentication, Database, Storage)
 - MVVM
 
@@ -15,9 +18,7 @@
 <img width="331" alt="Снимок экрана 2023-03-13 в 11 19 29" src="https://user-images.githubusercontent.com/114491534/224659628-993d050e-08ed-499b-be6d-d26ac7a520d0.png">
 
 ## Екран аукціонів з можливістю обрати мову та знайти лот за ключевим словом або фільтрами
-
-
-https://user-images.githubusercontent.com/114491534/226146712-d465c58f-385c-4eed-8773-375021793e00.mp4
+https://user-images.githubusercontent.com/114491534/228912351-dcadfc0b-7d22-4de4-912b-434040c3e31b.mp4
 
 
 
