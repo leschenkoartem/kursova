@@ -5,7 +5,6 @@
 //  Created by Artem Leschenko on 21.02.2023.
 //
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct HomeView: View {
     
@@ -39,6 +38,7 @@ struct HomeView: View {
                             .onTapGesture {showSheet.toggle()}
                     }else{
                         AsyncImage(url: URL(string: profileView.profile.image)) { Image in
+                            
                             Image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -112,14 +112,16 @@ struct HomeView: View {
                     }
                     Spacer().frame(height: 130)
                     
+                }.refreshable {
+                    lotView.getLots()
                 }
+                
                 
             }else if showLots == 2{
                 Text("Active Offers:".localized(language)).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
                 Text("Lots, in Which You Participate".localized(language)).foregroundColor(Color(.systemGray3).opacity(0.75))
                 Divider()
-                
                 
                 ScrollView{
                     Spacer().frame(height: 10)
@@ -132,7 +134,10 @@ struct HomeView: View {
                         }
                     }
                     Spacer().frame(height: 130)
+                }.refreshable {
+                    lotView.getLots()
                 }
+                
                 Spacer()
                 
             }else{
@@ -152,13 +157,14 @@ struct HomeView: View {
                         }
                     }
                     Spacer().frame(height: 130)
+                }.refreshable {
+                    lotView.getLots()
                 }
                 Spacer()
             }
         }.edgesIgnoringSafeArea(.bottom)
         //Подтверждение выхода
             .confirmationDialog("Are You sure you want to Log Out?".localized(language), isPresented: $isConfirm, titleVisibility: .visible) {
-                
                 Button(role: .cancel) {
                     isConfirm.toggle()
                 } label: {
@@ -177,7 +183,6 @@ struct HomeView: View {
                 lotView.getLots()
             }
             .sheet(isPresented: $showSheet, onDismiss: {
-                
                 if let image = image{
                     //Добавляем картинку в бд
                     DBUserService.shared.uploadUserImage(image: image)
@@ -192,7 +197,6 @@ struct HomeView: View {
                         profileView.getProfile()
                     }
                 }
-                
             }) {
                 ImagePicker(selectedImage: $image)
             }

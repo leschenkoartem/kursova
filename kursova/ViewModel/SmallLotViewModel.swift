@@ -12,7 +12,6 @@ class SmallLotViewModel : ObservableObject {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
-    
     var lot : LotStruct
     
     init(lot: LotStruct) {

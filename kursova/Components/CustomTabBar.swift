@@ -18,8 +18,6 @@ struct CustomTabBar: View {
         selectedTab.rawValue + ".fill"
     }
     var tabColor = Color(.label).opacity(0.7)
-    
-    
     var body: some View {
         VStack {
             HStack {

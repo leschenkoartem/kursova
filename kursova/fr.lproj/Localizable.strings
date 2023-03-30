@@ -34,6 +34,12 @@
 "To" = "À";
 "Date from:" = "Date à partir de :";
 "Current user status: None" = "Le statut de l'utilisateur actuel: None";
+"Hide your own auctions:" = "Eigene Lose verbergen:";
+"Newest first" = "Plus récent d'abord";
+"Oldest first" = "Plus ancien d'abord";
+"Less popular" = "Moins populaire";
+"Most popular" = "Le plus populaire";
+"Sort by:" = "Trier par:";
 
 //HomeView
 "Self Lots" = "Vos lots";

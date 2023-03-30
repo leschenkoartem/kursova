@@ -12,12 +12,14 @@ import FirebaseAuth
 @main
 struct KursachAuctionsApp: App {
     
+    @StateObject var lotView: LotViewModel = LotViewModel()
+    @StateObject var profileView = AccountViewModel()
     //Firestore
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
-            ContentView(isUsserLogin: AuthService.shared.currentUser != nil)
+            ContentView(isUsserLogin: AuthService.shared.currentUser != nil).environmentObject(lotView).environmentObject(profileView)
         }
     }
 }

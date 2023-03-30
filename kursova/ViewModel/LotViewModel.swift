@@ -12,9 +12,8 @@ import SwiftUI
 
 class LotViewModel: ObservableObject{
     
-    @EnvironmentObject var profilView:AccountViewModel
+    @EnvironmentObject var profilView: AccountViewModel
     @Published var lotsList = [LotStruct]()
-    
     
     init(lotsList: [LotStruct] = [LotStruct]()) {
         self.lotsList = lotsList

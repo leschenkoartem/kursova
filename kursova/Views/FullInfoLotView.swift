@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct FullInfoLotView: View {
     
@@ -18,7 +17,7 @@ struct FullInfoLotView: View {
     @EnvironmentObject var lotView:LotViewModel
     @Environment(\.dismiss) var dismiss
     
-    var lot: SmallLotViewModel
+    var lotVM: SmallLotViewModel
 
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -32,7 +31,7 @@ struct FullInfoLotView: View {
             Spacer().frame(height: 15)
             
             ZStack {
-                Text(lot.lot.mainText).font(.title)
+                Text(lotVM.lot.mainText).font(.title)
                     .fontWeight(.bold)
                     .opacity(0.7)
                 .foregroundColor(Color(.label))
@@ -54,7 +53,7 @@ struct FullInfoLotView: View {
             
             Divider().padding(.horizontal, 10)
             
-            AsyncImage(url: URL(string: lot.lot.image)) { Image in
+            AsyncImage(url: URL(string: lotVM.lot.image)) { Image in
                 Image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -71,37 +70,46 @@ struct FullInfoLotView: View {
                 HStack{
                     Text("Current Price: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(lot.lot.currentPrice)$").opacity(0.6)
+                    Text("\(lotVM.lot.currentPrice)$").opacity(0.6)
                 }
                 
                 HStack{
                     Text("Current User: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(lot.lot.currentPerson)").opacity(0.6)
+                    Text("\(lotVM.lot.currentPerson)").opacity(0.6)
                 }
                 
                 HStack{
                     Text("Observed by: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text( String(lot.lot.seePeopleId.count) + " user/s".localized(language)).opacity(0.6)
+                    Text( String(lotVM.lot.seePeopleId.count) + " user/s".localized(language)).opacity(0.6)
                 }
                 
-                VStack(alignment: .leading){
-                    Text("Lot ID:".localized(language)).opacity(0.6)
-                        .fontWeight(.bold)
-                    Text("\(lot.lot.id)").opacity(0.6).font(.subheadline)
-                }
+                    VStack(alignment: .leading){
+                        Text("Lot ID:".localized(language)).opacity(0.6)
+                            .fontWeight(.bold)
+                        HStack{
+                            Text("\(lotVM.lot.id)").opacity(0.6).font(.subheadline)
+                            
+                            Button {
+                                UIPasteboard.general.string = lotVM.lot.id
+                            } label: {
+                                Image(systemName: "doc.on.doc.fill")
+                                    .foregroundColor(Color(.label))
+                            }
+                        }
+                    }
                 
                 VStack(alignment: .leading){
                     Text("Creator ID:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(lot.lot.idCreator)").opacity(0.6).font(.subheadline)
+                    Text("\(lotVM.lot.idCreator)").opacity(0.6).font(.subheadline)
                 }
                   
                 VStack(alignment: .leading){
                     Text("Made Time:".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(dateFormatter.string(from: lot.lot.date))").opacity(0.6).font(.subheadline)
+                    Text("\(dateFormatter.string(from: lotVM.lot.date))").opacity(0.6).font(.subheadline)
                 }
                 
             }.frame(maxWidth: .infinity, alignment: .leading)
@@ -115,6 +123,6 @@ struct FullInfoLotView: View {
 
 struct FullInfoLotView_Previews: PreviewProvider {
     static var previews: some View {
-        FullInfoLotView(lot: SmallLotViewModel(lot: LotStruct(idCreator: "dcwd", idCurrentPerson: "wdcwc", mainText: "wdc", currentPrice: 2341, informationText: "wdc", date: Date(), seePeopleId: [], image: "wqxw")))
+        FullInfoLotView(lotVM: SmallLotViewModel(lot: LotStruct(idCreator: "dcwd", idCurrentPerson: "wdcwc", mainText: "wdc", currentPrice: 2341, informationText: "wdc", date: Date(), seePeopleId: [], image: "wqxw")))
     }
 }

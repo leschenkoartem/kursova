@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var lotView: LotViewModel = LotViewModel()
-    @StateObject var profileView = AccountViewModel()
+    @EnvironmentObject var lotView: LotViewModel 
+    @EnvironmentObject var profileView: AccountViewModel
     @State var selector: Tab = .hammer
     @State var isUsserLogin:Bool
     

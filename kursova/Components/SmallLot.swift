@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct SmallLot: View {
     
@@ -256,7 +255,7 @@ struct SmallLot: View {
         
         //Полная инфа(ЛИСТ)
             .sheet(isPresented: $showBigImage){
-                FullInfoLotView(lot: selfViewModel)
+                FullInfoLotView(lotVM: selfViewModel)
             }
         //"Если будет нажато" то происходит изменение высоты с анимацией(БЫСТРОЕ НАЖАТИЕ)
             .onTapGesture {

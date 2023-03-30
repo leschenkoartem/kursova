@@ -34,6 +34,12 @@
 "To" = "Hasta";
 "Date from:" = "Fecha desde:";
 "Current user status: None" = "El estado del usuario actual: None";
+"Hide your own auctions:" = "Ocultar tus propias subastas:";
+"Newest first" = "Más reciente primero";
+"Oldest first" = "Más antiguo primero";
+"Less popular" = "Menos popular";
+"Most popular" = "Más popular";
+"Sort by:" = "Ordenar por:";
 
 //HomeView
 "Self Lots" = "Mis lotes" ;
