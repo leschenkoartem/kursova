@@ -42,31 +42,21 @@ class DBUserService{
     }
     
     //Функция, которая заберает инфу про пользователя с бд
-    func getProfile(completion: @escaping(Result<MUser, Error>)->()){
+    func getProfile() async throws -> MUser {
+        guard let currentUser = AuthService.shared.currentUser else { throw AppError.currentUserNil }
         
-        guard let user = AuthService.shared.currentUser else {return}
-        userRef.document(user.uid).getDocument { docSnapshot, error in
+        let docSnapshot = try await userRef.document(currentUser.uid).getDocument()
+        guard let data = docSnapshot.data() else { throw AppError.dataNotFound }
+        guard let userName = data["name"] as? String else { throw AppError.userNameNotFound }
+        guard let userID = data["id"] as? String else { throw AppError.userIDNotFound }
+        guard let userEmail = data["email"] as? String else { throw AppError.userEmailNotFound }
+        guard let userBalance = data["balance"] as? Int else { throw AppError.userBalanceNotFound }
+        guard let image = data["image"] as? String else { throw AppError.userImageNotFound }
         
-            guard let snap = docSnapshot else {return}
-            
-            guard let data = snap.data() else {return}
-            
-            guard let userName = data["name"] as? String else {return}
-            guard let userID = data["id"] as? String else {return}
-            guard let userEmail = data["email"] as? String else {return}
-            guard let userBalance = data["balance"] as? Int else {return}
-            guard let image = data["image"] as? String else {return}
-            
-            let user = MUser(name: userName,
-                                id: userID,
-                                balance: userBalance,
-                                email: userEmail,
-                                image: image)
-            
-            completion(.success(user))
-        }
-
+        let userObject = MUser(name: userName, id: userID, balance: userBalance, email: userEmail, image: image)
+        return userObject
     }
+
 
     func updateBalance(for userId: String, amountToAdd: Double, completion: @escaping (Error?) -> Void) -> Void{
         let userRef = userRef.document(userId)
@@ -123,4 +113,15 @@ class DBUserService{
             }
         }
     }
+}
+
+enum AppError: Error {
+    case currentUserNil
+    case dataNotFound
+    case userNameNotFound
+    case userIDNotFound
+    case userEmailNotFound
+    case userBalanceNotFound
+    case userImageNotFound
+    case downloadURLNotFound
 }
