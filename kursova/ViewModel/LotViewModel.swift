@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 
-class LotViewModel: ObservableObject{
+class LotViewModel: ObservableObject {
     
     @EnvironmentObject var profilView: AccountViewModel
     @Published var lotsList = [LotStruct]()

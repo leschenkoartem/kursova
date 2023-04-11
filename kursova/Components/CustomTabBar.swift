@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum Tab: String, CaseIterable {
+    case newspaper
     case hammer
     case house
 }

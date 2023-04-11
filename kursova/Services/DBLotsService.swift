@@ -34,7 +34,6 @@ class DBLotsService{
         var docData: [String: Any] = lot.representation
         docData["idCreator"] = AuthService.shared.currentUser!.uid
         
-        
         lotRef.document(lot.id).setData(lot.representation) { error in
             if let error = error {
                 print("Error adding document: \(error.localizedDescription)")
@@ -88,7 +87,6 @@ class DBLotsService{
     
     // Удаление лота
     func deleteLotData(LotId: String) {
-        
         dB.collection("lots").document(LotId).delete() { err in
             if let err = err {
                 print("Ошибка при удалении документа: \(err)")

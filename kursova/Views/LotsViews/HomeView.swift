@@ -183,18 +183,20 @@ struct HomeView: View {
                 lotView.getLots()
             }
             .sheet(isPresented: $showSheet, onDismiss: {
-                if let image = image{
+                if let image = image {
                     //Добавляем картинку в бд
                     DBUserService.shared.uploadUserImage(image: image)
                     //Получаем ЮРЛ из бд
-                    DBLotsService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo") { url in
-                        if let url = url{
-                            //Обновляем инф юрл в инф пользователя
+                    Task {
+                        do {
+                            let url = try await DBUserService.shared.getImageUrl(imagePath: AuthService.shared.currentUser!.uid, path: "users_logo")
                             DBUserService.shared.updateUserPhotoUrl(userId: AuthService.shared.currentUser!.uid, newPhotoUrl: url.absoluteString)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                profileView.getProfile()
+                            }
+                        } catch {
+                            print(error)
                         }
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        profileView.getProfile()
                     }
                 }
             }) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 class SmallLotViewModel : ObservableObject {
     
+    @EnvironmentObject var dealView: DealsViewModel
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
@@ -116,8 +117,16 @@ class SmallLotViewModel : ObservableObject {
         DBLotsService.shared.deleteLotData(LotId: lot.id)
         
         
+        if lot.currentPerson != "None" {
+            DBDealsService.shared.addDeal(deal: Deal(buyer: lot.currentPerson,
+                                                     salesman: AuthService.shared.currentUser!.email!,
+                                                     time: Date(),
+                                                     price: lot.currentPrice,
+                                                     name: lot.mainText))
+        }
+        
         return textAlert
-     
+      
     }
     
     

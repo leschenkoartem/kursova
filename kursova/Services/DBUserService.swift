@@ -57,7 +57,6 @@ class DBUserService{
         return userObject
     }
 
-
     func updateBalance(for userId: String, amountToAdd: Double, completion: @escaping (Error?) -> Void) -> Void{
         let userRef = userRef.document(userId)
 
@@ -74,32 +73,28 @@ class DBUserService{
     }
     
     //Получаем ЮРЛ картинки
-    func getImageUrl(imagePath: String, path:String,completion: @escaping (URL?) -> Void) {
+    func getImageUrl(imagePath: String, path: String) async throws -> URL {
         let storageRef = Storage.storage().reference().child("\(path)/\(imagePath).jpg")
-        storageRef.downloadURL { (url, error) in
-            if let error = error {
-                print("Error getting download URL for image \(imagePath): \(error)")
-                completion(nil)
-            } else {
-                completion(url)
-            }
+        do {
+            let downloadUrl = try await storageRef.downloadURL()
+            return downloadUrl
+        } catch {
+            print("Error getting download URL for image \(imagePath): \(error)")
+            throw error
         }
     }
     
     //Загружаэм картинку в бд
-    func uploadUserImage(image:UIImage){
+    func uploadUserImage(image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.3) else { return }
         
-        guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}
-        guard let uid = AuthService.shared.currentUser?.uid else {return}
+        guard let uid = AuthService.shared.currentUser?.uid else { return }
+        
         let ref = Storage.storage().reference().child("users_logo/\(uid).jpg")
         
-        ref.putData(imageData, metadata: nil){url, error in
-            if error != nil{
-                print("\nSomething wrong!!!!!\n")
-                return
-            }
-            print("Succses upload image")
-        }
+        ref.putData(imageData)
+        print("Success upload image")
+        
     }
     
     //Обновляем данные пользователя по картинке
@@ -125,3 +120,4 @@ enum AppError: Error {
     case userImageNotFound
     case downloadURLNotFound
 }
+

@@ -68,7 +68,7 @@ struct AuctionsView: View {
                         }
                     }
     ///-----------------------------------------------------------------------------------------------------------------
-                    Spacer().frame(width: 130)
+                    Spacer().frame(height: 130)
                 }.scrollDismissesKeyboard(.immediately)
                     .refreshable {
                         lotView.getLots()
