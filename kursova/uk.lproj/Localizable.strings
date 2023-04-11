@@ -99,5 +99,11 @@
 "make an offer + " = " Зробити пропозицію +";
 "Finish" = "Завершити";
 
-//LanguaheView
+//LanguageView
 "Change language" = "Змінити мову";
+
+//DealsInfoView
+"\nObject was sold:" = "\nОб'єкт був проданий:";
+"\nPrice: " = "\nЦіна: ";
+"Time: " = "Час: ";
+"Deal ID:\n" = "Ідентифікатор угоди:\n";

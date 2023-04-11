@@ -14,10 +14,13 @@ struct DealsView: View {
     var body: some View {
         ScrollView {
             ForEach(dealsView.orders, id: \.id) { deal in
-                DetailInfoView(deal: deal)
+                DealsInfoView(deal: deal)
             }
             Spacer().frame(height: 130)
-        }.onAppear {
+        }.refreshable {
+            dealsView.getDeals()
+        }
+        .onAppear {
             dealsView.getDeals()
         }
     }

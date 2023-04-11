@@ -22,7 +22,7 @@
 		E37C5A5529E609E1009B510D /* DealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C5A5429E609E1009B510D /* DealsViewModel.swift */; };
 		E37C5A5729E60A70009B510D /* DBDealsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C5A5629E60A70009B510D /* DBDealsService.swift */; };
 		E37C5A5929E6100B009B510D /* DealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C5A5829E6100B009B510D /* DealsView.swift */; };
-		E37C5A5F29E611F9009B510D /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C5A5E29E611F9009B510D /* DetailInfoView.swift */; };
+		E37C5A5F29E611F9009B510D /* DealsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C5A5E29E611F9009B510D /* DealsInfoView.swift */; };
 		E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */; };
 		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
 		E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */; };
@@ -72,7 +72,7 @@
 		E37C5A5429E609E1009B510D /* DealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsViewModel.swift; sourceTree = "<group>"; };
 		E37C5A5629E60A70009B510D /* DBDealsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBDealsService.swift; sourceTree = "<group>"; };
 		E37C5A5829E6100B009B510D /* DealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsView.swift; sourceTree = "<group>"; };
-		E37C5A5E29E611F9009B510D /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
+		E37C5A5E29E611F9009B510D /* DealsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsInfoView.swift; sourceTree = "<group>"; };
 		E3B5440F29C7B654002BADD8 /* LanguageButtonTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LanguageButtonTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D3811C29B3627C009EDDE0 /* FullInfoLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoLotView.swift; sourceTree = "<group>"; };
 		E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = kursova/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
@@ -144,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				E37C5A5829E6100B009B510D /* DealsView.swift */,
-				E37C5A5E29E611F9009B510D /* DetailInfoView.swift */,
+				E37C5A5E29E611F9009B510D /* DealsInfoView.swift */,
 			);
 			path = DealsViews;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */,
 				E3E3056529AB788A00426066 /* UserModel.swift in Sources */,
 				E3155E0729CAF65200BBD1EF /* AcuctionViewModel.swift in Sources */,
-				E37C5A5F29E611F9009B510D /* DetailInfoView.swift in Sources */,
+				E37C5A5F29E611F9009B510D /* DealsInfoView.swift in Sources */,
 				E3E3057529AB793E00426066 /* ContentView.swift in Sources */,
 				E3E3056729AB789C00426066 /* LotModel.swift in Sources */,
 				E3E3055F29AB780500426066 /* HomeView.swift in Sources */,

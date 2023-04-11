@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct DetailInfoView: View {
+struct DealsInfoView: View {
+    
+    //Для мови
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     
     var deal: Deal
     let dateFormatter: DateFormatter = {
@@ -21,10 +25,10 @@ struct DetailInfoView: View {
             Text(deal.name)
                 .font(.title3)
                 .bold()
-            Text("\nОб'єкт був проданий:").bold() + Text("\n\(deal.salesman) -> \(deal.buyer)")
-            Text("\nЦіна: ").bold() + Text("\(deal.price)$")
-            Text("Час: ").bold() + Text("\(dateFormatter.string(from: deal.time))")
-            Text("Ідентифікатор угоди:\n").bold() + Text("\(deal.id)").font(.footnote)
+            Text("\nObject was sold:".localized(language)).bold() + Text("\n\(deal.salesman) -> \(deal.buyer)")
+            Text("\nPrice: ".localized(language)).bold() + Text("\(deal.price)$")
+            Text("Time: ".localized(language)).bold() + Text("\(dateFormatter.string(from: deal.time))")
+            Text("Deal ID:\n".localized(language)).bold() + Text("\(deal.id)").font(.footnote)
         }.frame(maxWidth: .infinity, alignment: .topLeading)
             .padding()
             .background(Color(.systemGray6).opacity(0.75))
@@ -37,6 +41,6 @@ struct DetailInfoView: View {
 
 struct DetailInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailInfoView(deal: Deal(buyer: "artemleschenko296@gmail.com", salesman: "leschenkoapp@gmail.com", time: Date(), price: 12500, name: "Rolc Roys"))
+        DealsInfoView(deal: Deal(buyer: "artemleschenko296@gmail.com", salesman: "leschenkoapp@gmail.com", time: Date(), price: 12500, name: "Rolc Roys"))
     }
 }

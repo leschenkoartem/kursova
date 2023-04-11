@@ -101,3 +101,9 @@
 
 //LanguaheView
 "Change language" = "Ändere die Sprache";
+
+//DealsInfoView
+"\nObject was sold:" = "\nObjekt wurde verkauft:";
+"\nPrice: " = "\nPreis: ";
+"Time: " = "Zeit: ";
+"Deal ID:\n" = "Transaktions-ID:\n";
