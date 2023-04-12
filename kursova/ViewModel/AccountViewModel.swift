@@ -19,8 +19,8 @@ class AccountViewModel: ObservableObject{
 
     //Функция, для получение пользователя на экран
     func getProfile(){
-        Task {
-            self.profile = try await DBUserService.shared.getProfile()
+        Task { [weak self] in
+            self?.profile = try await DBUserService.shared.getProfile()
         }
     }  
 }

@@ -14,13 +14,13 @@ class DealsViewModel: ObservableObject {
     
     init(orders: [Deal] = [Deal]()) {
         self.orders = orders
-        
+        getDeals()
     }
     
     func getDeals() {
-        Task {
+        Task { [weak self] in
             do {
-                orders = try await DBDealsService.shared.getDeals()
+                self?.orders = try await DBDealsService.shared.getDeals()
             } catch {
                 print(error.localizedDescription)
             }

@@ -102,21 +102,21 @@ struct HomeView: View {
                 
                 ScrollView{
                     Spacer().frame(height: 10)
-                    ForEach(0..<lotView.lotsList.count, id: \.self){item in
-                        if let user = AuthService.shared.currentUser?.uid{
-                            let lot = lotView.lotsList[item]
-                            if lot.idCreator == user{
-                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                    LazyVStack {
+                        ForEach(0..<lotView.lotsList.count, id: \.self){item in
+                            if let user = AuthService.shared.currentUser?.uid{
+                                let lot = lotView.lotsList[item]
+                                if lot.idCreator == user{
+                                    SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                                }
                             }
                         }
+                        Spacer().frame(height: 130)
+                        
+                    }.refreshable {
+                        lotView.getLots()
                     }
-                    Spacer().frame(height: 130)
-                    
-                }.refreshable {
-                    lotView.getLots()
                 }
-                
-                
             }else if showLots == 2{
                 Text("Active Offers:".localized(language)).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
@@ -125,19 +125,20 @@ struct HomeView: View {
                 
                 ScrollView{
                     Spacer().frame(height: 10)
-                    ForEach(0..<lotView.lotsList.count, id: \.self) {item in
-                        if let user = AuthService.shared.currentUser?.uid{
-                            let lot = lotView.lotsList[item]
-                            if lot.idCurrentPerson == user{
-                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                    LazyVStack {
+                        ForEach(0..<lotView.lotsList.count, id: \.self) {item in
+                            if let user = AuthService.shared.currentUser?.uid{
+                                let lot = lotView.lotsList[item]
+                                if lot.idCurrentPerson == user{
+                                    SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                                }
                             }
                         }
+                        Spacer().frame(height: 130)
+                    }.refreshable {
+                        lotView.getLots()
                     }
-                    Spacer().frame(height: 130)
-                }.refreshable {
-                    lotView.getLots()
                 }
-                
                 Spacer()
                 
             }else{
@@ -148,17 +149,19 @@ struct HomeView: View {
                 
                 ScrollView{
                     Spacer().frame(height: 10)
-                    ForEach(0..<lotView.lotsList.count, id: \.self){item in
-                        if let user = AuthService.shared.currentUser?.uid{
-                            let lot = lotView.lotsList[item]
-                            if lot.seePeopleId.contains(user){
-                                SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                    LazyVStack{
+                        ForEach(0..<lotView.lotsList.count, id: \.self){item in
+                            if let user = AuthService.shared.currentUser?.uid{
+                                let lot = lotView.lotsList[item]
+                                if lot.seePeopleId.contains(user){
+                                    SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                                }
                             }
                         }
+                        Spacer().frame(height: 130)
+                    }.refreshable {
+                        lotView.getLots()
                     }
-                    Spacer().frame(height: 130)
-                }.refreshable {
-                    lotView.getLots()
                 }
                 Spacer()
             }

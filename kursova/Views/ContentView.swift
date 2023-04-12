@@ -12,7 +12,6 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @StateObject var lotView = LotViewModel()
     @StateObject var profileView = AccountViewModel()
-    @StateObject var dealsView = DealsViewModel()
     @State var selector: Tab = .hammer
     @State var isUsserLogin: Bool
     
@@ -24,7 +23,6 @@ struct ContentView: View {
                     case .newspaper:
                         DealsView()
                             .toolbar(.hidden, for: .tabBar)
-                            .environmentObject(dealsView)
                     case .hammer:
                         AuctionsView()
                             .toolbar(.hidden, for: .tabBar)

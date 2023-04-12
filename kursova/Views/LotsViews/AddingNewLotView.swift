@@ -92,8 +92,8 @@ struct AddingNewLotView: View {
                 //Поля для ввода инфы
                 VStack {
                     CustomTextField(text: $mainText,
-                                    titlet: "Title".localized(language),
-                                    texft: "Enter lots title".localized(language),
+                                    titleOfField: "Title".localized(language),
+                                    placeholder: "Enter lots title".localized(language),
                                     maxLettes: 35)
                     .padding(.bottom, 15)
                     

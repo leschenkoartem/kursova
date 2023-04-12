@@ -99,13 +99,10 @@ class SmallLotViewModel : ObservableObject {
             DBUserService.shared.updateBalance(for: lot.idCreator, amountToAdd: Double(lot.currentPrice)) { error in
                 if let error = error {
                     print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
-                    
                 } else {
                     print("Баланс пользователя успешно обновлен")
-                    
                 }
             }
-            
             textAlert = "Successfully closed the lot. Your balance is replenished by ".localized(language) +  String(lot.currentPrice) + "$"
         }else{
             //если нет, то просто выводим ошибку
@@ -116,9 +113,9 @@ class SmallLotViewModel : ObservableObject {
         DBLotsService.shared.deleteLotPhoto(LotId: lot.id)
         DBLotsService.shared.deleteLotData(LotId: lot.id)
         
-        
         if lot.currentPerson != "None" {
-            DBDealsService.shared.addDeal(deal: Deal(buyer: lot.currentPerson,
+            DBDealsService.shared.addDeal(deal: Deal(id: lot.id,
+                                                     buyer: lot.currentPerson,
                                                      salesman: AuthService.shared.currentUser!.email!,
                                                      time: Date(),
                                                      price: lot.currentPrice,

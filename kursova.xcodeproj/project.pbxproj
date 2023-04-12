@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E3033EFC29B8EFC800B2B23E /* SmallLotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */; };
 		E3155E0329CA710800BBD1EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3155E0229CA710800BBD1EF /* GoogleService-Info.plist */; };
-		E3155E0729CAF65200BBD1EF /* AcuctionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3155E0629CAF65200BBD1EF /* AcuctionViewModel.swift */; };
+		E3155E0729CAF65200BBD1EF /* AuctionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3155E0629CAF65200BBD1EF /* AuctionViewModel.swift */; };
 		E31DCF5529BBCF8000AE6542 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5429BBCF8000AE6542 /* LocalService.swift */; };
 		E31DCF5729BBD09400AE6542 /* LanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DCF5629BBD09400AE6542 /* LanguageButton.swift */; };
 		E3279BD429C622BD00156D32 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3279BD329C622BD00156D32 /* CustomToggle.swift */; };
@@ -59,7 +59,7 @@
 /* Begin PBXFileReference section */
 		E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLotViewModel.swift; sourceTree = "<group>"; };
 		E3155E0229CA710800BBD1EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E3155E0629CAF65200BBD1EF /* AcuctionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcuctionViewModel.swift; sourceTree = "<group>"; };
+		E3155E0629CAF65200BBD1EF /* AuctionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionViewModel.swift; sourceTree = "<group>"; };
 		E31DCF4B29BB2CDD00AE6542 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E31DCF4C29BB319500AE6542 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E31DCF4D29BB33B100AE6542 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 				E3E3056E29AB78FF00426066 /* LotViewModel.swift */,
 				E3E3056C29AB78EC00426066 /* AccountViewModel.swift */,
 				E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */,
-				E3155E0629CAF65200BBD1EF /* AcuctionViewModel.swift */,
+				E3155E0629CAF65200BBD1EF /* AuctionViewModel.swift */,
 				E37C5A5429E609E1009B510D /* DealsViewModel.swift */,
 			);
 			path = ViewModel;
@@ -377,7 +377,7 @@
 				E37C5A5929E6100B009B510D /* DealsView.swift in Sources */,
 				E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */,
 				E3E3056529AB788A00426066 /* UserModel.swift in Sources */,
-				E3155E0729CAF65200BBD1EF /* AcuctionViewModel.swift in Sources */,
+				E3155E0729CAF65200BBD1EF /* AuctionViewModel.swift in Sources */,
 				E37C5A5F29E611F9009B510D /* DealsInfoView.swift in Sources */,
 				E3E3057529AB793E00426066 /* ContentView.swift in Sources */,
 				E3E3056729AB789C00426066 /* LotModel.swift in Sources */,

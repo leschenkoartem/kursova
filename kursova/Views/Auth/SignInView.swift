@@ -34,7 +34,7 @@ struct SignInView : View {
                 //поля ввода
                 VStack{
                     VStack(alignment: .leading){
-                        CustomTextField(text: $email, titlet: "Email".localized(language), texft: "Enter Your Email".localized(language), maxLettes: 200)
+                        CustomTextField(text: $email, titleOfField: "Email".localized(language), placeholder: "Enter Your Email".localized(language), maxLettes: 200)
                             .padding(.bottom, 15)
                         
                         //Поле с паролем

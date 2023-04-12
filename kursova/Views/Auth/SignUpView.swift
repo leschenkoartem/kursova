@@ -31,10 +31,10 @@ struct SignUpView : View {
             VStack{
                 VStack(alignment: .leading){
                     //Поле Имя/Фамилия
-                    CustomTextField(text: $name, titlet: "Name / Surname".localized(language), texft: "Enter Your Name And Surname".localized(language), maxLettes: 40).padding(.bottom, 15)
+                    CustomTextField(text: $name, titleOfField: "Name / Surname".localized(language), placeholder: "Enter Your Name And Surname".localized(language), maxLettes: 40).padding(.bottom, 15)
                     
                     //Поле емайл
-                    CustomTextField(text: $email, titlet: "Email".localized(language), texft: "Enter Your Email".localized(language), maxLettes: 60).padding(.bottom, 15)
+                    CustomTextField(text: $email, titleOfField: "Email".localized(language), placeholder: "Enter Your Email".localized(language), maxLettes: 60).padding(.bottom, 15)
                     
                     //Поле пароль
                     VStack(alignment: .leading){

@@ -32,6 +32,8 @@ struct AuctionsView: View {
     ///Для пошукового слова
     @State private var searchInputWord = ""
     
+    @State private var loadedCount = 5
+    
     @EnvironmentObject var lotView: LotViewModel
     
     ///Для оптимізації пошуку по слову
@@ -40,39 +42,39 @@ struct AuctionsView: View {
     }
     
     var body: some View {
-        ZStack{
-            
-            VStack{
+        ZStack {
+            VStack {
                 Spacer().frame(height: 100)
+                
                 ScrollView{
                     Spacer().frame(height: 10)
-    //                Rectangle().foregroundColor(.red).cornerRadius(12)
-    //                Rectangle().frame(height: 200)
-    ///Отдел с фильтрами ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                    ForEach(0..<lotView.lotsList.count, id: \.self){item in
-
-                        let lot = vm.getQueue(observedQueue: observedQueue, list: lotView.lotsList)[item]
-
-                        let redactedLot  = vm.getLot(priceFilterOn: priceFilterOn,
-                                             dateFilterOn: dateFilterOn,
-                                             currentFilterOn: currentFilterOn,
-                                             filterCrearor: filterCrearor,
-                                             lot: lot,
-                                             searchWord: searchWord,
-                                             selectedDate: selectedDate,
-                                             minPrice: minPrice,
-                                             maxPrice: maxPrice)
-
-                        if redactedLot != nil { //Фильтр даты
-                            SmallLot(selfViewModel: SmallLotViewModel(lot: redactedLot!))
+                    
+                    LazyVStack{
+                        ForEach(0..<lotView.lotsList.count, id: \.self){item in
+                            
+                            let lot = vm.getQueue(observedQueue: observedQueue, list: lotView.lotsList)[item]
+                            
+                            let redactedLot  = vm.getLot(priceFilterOn: priceFilterOn,
+                                                         dateFilterOn: dateFilterOn,
+                                                         currentFilterOn: currentFilterOn,
+                                                         filterCrearor: filterCrearor,
+                                                         lot: lot,
+                                                         searchWord: searchWord,
+                                                         selectedDate: selectedDate,
+                                                         minPrice: minPrice,
+                                                         maxPrice: maxPrice)
+                            
+                            if redactedLot != nil { //Фильтр даты
+                                SmallLot(selfViewModel: SmallLotViewModel(lot: redactedLot!))
+                            }
                         }
-                    }
-    ///-----------------------------------------------------------------------------------------------------------------
-                    Spacer().frame(height: 130)
-                }.scrollDismissesKeyboard(.immediately)
-                    .refreshable {
-                        lotView.getLots()
-                    }
+                        Spacer().frame(height: 130)
+                        
+                    }.scrollDismissesKeyboard(.immediately)
+                        .refreshable {
+                            lotView.getLots()
+                        }
+                }
             }
             
             VStack{

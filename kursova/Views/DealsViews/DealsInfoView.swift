@@ -36,6 +36,15 @@ struct DealsInfoView: View {
             .cornerRadius(30)
             .shadow(radius: 5)
             .foregroundColor(Color(.label).opacity(0.75))
+            .contextMenu {
+                Button {
+                    UIPasteboard.general.string = deal.id
+                } label: {
+                    Text("Copy ID".localized(language))
+                    Image(systemName: "doc.on.doc.fill")
+                        .foregroundColor(Color(.label))
+                }
+            }
     }
 }
 

@@ -10,18 +10,18 @@ import SwiftUI
 struct CustomTextField: View {
     
     @Binding var text:String
-    var titlet:String
-    var texft:String
+    var titleOfField:String
+    var placeholder:String
     let maxLettes:Int
     
     
     var body: some View {
         VStack(alignment: .leading){
             
-            Text(titlet).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
+            Text(titleOfField).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
             
             HStack{
-                TextField(texft, text: $text).autocorrectionDisabled(true).textInputAutocapitalization(.never)
+                TextField(placeholder, text: $text).autocorrectionDisabled(true).textInputAutocapitalization(.never)
                     .onChange(of: text) { newText in
                     if newText.count > maxLettes { // Limit input to 180 characters
                         text = String(newText.prefix(maxLettes))
@@ -36,6 +36,6 @@ struct CustomTextField: View {
 struct CustomTextField_Previews: PreviewProvider {
     @State static var a = ""
     static var previews: some View {
-        CustomTextField(text: $a, titlet: "cd", texft: "wdx", maxLettes: 10)
+        CustomTextField(text: $a, titleOfField: "cd", placeholder: "wdx", maxLettes: 10)
     }
 }

@@ -252,7 +252,6 @@ struct SmallLot: View {
             .shadow(radius: 5)
         //Делаем анимацию
             .animation(.easeInOut(duration: 0.5), value: getBigger)
-        
         //Полная инфа(ЛИСТ)
             .sheet(isPresented: $showBigImage){
                 FullInfoLotView(lotVM: selfViewModel)
