@@ -14,12 +14,13 @@ struct SignInView : View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
  
-    @Binding var isUserLogin:Bool
     @State var email = ""
     @State var pass = ""
     @State var isAlert = false
     @State var textAlert = ""
     @State var isProfileShow = false
+    @AppStorage("status")
+    var userLogIn = UserDefaults.standard.bool(forKey: "status")
     
     var body : some View{
         NavigationView{
@@ -55,7 +56,7 @@ struct SignInView : View {
                             switch result{
                             case .success(_):
                                 email.removeAll()
-                                isUserLogin.toggle()
+                                UserDefaults.standard.set(true, forKey: "status")
                             case .failure(let error):
                                 textAlert = "\(error.localizedDescription)"
                                 isAlert.toggle()
@@ -94,8 +95,7 @@ struct SignInView : View {
 
 
 struct SignInView_Previews: PreviewProvider {
-    @State static var a = false
     static var previews: some View {
-        SignInView(isUserLogin: $a)
+        SignInView()
     }
 }

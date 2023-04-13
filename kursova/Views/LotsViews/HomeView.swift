@@ -14,7 +14,6 @@ struct HomeView: View {
     @State var creatLot = false
     @State var showSheet = false
     @State private var image: UIImage?
-    @Binding var isUserLogin: Bool
     @State var isConfirm = false
     @State var showLots = 1
     
@@ -175,7 +174,7 @@ struct HomeView: View {
                 }
                 Button(role: .destructive) {
                     AuthService.shared.signOut()
-                    isUserLogin.toggle()
+                    UserDefaults.standard.set(false, forKey: "status")
                 } label: {
                     Text("Yeah".localized(language))
                 }
@@ -213,8 +212,7 @@ struct HomeView: View {
     
 
 struct HomeView_Previews: PreviewProvider {
-    @State static var a:Bool = false
     static var previews: some View {
-        HomeView( isUserLogin: $a).environmentObject(LotViewModel()).environmentObject(AccountViewModel())
+        HomeView().environmentObject(LotViewModel()).environmentObject(AccountViewModel())
     }
 }

@@ -13,10 +13,11 @@ struct ContentView: View {
     @StateObject var lotView = LotViewModel()
     @StateObject var profileView = AccountViewModel()
     @State var selector: Tab = .hammer
-    @State var isUsserLogin: Bool
+    @AppStorage("status")
+    var userLogIn = UserDefaults.standard.bool(forKey: "status")
     
     var body: some View {
-        if isUsserLogin {
+        if userLogIn {
             ZStack {
                 TabView(selection: $selector) {
                     switch selector{
@@ -30,7 +31,7 @@ struct ContentView: View {
                             .environmentObject(lotView)
                             .blur(radius: scenePhase == .inactive ? 10: 0)
                     case .house:
-                            HomeView(isUserLogin: $isUsserLogin)
+                            HomeView()
                                 .toolbar(.hidden, for: .tabBar)
                                 .environmentObject(profileView)
                                 .environmentObject(lotView)
@@ -44,13 +45,13 @@ struct ContentView: View {
                 }.frame(maxHeight: .infinity, alignment: .bottom)
             }
         } else {
-            SignInView(isUserLogin: $isUsserLogin)
+            SignInView()
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(isUsserLogin: false)
+        ContentView()
     }
 }

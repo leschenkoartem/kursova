@@ -7,16 +7,16 @@
 
 import SwiftUI
 import Firebase
-import FirebaseAuth
 
 @main
 struct KursachAuctionsApp: App {
     //Firestore
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(isUsserLogin: AuthService.shared.currentUser != nil)
+            ContentView()
         }
     }
 }
