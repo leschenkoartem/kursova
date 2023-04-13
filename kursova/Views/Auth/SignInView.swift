@@ -19,8 +19,6 @@ struct SignInView : View {
     @State var isAlert = false
     @State var textAlert = ""
     @State var isProfileShow = false
-    @AppStorage("status")
-    var userLogIn = UserDefaults.standard.bool(forKey: "status")
     
     var body : some View{
         NavigationView{
@@ -56,7 +54,7 @@ struct SignInView : View {
                             switch result{
                             case .success(_):
                                 email.removeAll()
-                                UserDefaults.standard.set(true, forKey: "status")
+                                UserDefaults.standard.set(true, forKey: "UserLoginStatus")
                             case .failure(let error):
                                 textAlert = "\(error.localizedDescription)"
                                 isAlert.toggle()

@@ -13,8 +13,9 @@ struct ContentView: View {
     @StateObject var lotView = LotViewModel()
     @StateObject var profileView = AccountViewModel()
     @State var selector: Tab = .hammer
-    @AppStorage("status")
-    var userLogIn = UserDefaults.standard.bool(forKey: "status")
+    
+    @AppStorage("UserLoginStatus")
+    var userLogIn = UserDefaults.standard.bool(forKey: "UserLoginStatus")
     
     var body: some View {
         if userLogIn {

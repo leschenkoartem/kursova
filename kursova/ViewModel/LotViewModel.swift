@@ -14,6 +14,8 @@ class LotViewModel: ObservableObject {
     
     @EnvironmentObject var profilView: AccountViewModel
     @Published var lotsList = [LotStruct]()
+    @Published var options = LotQueryOptions()
+    
     
     init(lotsList: [LotStruct] = [LotStruct]()) {
         self.lotsList = lotsList
@@ -21,7 +23,7 @@ class LotViewModel: ObservableObject {
     }
     
     func getLots(){
-        DBLotsService.shared.getLots { result in
+        DBLotsService.shared.getLots(options: options) { result in
             switch result{
             case .success(let lots):
                 self.lotsList = lots

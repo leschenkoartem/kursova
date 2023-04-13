@@ -13,6 +13,7 @@ class AuthService{
     static let shared = AuthService()
     private let auth = Auth.auth()
     var currentUser: User? {
+        UserDefaults.standard.set( auth.currentUser != nil, forKey: "UserLoginStatus" )
         return auth.currentUser
     }
        

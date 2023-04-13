@@ -30,7 +30,7 @@ struct AddingNewLotView: View {
     //Для диалога
     @State var showDialog = false
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var lotView:LotViewModel
+    @EnvironmentObject var lotView: LotViewModel
     var body: some View {
         ZStack{
             VStack {

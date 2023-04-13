@@ -36,9 +36,10 @@ class AuctionViewModel{
                 maxPrice: String ) -> LotStruct?{
         
         let lot = lot
+        
+        //Фільтри на стороні клієнта
         if (lot.mainText.uppercased().contains(searchWord.uppercased()) || searchWord.contains(lot.id))
-                                && (priceFilterOn ? (lot.currentPrice >= Int(minPrice) ?? 0 && lot.currentPrice <= Int(maxPrice) ?? 1000000) : true) //Фильтр цены
-                                && (dateFilterOn ? (lot.date >= selectedDate): true)
+                                && (priceFilterOn ? (lot.currentPrice >= Int(minPrice) ?? 0 && lot.currentPrice <= Int(maxPrice) ?? 1000000) : true)
                                 && (currentFilterOn ? (lot.currentPerson == "None"): true)
                                 && (filterCrearor ? lot.idCreator != AuthService.shared.currentUser!.uid: true) { //Фильтр даты
                                 return lot

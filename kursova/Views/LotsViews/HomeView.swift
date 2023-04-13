@@ -103,7 +103,7 @@ struct HomeView: View {
                     Spacer().frame(height: 10)
                     LazyVStack {
                         ForEach(0..<lotView.lotsList.count, id: \.self){item in
-                            if let user = AuthService.shared.currentUser?.uid{
+                            if let user = AuthService.shared.currentUser?.uid {
                                 let lot = lotView.lotsList[item]
                                 if lot.idCreator == user{
                                     SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
@@ -174,7 +174,7 @@ struct HomeView: View {
                 }
                 Button(role: .destructive) {
                     AuthService.shared.signOut()
-                    UserDefaults.standard.set(false, forKey: "status")
+                    UserDefaults.standard.set(false, forKey: "UserLoginStatus")
                 } label: {
                     Text("Yeah".localized(language))
                 }

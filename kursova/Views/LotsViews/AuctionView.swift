@@ -50,22 +50,22 @@ struct AuctionsView: View {
                     Spacer().frame(height: 10)
                     
                     LazyVStack{
-                        ForEach(0..<lotView.lotsList.count, id: \.self){item in
-                            
+                        ForEach(0..<lotView.lotsList.count, id: \.self) {item in
                             let lot = vm.getQueue(observedQueue: observedQueue, list: lotView.lotsList)[item]
-                            
-                            let redactedLot  = vm.getLot(priceFilterOn: priceFilterOn,
-                                                         dateFilterOn: dateFilterOn,
-                                                         currentFilterOn: currentFilterOn,
-                                                         filterCrearor: filterCrearor,
-                                                         lot: lot,
-                                                         searchWord: searchWord,
-                                                         selectedDate: selectedDate,
-                                                         minPrice: minPrice,
-                                                         maxPrice: maxPrice)
-                            
-                            if redactedLot != nil { //Фильтр даты
-                                SmallLot(selfViewModel: SmallLotViewModel(lot: redactedLot!))
+                            if lot.mainText.contains(searchWord) {
+                                let redactedLot  = vm.getLot(priceFilterOn: priceFilterOn,
+                                                             dateFilterOn: dateFilterOn,
+                                                             currentFilterOn: currentFilterOn,
+                                                             filterCrearor: filterCrearor,
+                                                             lot: lot,
+                                                             searchWord: searchWord,
+                                                             selectedDate: selectedDate,
+                                                             minPrice: minPrice,
+                                                             maxPrice: maxPrice)
+                                
+                                if redactedLot != nil { //Фильтр даты
+                                    SmallLot(selfViewModel: SmallLotViewModel(lot: redactedLot!))
+                                }
                             }
                         }
                         Spacer().frame(height: 130)
@@ -149,8 +149,15 @@ struct AuctionsView: View {
                                            in: Calendar.current.date(from: DateComponents(year: 2010, month: 1, day: 1))!...Date(),
                                            displayedComponents: .date
                                 ).frame(maxWidth: 120)
+                                    .onChange(of: selectedDate) { _ in
+                                        dateFilterOn = false
+                                    }
                                 Spacer()
-                                CustomToggle(switchMark: $dateFilterOn)
+                                CustomToggle(switchMark: $dateFilterOn).onChange(of: dateFilterOn) { NewValue in
+                                    lotView.options.dateFilterOn = NewValue
+                                    lotView.options.selectedDate = selectedDate
+                                    lotView.getLots()
+                                }
                             }
                             //Фільтр теперішнього користувача
                             HStack{
@@ -193,8 +200,11 @@ struct AuctionsView: View {
                 Spacer()
             }
         }.edgesIgnoringSafeArea(.bottom)
-            .onAppear{
+            .onAppear {
                 lotView.getLots()
+            }
+            .onDisappear {
+                lotView.options = LotQueryOptions()
             }
     }
 }

@@ -43,16 +43,25 @@ class DBLotsService{
         }
     }
     
+    
     //Получение лота
-    func getLots(completion: @escaping (Result<[LotStruct], Error>) -> Void) {
-        lotRef.getDocuments { qSnap, error in
+    func getLots(options: LotQueryOptions, completion: @escaping (Result<[LotStruct], Error>) -> Void) {
+        
+        //Фільтри на стороні клієнта
+        var query: Query = lotRef
+    
+        if options.dateFilterOn, let selectedDate = options.selectedDate{
+            query = query.whereField("date", isGreaterThan: selectedDate)
+        }
+        
+        query.getDocuments { qSnap, error in
             guard let qSnap = qSnap else {
                 if let error = error {
                     completion(.failure(error))
                 }
                 return
             }
-            
+            print(Date().description)
             let lots = qSnap.documents.compactMap { doc -> LotStruct? in
                 guard let id = doc["id"] as? String,
                       let idCurrentPerson = doc["idCurrentPerson"] as? String,
@@ -173,4 +182,17 @@ class DBLotsService{
             }
         }
     }
+}
+
+
+struct LotQueryOptions {
+    var observedQueue: Int?
+    var searchWord: String?
+    var selectedDate: Date?
+    var minPrice: String?
+    var maxPrice: String?
+    var priceFilterOn: Bool = false
+    var dateFilterOn: Bool = false
+    var currentFilterOn: Bool = false
+    var filterCreator: Bool = UserDefaults.standard.bool(forKey: "filterCrearor")
 }
