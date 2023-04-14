@@ -8,72 +8,43 @@
 import SwiftUI
 
 struct AuctionsView: View {
-    var vm = AuctionViewModel()
+    @ObservedObject var vm = AuctionViewModel()
     
-    //Для мови
+    //Для фільтру
+    @State  var showFilters = false
+    ///Для фільтру дати
+    @State  var dateFilterOn = false
+    @State  var selectedDate = Date()
+    ///Для мови
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     
-    //Для фільтру
-    @State private var showFilters = false
-    ///Для фільтру ціни
-    @State private var priceFilterOn = false
-    @State private var minPrice = ""
-    @State private var maxPrice = ""
-    ///Для фільтру дати
-    @State private var dateFilterOn = false
-    @State private var selectedDate = Date()
-    ///Для фільтру поточного користувача
-    @State private var currentFilterOn = false
-    ///Для фільтру власника користувача
-    @State private var filterCrearor = UserDefaults.standard.bool(forKey: "filterCrearor")
-    ///Для фільтру послідовності
-    @State private var observedQueue = 0
-    ///Для пошукового слова
-    @State private var searchInputWord = ""
-    
-    @State private var loadedCount = 5
-    
     @EnvironmentObject var lotView: LotViewModel
-    
-    ///Для оптимізації пошуку по слову
-    var searchWord:String{
-        get{return searchInputWord == "" ? " ": searchInputWord}
-    }
+    @EnvironmentObject var profilView: AccountViewModel
     
     var body: some View {
         ZStack {
             VStack {
                 Spacer().frame(height: 100)
                 
-                ScrollView{
+                ScrollView {
                     Spacer().frame(height: 10)
                     
                     LazyVStack{
                         ForEach(0..<lotView.lotsList.count, id: \.self) {item in
-                            let lot = vm.getQueue(observedQueue: observedQueue, list: lotView.lotsList)[item]
-                            if lot.mainText.contains(searchWord) {
-                                let redactedLot  = vm.getLot(priceFilterOn: priceFilterOn,
-                                                             dateFilterOn: dateFilterOn,
-                                                             currentFilterOn: currentFilterOn,
-                                                             filterCrearor: filterCrearor,
-                                                             lot: lot,
-                                                             searchWord: searchWord,
-                                                             selectedDate: selectedDate,
-                                                             minPrice: minPrice,
-                                                             maxPrice: maxPrice)
-                                
+                            let lot = vm.getQueue(observedQueue: vm.observedQueue, list: lotView.lotsList)[item]
+                            
+                            let redactedLot  = vm.getLot(lot: lot)
+
                                 if redactedLot != nil { //Фильтр даты
-                                    SmallLot(selfViewModel: SmallLotViewModel(lot: redactedLot!))
+                                    SmallLot(vm: SmallLotViewModel(lot: redactedLot!, profilView: profilView ))
                                 }
-                            }
                         }
                         Spacer().frame(height: 130)
                         
                     }.scrollDismissesKeyboard(.immediately)
-                        .refreshable {
-                            lotView.getLots()
-                        }
+                }.refreshable {
+                    lotView.getLots()
                 }
             }
             
@@ -81,17 +52,17 @@ struct AuctionsView: View {
                 VStack(spacing: 0) {
                     HStack {
                         HStack{
-                            if searchInputWord == ""{
+                            if vm.searchInputWord == ""{
                                 Image(systemName: "magnifyingglass").foregroundColor(Color(.label).opacity(0.5))
                             }else{
                                 Button {
-                                    searchInputWord.removeAll()
+                                    vm.searchInputWord.removeAll()
                                 } label: {
                                     Image(systemName: "xmark").foregroundColor(Color(.label).opacity(0.5))
                                 }
                             }
                             
-                            TextField("Search by keyword...".localized(language), text: $searchInputWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
+                            TextField("Search by keyword...".localized(language), text: $vm.searchInputWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
                                 .foregroundColor(Color(.label).opacity(0.5))
                             
                             
@@ -131,14 +102,14 @@ struct AuctionsView: View {
                             HStack{
                                 Text("Price".localized(language) + ": ").opacity(0.75)
                                 
-                                TextField("From".localized(language), text: $minPrice)
+                                TextField("From".localized(language), text: $vm.minPrice)
                                     .textFieldStyle(.roundedBorder)
                                     .keyboardType(.numberPad)
                                 
-                                TextField("To".localized(language), text: $maxPrice).textFieldStyle(.roundedBorder)
+                                TextField("To".localized(language), text: $vm.maxPrice).textFieldStyle(.roundedBorder)
                                     .keyboardType(.numberPad)
                                 
-                                CustomToggle(switchMark: $priceFilterOn)
+                                CustomToggle(switchMark: $vm.priceFilterOn)
                             }
                             //Фільтр дати
                             HStack {
@@ -163,14 +134,14 @@ struct AuctionsView: View {
                             HStack{
                                 Text("Current user status: None".localized(language)).opacity(0.75)
                                 Spacer()
-                                CustomToggle(switchMark: $currentFilterOn)
+                                CustomToggle(switchMark: $vm.currentFilterOn)
                             }
                             //Фільтр власника користувача
                             HStack{
                                 Text("Hide your own auctions:".localized(language)).opacity(0.75)
                                 Spacer()
-                                CustomToggle(switchMark: $filterCrearor)
-                                    .onChange(of: filterCrearor) { newValue in
+                                CustomToggle(switchMark: $vm.filterCrearor)
+                                    .onChange(of: vm.filterCrearor) { newValue in
                                         UserDefaults.standard.set(newValue, forKey: "filterCrearor")
                                     }
                             }
@@ -178,7 +149,7 @@ struct AuctionsView: View {
                             HStack{
                                 Text("Sort by:".localized(language)).opacity(0.75)
                                 Spacer()
-                                Picker("", selection: $observedQueue) {
+                                Picker("", selection: $vm.observedQueue) {
                                     Text("Newest first".localized(language)).tag(0)
                                     Text("Oldest first".localized(language)).tag(1)
                                     Text("Less popular".localized(language)).tag(2)
@@ -203,9 +174,7 @@ struct AuctionsView: View {
             .onAppear {
                 lotView.getLots()
             }
-            .onDisappear {
-                lotView.options = LotQueryOptions()
-            }
+            
     }
 }
 

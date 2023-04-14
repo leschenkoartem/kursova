@@ -27,6 +27,7 @@
 		E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */; };
 		E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */; };
 		E3D764C529AFB96B0070DDC9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */; };
+		E3DBEF1D29E9574500E8D282 /* SignInUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DBEF1C29E9574500E8D282 /* SignInUpViewModel.swift */; };
 		E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055029AB76A500426066 /* kursovaApp.swift */; };
 		E3E3055529AB76A600426066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055429AB76A600426066 /* Assets.xcassets */; };
 		E3E3055829AB76A600426066 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055729AB76A600426066 /* Preview Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = kursova/Components/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
 		E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewLotView.swift; sourceTree = "<group>"; };
 		E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		E3DBEF1C29E9574500E8D282 /* SignInUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUpViewModel.swift; sourceTree = "<group>"; };
 		E3E3054D29AB76A500426066 /* kursova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kursova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E3055029AB76A500426066 /* kursovaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kursovaApp.swift; sourceTree = "<group>"; };
 		E3E3055429AB76A600426066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */,
 				E3155E0629CAF65200BBD1EF /* AuctionViewModel.swift */,
 				E37C5A5429E609E1009B510D /* DealsViewModel.swift */,
+				E3DBEF1C29E9574500E8D282 /* SignInUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */,
 				E3D3811D29B3627C009EDDE0 /* FullInfoLotView.swift in Sources */,
 				E37C5A5929E6100B009B510D /* DealsView.swift in Sources */,
+				E3DBEF1D29E9574500E8D282 /* SignInUpViewModel.swift in Sources */,
 				E3E3056129AB782B00426066 /* CustomTabBar.swift in Sources */,
 				E3E3056529AB788A00426066 /* UserModel.swift in Sources */,
 				E3155E0729CAF65200BBD1EF /* AuctionViewModel.swift in Sources */,

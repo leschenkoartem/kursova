@@ -14,12 +14,8 @@ struct SignUpView : View {
     
     @AppStorage("language") private var language = LocalizationService.shared.language
     
-    @State var name = ""
-    @Binding  var email:String
-    @Binding  var pass:String
-    @State var confirmPass = ""
-    @State var isAlert = false
-    @State var textAlert = ""
+    @ObservedObject var vm: SignInUpViewModel
+    
     @Environment(\.dismiss) var dismiss
     
     var body : some View{
@@ -31,28 +27,21 @@ struct SignUpView : View {
             VStack{
                 VStack(alignment: .leading){
                     //Поле Имя/Фамилия
-                    CustomTextField(text: $name, titleOfField: "Name / Surname".localized(language), placeholder: "Enter Your Name And Surname".localized(language), maxLettes: 40).padding(.bottom, 15)
-                    
+                    CustomTextField(text: $vm.name, titleOfField: "Name / Surname".localized(language), placeholder: "Enter Your Name And Surname".localized(language), maxLettes: 40).padding(.bottom, 15)
                     //Поле емайл
-                    CustomTextField(text: $email, titleOfField: "Email".localized(language), placeholder: "Enter Your Email".localized(language), maxLettes: 60).padding(.bottom, 15)
+                    CustomTextField(text: $vm.email, titleOfField: "Email".localized(language), placeholder: "Enter Your Email".localized(language), maxLettes: 60).padding(.bottom, 15)
                     
                     //Поле пароль
-                    VStack(alignment: .leading){
-                        
+                    VStack(alignment: .leading) {
                         Text("Password".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
-                        
-                        SecureField("Enter Your Password".localized(language), text: $pass)
-                        
+                        SecureField("Enter Your Password".localized(language), text: $vm.pass)
                         Divider()
                     }.padding(.bottom, 15)
                     
                     //Поле confirm апроль
-                    VStack(alignment: .leading){
-                        
+                    VStack(alignment: .leading) {
                         Text("Confirm your password".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
-                        
-                        SecureField("Repeat Your Password".localized(language), text: $confirmPass)
-                        
+                        SecureField("Repeat Your Password".localized(language), text: $vm.confirmPass)
                         Divider()
                     }
                     
@@ -62,37 +51,10 @@ struct SignUpView : View {
             //кнопки
             VStack{
                 
-                Button(action: {
-                    guard pass == confirmPass else{
-                        textAlert = "Password mismatch".localized(language)
-                        confirmPass.removeAll()
-                        isAlert.toggle()
-                        return
-                    }
-                    guard name.count > 3 else{
-                        textAlert = "Too short name and surname".localized(language)
-                        isAlert.toggle()
-                        return
-                    }
-                    
-                    AuthService.shared.signUp(email: email, password: pass, name: name) { result in
-                        switch result{
-                        case .success(let user):
-                            textAlert = "Registration with ".localized(language) + user.email!
-                            isAlert.toggle()
-                            name.removeAll()
-                            pass.removeAll()
-                            confirmPass.removeAll()
-                            email.removeAll()
-                        case .failure(let error):
-                            textAlert = "\(error.localizedDescription)!"
-                            isAlert.toggle()
-                        }
-                    }
-                    
-                }) {
+                Button {
+                    vm.signUp()
+                } label: {
                     Text("Sign Up".localized(language)).foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
-                    
                 }.background(Color(.systemGray5))
                     .clipShape(Capsule())
                     .padding(.top, 45)
@@ -101,21 +63,17 @@ struct SignUpView : View {
                 Text("(or)".localized(language)).foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
                 //Поля вернуться к входу
                 HStack(spacing: 8){
-                    
                     Text("Already Have An Account ?".localized(language)).foregroundColor(Color.gray.opacity(0.5))
                     
-                    Button(action: {
+                    Button {
                         dismiss()
-                    }) {
-                        
+                    } label: {
                         Text("Sign In".localized(language))
-                        
                     }.foregroundColor(.blue)
-                    
                 }.padding(.top, 25)
             }
         }.navigationBarBackButtonHidden(true)
-            .alert(textAlert, isPresented: $isAlert) {
+            .alert(vm.textAlert, isPresented: $vm.isAlert) {
                 Text("OK")
             }
             .onTapGesture {
@@ -131,7 +89,7 @@ struct SignUpView_Previews: PreviewProvider {
    
     
     static var previews: some View {
-        SignUpView(email: $a, pass: $b)
+        SignUpView(vm: SignInUpViewModel())
     }
 }
 

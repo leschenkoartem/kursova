@@ -7,7 +7,25 @@
 
 import Foundation
 
-class AuctionViewModel{
+class AuctionViewModel: ObservableObject {
+    
+    ///Для фільтру ціни
+    @Published  var priceFilterOn = false
+    @Published  var minPrice = ""
+    @Published  var maxPrice = ""
+    ///Для фільтру поточного користувача
+    @Published  var currentFilterOn = false
+    ///Для фільтру власника користувача
+    @Published  var filterCrearor = UserDefaults.standard.bool(forKey: "filterCrearor")
+    ///Для фільтру послідовності
+    @Published  var observedQueue = 0
+    ///Для пошукового слова
+    @Published  var searchInputWord = ""
+    
+    ///Для оптимізації пошуку по слову
+    var searchWord:String{
+        get{return searchInputWord == "" ? " ": searchInputWord}
+    }
     
     func getQueue(observedQueue: Int, list: [LotStruct]) -> [LotStruct]{
         
@@ -25,15 +43,7 @@ class AuctionViewModel{
         }
     }
     
-    func getLot(priceFilterOn: Bool,
-                dateFilterOn: Bool,
-                currentFilterOn: Bool,
-                filterCrearor: Bool,
-                lot: LotStruct,
-                searchWord: String,
-                selectedDate: Date,
-                minPrice: String,
-                maxPrice: String ) -> LotStruct?{
+    func getLot(lot: LotStruct) -> LotStruct?{
         
         let lot = lot
         

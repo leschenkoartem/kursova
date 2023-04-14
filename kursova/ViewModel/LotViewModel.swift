@@ -7,7 +7,10 @@
 
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 import SwiftUI
+import FirebaseStorage
 
 
 class LotViewModel: ObservableObject {
@@ -15,7 +18,7 @@ class LotViewModel: ObservableObject {
     @EnvironmentObject var profilView: AccountViewModel
     @Published var lotsList = [LotStruct]()
     @Published var options = LotQueryOptions()
-    
+    var snap: DocumentSnapshot?
     
     init(lotsList: [LotStruct] = [LotStruct]()) {
         self.lotsList = lotsList

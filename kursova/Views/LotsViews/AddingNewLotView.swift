@@ -17,12 +17,12 @@ struct AddingNewLotView: View {
     
     //Для выбора картинки
     @State var showSheet = false
-    @State var image:UIImage?
+    @State var image: UIImage?
     
     //для текстовой информации
-    @State var mainText:String = ""
-    @State var price:String = ""
-    @State var informationText:String = ""
+    @State var mainText: String = ""
+    @State var price: String = ""
+    @State var informationText: String = ""
     
     //для вывода ошибки
     @State var showAlert = false
@@ -149,7 +149,7 @@ struct AddingNewLotView: View {
                     Button {
                         if mainText == "" || price == "" || informationText == "" || image == nil {
                             showAlert.toggle()
-                        }else{
+                        } else {
                             showDialog.toggle()
                         }
                     }label: {

@@ -14,11 +14,8 @@ struct SignInView : View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
  
-    @State var email = ""
-    @State var pass = ""
-    @State var isAlert = false
-    @State var textAlert = ""
-    @State var isProfileShow = false
+    @ObservedObject private var vm = SignInUpViewModel()
+    
     
     var body : some View{
         NavigationView{
@@ -27,20 +24,18 @@ struct SignInView : View {
                 HStack{
                     LanguageButton(width: 60.0, height: 40.0).padding(.top, 6)
                 }
-                
                 Text("Sign In".localized(language)).fontWeight(.heavy).font(.largeTitle).padding(.vertical, 20)
-                
                 //поля ввода
                 VStack{
                     VStack(alignment: .leading){
-                        CustomTextField(text: $email, titleOfField: "Email".localized(language), placeholder: "Enter Your Email".localized(language), maxLettes: 200)
+                        CustomTextField(text: $vm.email, titleOfField: "Email".localized(language), placeholder: "Enter Your Email".localized(language), maxLettes: 200)
                             .padding(.bottom, 15)
                         
                         //Поле с паролем
                         VStack(alignment: .leading){
                             Text("Password".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                             
-                            SecureField("Enter Your Password".localized(language), text: $pass)
+                            SecureField("Enter Your Password".localized(language), text: $vm.pass)
                             .autocorrectionDisabled(true)
                             
                             Divider()
@@ -50,16 +45,7 @@ struct SignInView : View {
                 //кнопки
                 VStack{
                     Button{
-                        AuthService.shared.signIn(email: email, password: pass) { result in
-                            switch result{
-                            case .success(_):
-                                email.removeAll()
-                                UserDefaults.standard.set(true, forKey: "UserLoginStatus")
-                            case .failure(let error):
-                                textAlert = "\(error.localizedDescription)"
-                                isAlert.toggle()
-                            }
-                        }
+                        vm.signIn()
                     } label: {
                         Text("Sign In".localized(language)).foregroundColor(Color(.label).opacity(0.75)).frame(width: UIScreen.main.bounds.width - 120).padding()
                     }.background(Color(.systemGray5))
@@ -74,7 +60,7 @@ struct SignInView : View {
                         Text("Don't Have An Account ?".localized(language)).foregroundColor(Color.gray.opacity(0.5))
                         
                         NavigationLink {
-                            SignUpView(email: $email, pass: $pass)
+                            SignUpView(vm: vm)
                         } label: {
                             Text("Sign Up".localized(language))
                         }.foregroundColor(.blue)
@@ -82,7 +68,7 @@ struct SignInView : View {
                     }.padding(.top, 25)
                 }
             }
-        }.alert(textAlert, isPresented: $isAlert) {
+        }.alert(vm.textAlert, isPresented: $vm.isAlert) {
             Text("OK")
         }//Ошибка
         .onTapGesture {

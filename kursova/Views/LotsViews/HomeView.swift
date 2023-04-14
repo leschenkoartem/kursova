@@ -106,15 +106,15 @@ struct HomeView: View {
                             if let user = AuthService.shared.currentUser?.uid {
                                 let lot = lotView.lotsList[item]
                                 if lot.idCreator == user{
-                                    SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                                    SmallLot(vm: SmallLotViewModel(lot: lot, profilView: profileView))
                                 }
                             }
                         }
                         Spacer().frame(height: 130)
                         
-                    }.refreshable {
-                        lotView.getLots()
                     }
+                }.refreshable {
+                    lotView.getLots()
                 }
             }else if showLots == 2{
                 Text("Active Offers:".localized(language)).foregroundColor(Color(.label).opacity(0.75))
@@ -129,14 +129,14 @@ struct HomeView: View {
                             if let user = AuthService.shared.currentUser?.uid{
                                 let lot = lotView.lotsList[item]
                                 if lot.idCurrentPerson == user{
-                                    SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                                    SmallLot(vm: SmallLotViewModel(lot: lot, profilView: profileView))
                                 }
                             }
                         }
                         Spacer().frame(height: 130)
-                    }.refreshable {
-                        lotView.getLots()
                     }
+                }.refreshable {
+                    lotView.getLots()
                 }
                 Spacer()
                 
@@ -153,14 +153,14 @@ struct HomeView: View {
                             if let user = AuthService.shared.currentUser?.uid{
                                 let lot = lotView.lotsList[item]
                                 if lot.seePeopleId.contains(user){
-                                    SmallLot(selfViewModel: SmallLotViewModel(lot: lot))
+                                    SmallLot(vm: SmallLotViewModel(lot: lot, profilView: profileView))
                                 }
                             }
                         }
                         Spacer().frame(height: 130)
-                    }.refreshable {
-                        lotView.getLots()
                     }
+                }.refreshable {
+                    lotView.getLots()
                 }
                 Spacer()
             }

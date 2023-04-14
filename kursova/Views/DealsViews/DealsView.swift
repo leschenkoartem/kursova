@@ -53,9 +53,9 @@ struct DealsView: View {
                         }
                     }
                     Spacer().frame(height: 130)
-                }.refreshable {
-                    dealsView.getDeals()
                 }
+            }.refreshable {
+                dealsView.getDeals()
             }
         }
     }

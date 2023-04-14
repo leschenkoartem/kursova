@@ -123,6 +123,6 @@ struct FullInfoLotView: View {
 
 struct FullInfoLotView_Previews: PreviewProvider {
     static var previews: some View {
-        FullInfoLotView(lotVM: SmallLotViewModel(lot: LotStruct(idCreator: "dcwd", idCurrentPerson: "wdcwc", mainText: "wdc", currentPrice: 2341, informationText: "wdc", date: Date(), seePeopleId: [], image: "wqxw")))
+        FullInfoLotView(lotVM: SmallLotViewModel(lot: LotStruct(idCreator: "dcwd", idCurrentPerson: "wdcwc", mainText: "wdc", currentPrice: 2341, informationText: "wdc", date: Date(), seePeopleId: [], image: "wqxw"), profilView: AccountViewModel()))
     }
 }

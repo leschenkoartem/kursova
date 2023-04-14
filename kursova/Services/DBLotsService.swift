@@ -53,7 +53,7 @@ class DBLotsService{
         if options.dateFilterOn, let selectedDate = options.selectedDate{
             query = query.whereField("date", isGreaterThan: selectedDate)
         }
-        
+            
         query.getDocuments { qSnap, error in
             guard let qSnap = qSnap else {
                 if let error = error {

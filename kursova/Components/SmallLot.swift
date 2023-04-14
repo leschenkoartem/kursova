@@ -11,42 +11,24 @@ struct SmallLot: View {
     
     @AppStorage("language") private var language = LocalizationService.shared.language
     
-    var selfViewModel : SmallLotViewModel
+    @ObservedObject var vm: SmallLotViewModel
     
     //для анимации
     @State var selfHeight = 150
-    
-    //Для ошибки
-    @State var showAletr = false
-    @State var textAlert = ""
-    
-    //Для диалога
-    @State var showDialog = false
-    @State var textDialog = ""
-    @State var variationdialog = 1
-    
     //Для доп информации
     @State var showBigImage = false
+    @State var getBigger = false
     
     //Для конекта с текущим юзером
     @EnvironmentObject var profilView : AccountViewModel
     @EnvironmentObject var lotView : LotViewModel
     @Environment(\.dismiss) var dismiss
     
-    @State var plusPrice = 500 {
-        didSet {
-            if plusPrice < 500{
-                plusPrice = 500
-            }
-        }
-    }
-    @State var getBigger = false
-    
     var idUser = AuthService.shared.currentUser!.uid
     
     var simId:Bool {
         get {
-            return selfViewModel.lot.idCreator == idUser
+            return vm.lot.idCreator == idUser
         }
     }
     
@@ -57,7 +39,7 @@ struct SmallLot: View {
             //Основной контект маленького экрана
             HStack(alignment: .top) {
                 
-                AsyncImage(url: URL(string: selfViewModel.lot.image)) { Image in
+                AsyncImage(url: URL(string: vm.lot.image)) { Image in
                     Image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -80,36 +62,31 @@ struct SmallLot: View {
                     
                     HStack {
                         //Кнопка показываеться только для учасника
-                        if selfViewModel.lot.idCreator != idUser{
-                            
+                        if vm.lot.idCreator != idUser {
                             //если участника нет в списке наблюдателей
-                            if !selfViewModel.lot.seePeopleId.contains(idUser) {
+                            if !vm.lot.seePeopleId.contains(idUser) {
                                 Button {
                                     //добавляем его в список
-                                    selfViewModel.addToObserve()
+                                    vm.addToObserve()
                                     lotView.getLots()
-                                    
                                 } label: {
                                     Image(systemName: "eye.slash")
-                                    
                                 }.opacity(0.6)
                                     .foregroundColor(Color(.label))
                                     .fontWeight(.bold)
-                                
                             } else {
                                 //если он есть
                                 Button {
                                     //удаляем из списка
-                                    selfViewModel.dellFromObserve()
+                                    vm.dellFromObserve()
                                     lotView.getLots()
-                                    
                                 } label: {
                                     Image(systemName: "eye")
                                 }.fontWeight(.bold)
                             }
                         }
                         
-                        Text(selfViewModel.lot.mainText+"\(simId ? "(Yours)".localized(language) : " ")").font(.title2)
+                        Text(vm.lot.mainText+"\(simId ? "(Yours)".localized(language) : " ")").font(.title2)
                             .fontWeight(.bold)
                             .opacity(0.7)
                             .foregroundColor(simId ? .yellow : Color(.label))
@@ -120,75 +97,51 @@ struct SmallLot: View {
                         Text("Current Price: ".localized(language)).opacity(0.6)
                             .padding(.bottom, 2)
                             .fontWeight(.bold)
-                        Text("\(selfViewModel.lot.currentPrice)$").opacity(0.6)
+                        Text("\(vm.lot.currentPrice)$").opacity(0.6)
                             .padding(.bottom, 2)
                     }
                     
                     Text("Current User: ".localized(language)).opacity(0.6)
                         .fontWeight(.bold)
-                    Text("\(selfViewModel.lot.currentPerson)").opacity(0.7)
-                        .foregroundColor(selfViewModel.lot.idCurrentPerson == idUser ? .green: Color(.label))
-                        .fontWeight(selfViewModel.lot.idCurrentPerson == idUser ? .bold: .regular)
-                    Text("(\(selfViewModel.lot.currentEmail))").opacity(0.7)
-                        .foregroundColor(selfViewModel.lot.idCurrentPerson == idUser ? .green: Color(.label))
-                        .fontWeight(selfViewModel.lot.idCurrentPerson == idUser ? .bold: .regular)
+                    Text("\(vm.lot.currentPerson)").opacity(0.7)
+                        .foregroundColor(vm.lot.idCurrentPerson == idUser ? .green: Color(.label))
+                        .fontWeight(vm.lot.idCurrentPerson == idUser ? .bold: .regular)
+                    Text("(\(vm.lot.currentEmail))").opacity(0.7)
+                        .foregroundColor(vm.lot.idCurrentPerson == idUser ? .green: Color(.label))
+                        .fontWeight(vm.lot.idCurrentPerson == idUser ? .bold: .regular)
                     
                     Spacer()
-                    
                 }.padding(.vertical)
                     .frame(maxHeight: 150)
-                
                 Spacer()
-                
             }.padding(.vertical).frame(maxHeight: 150)
             
             //Усли экран увеличивается и лот не принадлежит текущему юзеру - есть кнопка добавления цены
             if getBigger {
-                
                 VStack {
                     //Информация по лоту
                     Text(" Information:".localized(language)).opacity(0.7).padding(.horizontal, 5).fontWeight(.bold)
                         .padding(.top, -10)
-                    Text("\(selfViewModel.lot.informationText)").opacity(0.6).padding(.horizontal, 5)
+                    Text("\(vm.lot.informationText)").opacity(0.6).padding(.horizontal, 5)
                         .padding(.top, -10)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                
                 Spacer()
-                
-                if idUser != selfViewModel.lot.idCreator{
+                if idUser != vm.lot.idCreator{
                     //кнопки
                     HStack {
                         //Кнопка минус
                         Button {
-                            plusPrice-=500
+                            vm.plusPrice -= 500
                         } label: {
                             Image(systemName: "minus")
                                 .padding()
                         }
                         //Основная кнопка, которая вызывает Диалог с подтверждение сделки
                         Button {
-                            if selfViewModel.lot.idCurrentPerson == idUser{
-                                if profilView.profile.balance >= plusPrice{
-                                    textDialog = String(self.plusPrice) + "$ will be deducted from your balance. Make an offer?".localized(language)
-                                    variationdialog = 1
-                                    showDialog.toggle()
-                                }else{
-                                    textAlert = "Not Enough money on balance".localized(language)
-                                    showAletr.toggle()
-                                }
-                            }else{
-                                if profilView.profile.balance >= selfViewModel.lot.currentPrice + plusPrice{
-                                    textDialog = String(self.plusPrice + selfViewModel.lot.currentPrice) + "$ will be deducted from your balance. Make an offer?".localized(language)
-                                    variationdialog = 1
-                                    showDialog.toggle()
-                                }else{
-                                    textAlert = "Not Enough money on balance".localized(language)
-                                    showAletr.toggle()
-                                }
-                            }
+                            vm.makeAlert()
                         } label: {
-                            Text("make an offer + ".localized(language) + String(self.plusPrice) +  "$").padding(8)
+                            Text("make an offer + ".localized(language) + String(vm.plusPrice) +  "$").padding(8)
                                 .fontWeight(.bold)
                                 .frame(width: 230)
                                 .background(.blue)
@@ -197,7 +150,7 @@ struct SmallLot: View {
                         }
                         //Кнопка плюс
                         Button {
-                            plusPrice+=500
+                            vm.plusPrice += 500
                         } label: {
                             Image(systemName: "plus")
                                 .padding()
@@ -209,13 +162,7 @@ struct SmallLot: View {
                     HStack{
                         //Основная кнопка, которая вызывает Диалог с подтверждением завершения аукциона
                         Button {
-                            if selfViewModel.lot.idCurrentPerson != "" {
-                                textDialog = "Do you want to end the auction? Your balance will be replenished by ".localized(language) +  String(selfViewModel.lot.currentPrice) + "$"
-                            } else {
-                                textDialog = "Do you want to end the auction? Your Balance does Not Change.".localized(language)
-                            }
-                            variationdialog = 2
-                            showDialog.toggle()
+                            vm.conf_finish_lot()
                         } label: {
                             Text("Finish".localized(language)).padding(8)
                                 .fontWeight(.bold)
@@ -228,9 +175,7 @@ struct SmallLot: View {
                         }
                         //Основная кнопка, которая вызывает Диалог с подтверждением удаления аукциона
                         Button {
-                            textDialog = "Do you want to delete the lot? Your account will not change, the money will be returned to the participant".localized(language)
-                            variationdialog = 3
-                            showDialog.toggle()
+                            vm.conf_del_lot()
                         } label: {
                             Text("Delete".localized(language)).padding(8)
                                 .fontWeight(.bold)
@@ -254,7 +199,7 @@ struct SmallLot: View {
             .animation(.easeInOut(duration: 0.5), value: getBigger)
         //Полная инфа(ЛИСТ)
             .sheet(isPresented: $showBigImage){
-                FullInfoLotView(lotVM: selfViewModel)
+                FullInfoLotView(lotVM: vm)
             }
         //"Если будет нажато" то происходит изменение высоты с анимацией(БЫСТРОЕ НАЖАТИЕ)
             .onTapGesture {
@@ -267,49 +212,23 @@ struct SmallLot: View {
             .onLongPressGesture(minimumDuration: 0.2) {
                 showBigImage.toggle()
             }
-        
         //Ошибка
-            .alert(textAlert, isPresented: $showAletr){
+            .alert(vm.textAlert, isPresented: $vm.showAletr){
                 Text("OK")
             }
-        
         //Диалог подтверждения
-            .confirmationDialog(textDialog, isPresented: $showDialog, titleVisibility: .visible) {
+            .confirmationDialog(vm.textDialog, isPresented: $vm.showDialog, titleVisibility: .visible) {
                 //Кнопка нет
                 Button(role: .cancel) {
-                    showDialog.toggle()
+                    vm.showDialog.toggle()
                 } label: {
                     Text("No".localized(language))
                 }
                 //Кнопка да
                 Button(role: .destructive) {
                     //Варианты диалога
-                    switch variationdialog{
-                        //Смена цены и пользователя
-                    case 1:
-                        textAlert = selfViewModel.addPrice(idUser: idUser,
-                                                           plusPrice: plusPrice,
-                                                           name: profilView.profile.name,
-                                                           email: profilView.profile.email)
-                        plusPrice = 500
-                    case 2:
-                        
-                        textAlert = selfViewModel.finishLot(idUser: idUser,
-                                                            plusPrice: plusPrice,
-                                                            name: profilView.profile.name,
-                                                            email: profilView.profile.email)
-                        //Удаление лота
-                    case 3:
-                        textAlert = selfViewModel.delLot(idUser: idUser,
-                                                         plusPrice: plusPrice,
-                                                         name: profilView.profile.name,
-                                                         email: profilView.profile.email)
-                    default:
-                        print("error")
-                    }
-                    profilView.getProfile()
+                    vm.makeDialog()
                     lotView.getLots()
-                    showAletr.toggle()
                 } label: {
                     Text("Yeah".localized(language))
                 }
@@ -319,7 +238,7 @@ struct SmallLot: View {
 
 struct SmallLot_Previews: PreviewProvider {
     static var previews: some View {
-        SmallLot(selfViewModel: SmallLotViewModel(lot: LotStruct(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "noneakjfnaefjkdvnqa rfq e qerf  eqr qer f q e rf qr fq e f", date: Date(), seePeopleId: [], image: "")),
+        SmallLot(vm: SmallLotViewModel(lot: LotStruct(id: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCreator: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", idCurrentPerson: "4HW1ZWlnbCPbKCTVjbFOZcqL1fp1", mainText: "kjn", currentPrice: 20000, currentPerson: "Artem Leschenko", currentEmail: "artemleschenko296@gmail.com", informationText: "noneakjfnaefjkdvnqa rfq e qerf  eqr qer f q e rf qr fq e f", date: Date(), seePeopleId: [], image: ""), profilView: AccountViewModel()),
                  idUser: "4HW1ZWlnbCPbKCTVjbFOcqL1fp1").environmentObject(AccountViewModel()).environmentObject(LotViewModel())
     }
 }

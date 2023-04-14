@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomToggle: View{
+struct CustomToggle: View {
     @Binding var switchMark: Bool
     
     var body: some View{
