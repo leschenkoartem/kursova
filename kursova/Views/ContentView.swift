@@ -10,8 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var lotView = LotViewModel()
-    @StateObject var profileView = AccountViewModel()
     @State var selector: Tab = .hammer
     
     @AppStorage("UserLoginStatus")
@@ -28,14 +26,10 @@ struct ContentView: View {
                     case .hammer:
                         AuctionsView()
                             .toolbar(.hidden, for: .tabBar)
-                            .environmentObject(profileView)
-                            .environmentObject(lotView)
                             .blur(radius: scenePhase == .inactive ? 10: 0)
                     case .house:
                             HomeView()
                                 .toolbar(.hidden, for: .tabBar)
-                                .environmentObject(profileView)
-                                .environmentObject(lotView)
                                 .blur(radius: scenePhase == .inactive ? 10: 0)
                     }
                 }

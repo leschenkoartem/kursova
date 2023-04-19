@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct FullInfoLotView: View {
     
     @AppStorage("language")

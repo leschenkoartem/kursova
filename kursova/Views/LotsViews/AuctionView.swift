@@ -33,12 +33,10 @@ struct AuctionsView: View {
                     LazyVStack{
                         ForEach(0..<lotView.lotsList.count, id: \.self) {item in
                             let lot = vm.getQueue(observedQueue: vm.observedQueue, list: lotView.lotsList)[item]
-                            
                             let redactedLot  = vm.getLot(lot: lot)
-
-                                if redactedLot != nil { //Фильтр даты
-                                    SmallLot(vm: SmallLotViewModel(lot: redactedLot!, profilView: profilView ))
-                                }
+                            if redactedLot != nil {
+                                SmallLot(vm: SmallLotViewModel(lot: redactedLot!, profilView: profilView))
+                            }
                         }
                         Spacer().frame(height: 130)
                         
@@ -180,6 +178,6 @@ struct AuctionsView: View {
 
 struct AuctionsView_Previews: PreviewProvider {
     static var previews: some View {
-        AuctionsView().environmentObject(LotViewModel())
+        AuctionsView().environmentObject(LotViewModel()).environmentObject(AccountViewModel())
     }
 }

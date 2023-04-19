@@ -35,6 +35,7 @@ struct SignUpView : View {
                     VStack(alignment: .leading) {
                         Text("Password".localized(language)).font(.headline).fontWeight(.light).foregroundColor(Color(.label).opacity(0.75))
                         SecureField("Enter Your Password".localized(language), text: $vm.pass)
+                            .disableAutocorrection(true)
                         Divider()
                     }.padding(.bottom, 15)
                     

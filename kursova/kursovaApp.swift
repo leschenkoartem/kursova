@@ -13,10 +13,14 @@ struct KursachAuctionsApp: App {
     //Firestore
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    @StateObject var lotView = LotViewModel()
+    @StateObject var profileView = AccountViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(profileView)
+                .environmentObject(lotView)
         }
     }
 }

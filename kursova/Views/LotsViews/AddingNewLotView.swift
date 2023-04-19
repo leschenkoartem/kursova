@@ -37,7 +37,6 @@ struct AddingNewLotView: View {
                 
                 //Верхняя часть с картиной и кнопкой назад
                 ZStack{
-                    
                     //Если картинка не выбрана
                     VStack {
                         Spacer().frame(height: 20)
@@ -54,7 +53,7 @@ struct AddingNewLotView: View {
                     }.frame(maxWidth: 150, maxHeight: 150)
                     
                     //Картинка
-                    if let image = image{
+                    if let image = image {
                         Image(uiImage: image)
                             .resizable()
                             .frame(width: .infinity, height: 300)

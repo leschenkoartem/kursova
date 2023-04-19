@@ -17,7 +17,6 @@ class SmallLotViewModel : ObservableObject {
     
     var profilView: AccountViewModel
     
-    @EnvironmentObject var dealView: DealsViewModel
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     @Published var textAlert = ""

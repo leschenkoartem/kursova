@@ -28,6 +28,7 @@
 		E3D764C329AEA4E50070DDC9 /* AddingNewLotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */; };
 		E3D764C529AFB96B0070DDC9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */; };
 		E3DBEF1D29E9574500E8D282 /* SignInUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DBEF1C29E9574500E8D282 /* SignInUpViewModel.swift */; };
+		E3DBEF2A29EE7D6A00E8D282 /* Swd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DBEF2929EE7D6A00E8D282 /* Swd.swift */; };
 		E3E3055129AB76A500426066 /* kursovaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E3055029AB76A500426066 /* kursovaApp.swift */; };
 		E3E3055529AB76A600426066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055429AB76A600426066 /* Assets.xcassets */; };
 		E3E3055829AB76A600426066 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E3055729AB76A600426066 /* Preview Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		E3D764C229AEA4E50070DDC9 /* AddingNewLotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewLotView.swift; sourceTree = "<group>"; };
 		E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E3DBEF1C29E9574500E8D282 /* SignInUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUpViewModel.swift; sourceTree = "<group>"; };
+		E3DBEF2929EE7D6A00E8D282 /* Swd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swd.swift; sourceTree = "<group>"; };
 		E3E3054D29AB76A500426066 /* kursova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kursova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E3055029AB76A500426066 /* kursovaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kursovaApp.swift; sourceTree = "<group>"; };
 		E3E3055429AB76A600426066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		E37C5A5A29E61150009B510D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				E3DBEF2929EE7D6A00E8D282 /* Swd.swift */,
 				E3E3057A29AB79D400426066 /* SignUpView.swift */,
 				E3E3057829AB79BA00426066 /* SignInView.swift */,
 			);
@@ -149,6 +152,36 @@
 				E37C5A5E29E611F9009B510D /* DealsInfoView.swift */,
 			);
 			path = DealsViews;
+			sourceTree = "<group>";
+		};
+		E3DBEF2429E9984E00E8D282 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				E3E3056A29AB78CF00426066 /* DBUserService.swift */,
+				E37C5A5629E60A70009B510D /* DBDealsService.swift */,
+				E3FB7B0029C39B3F00C83DA4 /* DBLotsService.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		E3DBEF2529E9987400E8D282 /* ForElements */ = {
+			isa = PBXGroup;
+			children = (
+				E3E3056E29AB78FF00426066 /* LotViewModel.swift */,
+				E3E3056C29AB78EC00426066 /* AccountViewModel.swift */,
+			);
+			path = ForElements;
+			sourceTree = "<group>";
+		};
+		E3DBEF2629E9988F00E8D282 /* ForViews */ = {
+			isa = PBXGroup;
+			children = (
+				E3155E0629CAF65200BBD1EF /* AuctionViewModel.swift */,
+				E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */,
+				E37C5A5429E609E1009B510D /* DealsViewModel.swift */,
+				E3DBEF1C29E9574500E8D282 /* SignInUpViewModel.swift */,
+			);
+			path = ForViews;
 			sourceTree = "<group>";
 		};
 		E3E3054429AB76A500426066 = {
@@ -206,12 +239,8 @@
 		E3E3058A29AB7B6A00426066 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E3E3056E29AB78FF00426066 /* LotViewModel.swift */,
-				E3E3056C29AB78EC00426066 /* AccountViewModel.swift */,
-				E3033EFB29B8EFC800B2B23E /* SmallLotViewModel.swift */,
-				E3155E0629CAF65200BBD1EF /* AuctionViewModel.swift */,
-				E37C5A5429E609E1009B510D /* DealsViewModel.swift */,
-				E3DBEF1C29E9574500E8D282 /* SignInUpViewModel.swift */,
+				E3DBEF2529E9987400E8D282 /* ForElements */,
+				E3DBEF2629E9988F00E8D282 /* ForViews */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,8 +252,8 @@
 				E3D764BA29AE9E4B0070DDC9 /* ImagePicker.swift */,
 				E3E3056029AB782B00426066 /* CustomTabBar.swift */,
 				E3D764C429AFB96B0070DDC9 /* CustomTextField.swift */,
-				E31DCF5629BBD09400AE6542 /* LanguageButton.swift */,
 				E3279BD329C622BD00156D32 /* CustomToggle.swift */,
+				E31DCF5629BBD09400AE6542 /* LanguageButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -243,10 +272,8 @@
 			isa = PBXGroup;
 			children = (
 				E3155E0229CA710800BBD1EF /* GoogleService-Info.plist */,
+				E3DBEF2429E9984E00E8D282 /* DataBase */,
 				E3E3056829AB78B600426066 /* AuthService.swift */,
-				E3E3056A29AB78CF00426066 /* DBUserService.swift */,
-				E3FB7B0029C39B3F00C83DA4 /* DBLotsService.swift */,
-				E37C5A5629E60A70009B510D /* DBDealsService.swift */,
 				E31DCF5429BBCF8000AE6542 /* LocalService.swift */,
 			);
 			path = Services;
@@ -400,6 +427,7 @@
 				E3D764BB29AE9E4B0070DDC9 /* ImagePicker.swift in Sources */,
 				E3E3057329AB792800426066 /* AuctionView.swift in Sources */,
 				E3279BD429C622BD00156D32 /* CustomToggle.swift in Sources */,
+				E3DBEF2A29EE7D6A00E8D282 /* Swd.swift in Sources */,
 				E37C5A5329E608F5009B510D /* DealModel.swift in Sources */,
 				E37C5A5529E609E1009B510D /* DealsViewModel.swift in Sources */,
 				E31DCF5729BBD09400AE6542 /* LanguageButton.swift in Sources */,

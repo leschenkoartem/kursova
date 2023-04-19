@@ -26,18 +26,16 @@ struct HomeView: View {
             //Панелька с инфой юзера
             ZStack{
                 HStack(spacing: 15){
-                    
-                    if profileView.profile.image == ""{
+                    if profileView.profile.image == "" {
                         Image(systemName: "plus").resizable()
                             .foregroundColor(Color(.label).opacity(0.6))
                             .frame(width: 40, height: 40)
                             .frame(width: 60, height: 60)
                             .background(Color(.label).opacity(0.1))
                             .clipShape(Circle())
-                            .onTapGesture {showSheet.toggle()}
-                    }else{
+                             .onTapGesture {showSheet.toggle()}
+                    } else {
                         AsyncImage(url: URL(string: profileView.profile.image)) { Image in
-                            
                             Image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -51,15 +49,13 @@ struct HomeView: View {
                             .background(Color.black.opacity(0.1))
                             .clipShape(Circle())
                     }
-                    
-                    
+
                     Divider()
                     
                     VStack(alignment: .leading){
                         Text(profileView.profile.name).foregroundColor(Color(.label).opacity(0.75))
                         Text(profileView.profile.email).foregroundColor(Color(.label).opacity(0.4))
                         Text("\(profileView.profile.balance)$").foregroundColor(Color(.label).opacity(0.4))
-                        
                     }
                     Spacer()
                     //Конпка выхода
@@ -88,7 +84,7 @@ struct HomeView: View {
                 .padding(5)
             
             //Скролы с лотами
-            if showLots == 1{
+            if showLots == 1 {
                 Text("Your Lots:".localized(language)).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
                 Text("Lots, That You Made.".localized(language)).foregroundColor(Color(.systemGray3).opacity(0.75))
@@ -105,7 +101,7 @@ struct HomeView: View {
                         ForEach(0..<lotView.lotsList.count, id: \.self){item in
                             if let user = AuthService.shared.currentUser?.uid {
                                 let lot = lotView.lotsList[item]
-                                if lot.idCreator == user{
+                                if lot.idCreator == user {
                                     SmallLot(vm: SmallLotViewModel(lot: lot, profilView: profileView))
                                 }
                             }
@@ -116,7 +112,7 @@ struct HomeView: View {
                 }.refreshable {
                     lotView.getLots()
                 }
-            }else if showLots == 2{
+            } else if showLots == 2 {
                 Text("Active Offers:".localized(language)).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
                 Text("Lots, in Which You Participate".localized(language)).foregroundColor(Color(.systemGray3).opacity(0.75))
@@ -128,7 +124,7 @@ struct HomeView: View {
                         ForEach(0..<lotView.lotsList.count, id: \.self) {item in
                             if let user = AuthService.shared.currentUser?.uid{
                                 let lot = lotView.lotsList[item]
-                                if lot.idCurrentPerson == user{
+                                if lot.idCurrentPerson == user {
                                     SmallLot(vm: SmallLotViewModel(lot: lot, profilView: profileView))
                                 }
                             }
@@ -140,7 +136,7 @@ struct HomeView: View {
                 }
                 Spacer()
                 
-            }else{
+            } else {
                 Text("Marked Lots:".localized(language)).foregroundColor(Color(.label).opacity(0.75))
                     .font(.title).fontWeight(.bold)
                 Text("Lots You Marked".localized(language)).foregroundColor(Color(.systemGray3).opacity(0.75))
@@ -148,11 +144,11 @@ struct HomeView: View {
                 
                 ScrollView{
                     Spacer().frame(height: 10)
-                    LazyVStack{
+                    LazyVStack {
                         ForEach(0..<lotView.lotsList.count, id: \.self){item in
                             if let user = AuthService.shared.currentUser?.uid{
                                 let lot = lotView.lotsList[item]
-                                if lot.seePeopleId.contains(user){
+                                if lot.seePeopleId.contains(user) {
                                     SmallLot(vm: SmallLotViewModel(lot: lot, profilView: profileView))
                                 }
                             }
@@ -178,7 +174,6 @@ struct HomeView: View {
                 } label: {
                     Text("Yeah".localized(language))
                 }
-                
             }//При показе экрана запрашываются даные из базы данных
             .onAppear{
                 profileView.getProfile()

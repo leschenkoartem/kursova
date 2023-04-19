@@ -48,3 +48,9 @@ struct LotStruct: Identifiable, Equatable, Hashable {
         return repres
     }
 }
+
+extension LotStruct {
+    func example() -> LotStruct {
+        return LotStruct(idCreator: "bevgrv", idCurrentPerson: "etgbwergbtv", mainText: "Arer", currentPrice: 2005, informationText: "rcrfec", date: Date(), seePeopleId: [], image: "wrvwr")
+    }
+}
