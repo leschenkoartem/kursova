@@ -39,7 +39,6 @@ struct AuctionsView: View {
                             }
                         }
                         Spacer().frame(height: 130)
-                        
                     }.scrollDismissesKeyboard(.immediately)
                 }.refreshable {
                     lotView.getLots()
@@ -62,7 +61,6 @@ struct AuctionsView: View {
                             
                             TextField("Search by keyword...".localized(language), text: $vm.searchInputWord).autocorrectionDisabled(true).textInputAutocapitalization(.never)
                                 .foregroundColor(Color(.label).opacity(0.5))
-                            
                             
                         }.padding(12)
                             .background(Color(.systemGray6))
@@ -94,7 +92,7 @@ struct AuctionsView: View {
                                 }
                             }
                         //Фильтры
-                        if showFilters{
+                        if showFilters {
                             //Фільтр ціни
                             Divider()
                             HStack{

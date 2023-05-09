@@ -108,3 +108,8 @@
 "Time: " = "Час: ";
 "Deal ID:\n" = "Ідентифікатор угоди:\n";
 "Copy ID" = "Копіювати ідентифікатор";
+
+//NotificationService
+"Dear" = "Шановний";
+"Time to check your bid for the lot" = "Час перевірити вашу ставку для лоту";
+"with ID" = "за айді" ;

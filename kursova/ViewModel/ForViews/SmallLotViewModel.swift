@@ -65,8 +65,8 @@ class SmallLotViewModel : ObservableObject {
     
     
     func addPrice() {
-        //Dозвращаем деньги прошлому ставщику
-        if lot.idCurrentPerson != ""{
+        //Bозвращаем деньги прошлому ставщику
+        if lot.idCurrentPerson != "" {
             DBUserService.shared.updateBalance(for: lot.idCurrentPerson, amountToAdd: +Double(lot.currentPrice)) { error in
                 if let error = error {
                     print("Ошибка при обновлении баланса пользователя: \(error.localizedDescription)")
@@ -75,10 +75,11 @@ class SmallLotViewModel : ObservableObject {
                 }
             }
         }
+        
         if lot.idCurrentPerson == idUser {
             lot.currentPrice += plusPrice
             textAlert = "Successful deal. ".localized(language) +  String(plusPrice) + "$ deducted from your balance".localized(language)
-        }else{
+        } else {
             //изменения лота
             lot.idCurrentPerson = idUser
             lot.currentPrice += plusPrice
@@ -181,6 +182,7 @@ class SmallLotViewModel : ObservableObject {
         case "AddPrice":
             addPrice()
             plusPrice = 500
+            NotificationService.shared.makeNotification(name: lot.mainText, id: lot.id, profile: profilView.profile.name)
         case "finish":
             finishLot()
         case "delete":

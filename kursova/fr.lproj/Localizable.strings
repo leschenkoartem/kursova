@@ -108,3 +108,8 @@
 "Time: " = "Heure: ";
 "Deal ID:\n" = "Identifiant de transaction:\n";
 "Copy ID" = "Copier l'identifiant";
+
+//NotificationService
+"Dear" = "Cher/Chère";
+"Time to check your bid for the lot" = "Il est temps de vérifier votre enchère pour le lot";
+"за айді" = "avec l'ID";

@@ -15,7 +15,6 @@ import FirebaseStorage
 
 class DBUserService{
     
-    
     static var shared = DBUserService()
     //1) делаем переменную обращения датабазы 2) Делаем ссылку на список "users"
     let dB = Firestore.firestore()
@@ -31,7 +30,6 @@ class DBUserService{
     
     //Запись юзера в базу даных
     func setProfile(user: MUser, completion:@escaping (Result<MUser, Error>)->()){
-        
         userRef.document(user.id).setData(user.representation) { error in
             if let error = error{
                 completion(.failure(error))
@@ -120,4 +118,3 @@ enum AppError: Error {
     case userImageNotFound
     case downloadURLNotFound
 }
-

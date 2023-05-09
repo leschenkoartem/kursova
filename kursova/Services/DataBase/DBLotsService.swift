@@ -20,7 +20,7 @@ class DBLotsService{
     //1) делаем переменную обращения датабазы 2) Делаем ссылку на список "users"
     let dB = Firestore.firestore()
     
-    var lotRef:CollectionReference{
+    var lotRef: CollectionReference{
         return dB.collection("lots")
     }
 

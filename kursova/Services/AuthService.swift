@@ -17,13 +17,10 @@ class AuthService{
         return auth.currentUser
     }
        
-    //Функция для регистрации
     func signUp(email:String, password:String, name:String, completion:@escaping(Result<User, Error>)->() ){
         auth.createUser(withEmail: email, password: password) { result, error in
             if let result = result{
-                //Создаэм юзера
                 let user = MUser(name: name, id: result.user.uid, email: email, image: "")
-                //помещаем его в базу данных
                 DBUserService.shared.setProfile(user: user) { resultDB in
                     switch resultDB {
                     case .success(_):
@@ -39,7 +36,6 @@ class AuthService{
         }
     }
     
-    //функция для входа
     func signIn(email:String, password:String, completion:@escaping(Result<User, Error>)->() ){
         auth.signIn(withEmail: email, password: password) { result, error in
             if let result = result{
@@ -49,10 +45,8 @@ class AuthService{
             }
         }
     }
-    
-    //Функция выхода из пользователя
+
     func signOut(){
         try? Auth.auth().signOut()
     }
-    
 }

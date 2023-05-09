@@ -108,3 +108,8 @@
 "Time: " = "Zeit: ";
 "Deal ID:\n" = "Transaktions-ID:\n";
 "Copy ID" ="Kennung kopieren";
+
+//NotificationService
+"Dear" = "Liebe/Lieber";
+"Time to check your bid for the lot" = "Es ist Zeit, Ihr Gebot für das Los zu überprüfen";
+"за айді" = "mit ID";

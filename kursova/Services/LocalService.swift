@@ -25,7 +25,6 @@ class LocalizationService {
     
     var language: Language {
         get {
-            
             if let languageString = UserDefaults.standard.string(forKey: "language") {
                 return Language(rawValue: languageString) ?? .english_us
             } else if let systemLanguageCode = Locale.current.language.languageCode?.identifier,

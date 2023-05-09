@@ -108,3 +108,8 @@
 "Time: " = "Hora: ";
 "Deal ID:\n" = "ID de transacción:\n";
 "Copy ID" = "Copiar ID";
+
+//NotificationService
+"Dear" = "Estimado/a";
+"Time to check your bid for the lot" = "Es hora de revisar su oferta por el lote";
+"за айді" = "con ID";

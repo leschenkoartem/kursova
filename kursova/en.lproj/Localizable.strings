@@ -108,3 +108,8 @@
 "Time: " = "Time: ";
 "Deal ID:\n" = "Deal ID:\n";
 "Copy ID" = "Copy ID";
+
+//NotificationService
+"Dear" = "Dear";
+"Time to check your bid for the lot" = "Time to check your bid for the lot";
+"with ID" = "with ID";

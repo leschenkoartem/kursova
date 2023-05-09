@@ -48,7 +48,7 @@ class SignInUpViewModel: ObservableObject {
         }
         
         AuthService.shared.signUp(email: email, password: pass, name: name) { [weak self] result in
-            switch result{
+            switch result {
             case .success(let user):
                 self?.textAlert = "Registration with ".localized(self!.language) + user.email!
                 self?.isAlert.toggle()
@@ -61,6 +61,22 @@ class SignInUpViewModel: ObservableObject {
                 self?.isAlert.toggle()
             }
         }
-        
     }
+    
+    func requestAuthorization() {
+        // Создание экземпляра центра уведомлений
+        let center = UNUserNotificationCenter.current()
+
+        // Запрос разрешения на отправку уведомлений
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                print("Ошибка при запросе разрешения на отправку уведомлений: \(error)")
+            } else if granted {
+                print("Разрешение на отправку уведомлений получено.")
+            } else {
+                print("Разрешение на отправку уведомлений не получено.")
+            }
+        }
+    } 
+    
 }

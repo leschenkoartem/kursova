@@ -43,19 +43,13 @@ struct SmallLot: View {
                     Image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 120, height: 120)
-                        .cornerRadius(12)
-                        .padding()
-                        .clipShape(Rectangle())
-                        .padding(.horizontal, -5)
                 } placeholder: {
                     ProgressView()
-                        .frame(width: 120, height: 120)
-                        .cornerRadius(12)
-                        .padding()
-                        .clipShape(Rectangle())
-                        .padding(.horizontal, -5)
-                }
+                }.frame(width: 120, height: 120)
+                    .cornerRadius(12)
+                    .padding()
+                    .clipShape(Rectangle())
+                    .padding(.horizontal, -5)
                 
                 // Текстовая информация о лоте
                 VStack(alignment: .leading) {

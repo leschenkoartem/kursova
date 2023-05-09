@@ -21,6 +21,7 @@ struct KursachAuctionsApp: App {
             ContentView()
                 .environmentObject(profileView)
                 .environmentObject(lotView)
+                .onAppear { UIApplication.shared.applicationIconBadgeNumber = 0 }
         }
     }
 }

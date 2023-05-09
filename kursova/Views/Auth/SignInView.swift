@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-
-
+import Firebase
+import AuthenticationServices
+import CryptoKit
 
 struct SignInView : View {
     
@@ -16,9 +17,8 @@ struct SignInView : View {
  
     @ObservedObject private var vm = SignInUpViewModel()
     
-    
     var body : some View{
-        NavigationView{
+        NavigationView {
             //верхний текст
             VStack {
                 HStack{
@@ -53,6 +53,8 @@ struct SignInView : View {
                         .padding(.top, 45)
                         .shadow(radius: 5)
                     
+                    
+                    
                     Text("(or)".localized(language)).foregroundColor(Color.gray.opacity(0.5)).padding(.top,30)
                     
                     HStack(spacing: 8){
@@ -74,6 +76,7 @@ struct SignInView : View {
         .onTapGesture {
             UIApplication.shared.endEditing()
         }
+        .onAppear { vm.requestAuthorization() }
     }
 }
 
@@ -83,3 +86,4 @@ struct SignInView_Previews: PreviewProvider {
         SignInView()
     }
 }
+
