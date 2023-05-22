@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "1D5D9156-5565-4A54-9BB6-EB2374F18992"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC976A42-A61B-4551-B0AF-9ADB0C318FFE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kursova/ViewModel/LotViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6C33286-D485-4136-80AF-6E10BB12648E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kursova/ViewModel/ForViews/AuctionViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "getQueue(observedQueue:list:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B6C33286-D485-4136-80AF-6E10BB12648E - 5049d9940f8468d9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kursova.AuctionViewModel.getQueue(observedQueue: Swift.Int, list: Swift.Array&lt;kursova.LotStruct&gt;) -&gt; Swift.Array&lt;kursova.LotStruct&gt;"
+                  moduleName = "kursova"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemleschenko/Desktop/%D0%BF%D1%80%D0%BE%D0%B4%D0%B6%D0%B5%D0%BA%D1%82%D1%8B/kursova/kursova/ViewModel/ForViews/AuctionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "B6C33286-D485-4136-80AF-6E10BB12648E - 625d62f145d0e02d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (kursova.LotStruct, kursova.LotStruct) -&gt; Swift.Bool in kursova.AuctionViewModel.getQueue(observedQueue: Swift.Int, list: Swift.Array&lt;kursova.LotStruct&gt;) -&gt; Swift.Array&lt;kursova.LotStruct&gt;"
+                  moduleName = "kursova"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemleschenko/Desktop/%D0%BF%D1%80%D0%BE%D0%B4%D0%B6%D0%B5%D0%BA%D1%82%D1%8B/kursova/kursova/ViewModel/ForViews/AuctionViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
